@@ -80,7 +80,7 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
                 </SidebarSection>
                 <SidebarHeading className="mt-10 font-bold">Support</SidebarHeading>
                 <SidebarSection>
-                  <SidebarItem href="https://eurosky.tech/help/" target="_blank" as={'a'}>
+                  <SidebarItem href="https://aster.id/" target="_blank" as={'a'}>
                     <LifebuoyIcon />
                     <SidebarLabel>Help</SidebarLabel>
                   </SidebarItem>
@@ -88,7 +88,7 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
                     <QuestionMarkCircleIcon />
                     <SidebarLabel>FAQ</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem href="https://eurosky.tech/contact/" target="_blank" as={'a'}>
+                  <SidebarItem href="https://aster.id/" target="_blank" as={'a'}>
                     <ChatBubbleOvalLeftEllipsisIcon />
                     <SidebarLabel>Contact us</SidebarLabel>
                   </SidebarItem>

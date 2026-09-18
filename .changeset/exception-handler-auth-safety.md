@@ -1,5 +1,5 @@
 ---
-'eurosky-portal': patch
+'aster-portal': patch
 ---
 
 Fix crash in exception handler w/o `auth` context.

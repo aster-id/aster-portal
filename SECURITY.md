@@ -6,4 +6,4 @@ This project is currently does not have an LTS policy, only the latest version o
 
 ## Reporting a Vulnerability
 
-If you have found a vulnerability in this project, please email: [security@eurosky.tech](mailto:security@eurosky.tech) and [emelia@brandedcode.com](mailto:emelia@brandedcode.com).
+If you have found a vulnerability in this project, please email: [security@aster.id](mailto:security@aster.id).

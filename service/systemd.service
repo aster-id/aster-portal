@@ -1,6 +1,6 @@
 [Unit]
-Description=Eurosky Portal App
-Documentation=https://github.com/eurosky-social/eurosky-portal
+Description=Aster Portal App
+Documentation=https://github.com/aster-research/aster-portal
 Requires=docker.service
 After=docker.service
 

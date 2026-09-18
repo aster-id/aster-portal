@@ -9,8 +9,6 @@ import Card from '~/lib/card'
 import { Text } from '~/lib/text'
 import type { InertiaProps } from '~/types'
 
-const feedbackUrl = 'https://userinput.app/#/s/did:plc:ooensn4mr5mhznzypvxelfa3/3mr5gmbhteg2p'
-
 const pageSize = 20
 
 export default function Activity(result: InertiaProps<GetRecordsResult>) {
@@ -40,16 +38,6 @@ export default function Activity(result: InertiaProps<GetRecordsResult>) {
           <Text className="text-amber-700! dark:text-amber-200/80!">
             Your activity feed is currently in development. Some of your activity may be missing. We
             will add more activity soon.
-          </Text>
-          <Text className="text-amber-700! dark:text-amber-200/80!">
-            <a
-              className="font-semibold underline hover:text-amber-900 dark:hover:text-amber-100"
-              href={feedbackUrl}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Give feedback
-            </a>
           </Text>
         </div>
       </Card>

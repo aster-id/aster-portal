@@ -12,7 +12,7 @@ export default function ApplicationsPage({ sections }: InertiaProps<Data.Apps>) 
         Applications
       </h2>
       <p className="mb-4 text-sm/6 text-gray-500 dark:text-gray-300">
-        Browse featured apps that work with your Eurosky account.
+        Browse featured apps that work with your Aster account.
       </p>
       <Apps sections={sections} />
     </Card>

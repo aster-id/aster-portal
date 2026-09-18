@@ -1,5 +1,5 @@
 ---
-'eurosky-portal': patch
+'aster-portal': patch
 ---
 
 Add foundation of internationalization

@@ -40,7 +40,6 @@ const KNOWN_OAUTH_ERRORS = [
 
 const WELL_KNOWN_HANDLE_DOMAINS = [
   '.bsky.social',
-  '.eurosky.social',
   '.selfhosted.social',
   '.pds.rip',
   // blacksky:
@@ -106,7 +105,7 @@ export default class OAuthController {
         throw createFieldError(
           'input',
           result.value,
-          'Currently the Eurosky portal is only available for Eurosky accounts.'
+          'Currently the Aster portal is only available for Aster accounts.'
         )
       }
 
@@ -159,7 +158,7 @@ export default class OAuthController {
     //
     // const registrationSupported = await oauth.canRegister(oauthServerUrl)
     // if (!registrationSupported) {
-    // // Handle registration not supported, this should never be the case for Eurosky:
+    // // Handle registration not supported, this should never be the case for Aster:
     //   return response.abort('Registration not supported')
     // }
 
@@ -421,7 +420,7 @@ export default class OAuthController {
  *
  * Such as when external logins are allowed (example: `"did:plc:1234..."`,
  * `"alice.bsky.social"`),
- * or a handle that uses our handle domain (`alice.eurosky.social`).
+ * or a handle that uses our handle domain (`alice.aster.id`).
  */
 interface AllowedIdInput {
   type: 'allowed-id'
@@ -429,7 +428,7 @@ interface AllowedIdInput {
 }
 
 /**
- * OAuth server (example: `https://eurosky.social`).
+ * OAuth server (example: `https://aster.id`).
  */
 interface ServiceUrlInput {
   type: 'service-url'
@@ -460,7 +459,7 @@ interface UnresolvedInput {
  *   When known invalid input is used.
  */
 function checkAuthInput(value: string): AllowedIdInput | ServiceUrlInput | UnresolvedInput {
-  // OAuth server (example: `https://eurosky.social`).
+  // OAuth server (example: `https://aster.id`).
   if (isUriString(value)) {
     // Reject early if external logins are not allowed (example:
     // `https://bsky.social`).
@@ -472,7 +471,7 @@ function checkAuthInput(value: string): AllowedIdInput | ServiceUrlInput | Unres
       throw createFieldError(
         'input',
         value,
-        'Currently the Eurosky portal is only available for Eurosky accounts.'
+        'Currently the Aster portal is only available for Aster accounts.'
       )
     }
 
@@ -489,7 +488,7 @@ function checkAuthInput(value: string): AllowedIdInput | ServiceUrlInput | Unres
     return { type: 'allowed-id', value }
   }
 
-  // Handle configured, we can check it early (example: `alice.eurosky.social`).
+  // Handle configured, we can check it early (example: `alice.aster.id`).
   if (handleDomain && isHandleString(value)) {
     // We know these are not us.
     // Note that `handleDomain` is already filtered out.
@@ -497,7 +496,7 @@ function checkAuthInput(value: string): AllowedIdInput | ServiceUrlInput | Unres
       throw createFieldError(
         'input',
         value,
-        'Currently the Eurosky portal is only available for Eurosky accounts.'
+        'Currently the Aster portal is only available for Aster accounts.'
       )
     }
 
@@ -525,14 +524,14 @@ function normalizeInput(input: string): string {
   let result = input
 
   // Convert a bare username into a full handle.
-  // `alice` > `alice.eurosky.social`.
+  // `alice` > `alice.aster.id`.
   if (handleDomain && !isIdentifier(result) && !isUriString(result)) {
     result += handleDomain
   }
 
   // Handles are case-insensitive but canonically lowercase;
   // unlike DIDs and URIs.
-  // `Alice.Eurosky.Social` > `alice.eurosky.social`.
+  // `Alice.Aster.Id` > `alice.aster.id`.
   if (isHandleString(result)) {
     result = result.toLowerCase()
   }

@@ -12,7 +12,7 @@ import { getLocale } from '~/utils/locale'
 
 import.meta.glob(['../resources/images/og-image.png', './images/**'])
 
-const appName = import.meta.env.VITE_APP_NAME || 'Eurosky Portal'
+const appName = import.meta.env.VITE_APP_NAME || 'Aster Portal'
 
 // Send locally preferred language to server.
 router.on('before', (event) => {

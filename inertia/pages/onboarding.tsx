@@ -22,7 +22,7 @@ export default function Onboarding(
       <Container className="pt-10 md:pt-24">
         <Card className="w-full md:w-1/2 m-auto p-4 mb-6">
           <h1 className="mx-auto max-w-4xl mb-2 text-center font-display text-3xl leading-[1.2] font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-5xl">
-            Welcome to <span className="text-brand">Eurosky.</span>
+            Welcome to <span className="text-brand">Aster.</span>
           </h1>
           {renderNotice(props.termsUpdated, props.privacyUpdated)}
           <PolicyForm
@@ -38,7 +38,7 @@ export default function Onboarding(
                   Logout
                 </Button>
               </Form>{' '}
-              and not use Eurosky Portal.
+              and not use Aster Portal.
             </Text>
           )}
         </Card>
@@ -60,5 +60,5 @@ function renderNotice(termsUpdated: boolean, privacyUpdated: boolean) {
     title = `Our Privacy policy has been updated`
   }
 
-  return <Notice title={title} text="Please accept the changes to continue using Eurosky Portal" />
+  return <Notice title={title} text="Please accept the changes to continue using Aster Portal" />
 }

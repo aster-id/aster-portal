@@ -4,7 +4,7 @@ services:
     image: caddy:2
     network_mode: host
     depends_on:
-      - eurosky-portal
+      - aster-portal
     restart: unless-stopped
     volumes:
       - type: bind
@@ -16,9 +16,9 @@ services:
     labels:
       - 'com.centurylinklabs.watchtower.enable=true'
 
-  eurosky-portal:
-    container_name: eurosky-portal
-    image: ghcr.io/eurosky-social/eurosky-portal:latest
+  aster-portal:
+    container_name: aster-portal
+    image: ghcr.io/aster-research/aster-portal:latest
     restart: unless-stopped
     volumes:
       - type: bind

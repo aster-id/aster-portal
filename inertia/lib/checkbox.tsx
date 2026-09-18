@@ -95,7 +95,7 @@ const colors = {
   'yellow':
     '[--checkbox-check:var(--color-yellow-950)] [--checkbox-checked-bg:var(--color-yellow-300)] [--checkbox-checked-border:var(--color-yellow-400)]/80',
   'brand':
-    '[--checkbox-check:var(--color-white)] [--checkbox-checked-bg:var(--color-brand)] [--checkbox-checked-border:var(--color-brand-border)]/60',
+    '[--checkbox-check:var(--color-white)] dark:[--checkbox-check:var(--color-black)] [--checkbox-checked-bg:var(--color-brand)] [--checkbox-checked-border:var(--color-brand-border)]/60',
   'lime':
     '[--checkbox-check:var(--color-lime-950)] [--checkbox-checked-bg:var(--color-lime-300)] [--checkbox-checked-border:var(--color-lime-400)]/80',
   'green':
