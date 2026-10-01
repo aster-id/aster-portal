@@ -37,6 +37,7 @@ export default function CreateAccount(
           </Text>
           <PolicyForm
             route="oauth.signup"
+            submitDisabled
             terms={props.legalDocuments.terms}
             privacy={props.legalDocuments.privacy}
           />

@@ -63,7 +63,7 @@ export default function Login({ migrationUrl }: InertiaProps<{ migrationUrl?: st
                     type="submit"
                     color={!valid || !isDirty || processing ? 'zinc' : 'brand'}
                     className="w-full py-3! disabled:cursor-default"
-                    disabled={!valid || !isDirty || processing}
+                    disabled
                   >
                     Continue &rarr;
                   </Button>

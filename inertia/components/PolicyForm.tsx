@@ -14,9 +14,15 @@ type Routes = keyof typeof routes
 type PolicyFormProps<Route extends Routes> = {
   terms: string
   privacy: string
+  submitDisabled?: boolean
 } & Pick<FormRouteProps<Route>, 'route'>
 
-export function PolicyForm({ route, terms, privacy }: PolicyFormProps<Routes>) {
+export function PolicyForm({
+  route,
+  terms,
+  privacy,
+  submitDisabled = false,
+}: PolicyFormProps<Routes>) {
   const form = useForm({
     terms: false,
   })
@@ -78,9 +84,9 @@ export function PolicyForm({ route, terms, privacy }: PolicyFormProps<Routes>) {
             {errors.terms && <Text className="text-orange-500!">{errors.terms}</Text>}
             <Button
               type="submit"
-              color={!form.data.terms || processing ? 'zinc' : 'brand'}
+              color={!form.data.terms || processing || submitDisabled ? 'zinc' : 'brand'}
               className="mt-2 py-3! disabled:cursor-default"
-              disabled={!form.data.terms || processing}
+              disabled={!form.data.terms || processing || submitDisabled}
             >
               Continue &rarr;
             </Button>
