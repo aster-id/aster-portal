@@ -7,7 +7,7 @@ This app provides the Aster Portal for accessing your account settings and appli
 To build a development docker image (optional):
 
 ```sh
-docker build -f Dockerfile -t ghcr.io/aster-research/aster-portal:dev .
+docker build -f Dockerfile -t ghcr.io/aster-id/aster-portal:dev .
 ```
 
 To run that image:
@@ -15,5 +15,5 @@ To run that image:
 ```sh
 cp .env.docker.example .env.docker.local
 
-docker run -p 4075:4075 --rm --env-file .env.docker.local ghcr.io/aster-research/aster-portal:dev
+docker run -p 4075:4075 --rm --env-file .env.docker.local ghcr.io/aster-id/aster-portal:dev
 ```

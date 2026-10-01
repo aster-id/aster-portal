@@ -37,7 +37,7 @@ Remaining work before launch:
 - [ ] Review consumer-marketing tone in `Hero.tsx`, `home.tsx`, `BetaWarning.tsx`, `dashboard/show.tsx` (§6) — currently name-swapped only
 - [ ] Give the feedback links a real Aster destination (§7) — the beta banner (`BetaWarning.tsx`) and activity page previously linked to Eurosky's `userinput.app` feedback board; the links are **currently removed**, restore them once Aster has a feedback channel
 - [ ] Point the sidebar Help/Contact links at real Aster destinations (§7) — currently interim `https://aster.id/`; upstream pointed them at a hosted help centre (`eurosky.tech/help/`, incl. a `#handle-invalid` deep link used by the dashboard) and a contact page (`eurosky.tech/contact/`)
-- [ ] Decide whether to publish Docker images under `ghcr.io/aster-research/aster-portal` (workflows currently no-op) (§10)
+- [ ] Decide whether to publish Docker images under `ghcr.io/aster-id/aster-portal` (workflows currently disabled) (§10)
 
 ### Required deployment steps
 
@@ -186,9 +186,9 @@ Already env-driven, verify at deploy time (no code change):
 | --- | --- |
 | `package.json` | `"name": "eurosky-portal"` → `aster-portal` |
 | `.changeset/config.json` | `changelog.repo` → `aster-research/aster-portal` |
-| `README.md` | Title, description, `ghcr.io/eurosky-social/eurosky-portal` docker commands |
+| `README.md` | Title, description, `ghcr.io/aster-id/aster-portal` docker commands |
 | `SECURITY.md` | Vulnerability reporting address `security@eurosky.tech` → Aster's security contact |
-| `.github/workflows/publish.yaml`, `release.yaml` | Guarded by `if: github.repository == 'eurosky-social/eurosky-portal'`, so they **no-op** in our fork. Either leave as-is (simplest) or adapt to publish `ghcr.io/aster-research/aster-portal`. |
+| `.github/workflows/publish.yaml`, `release.yaml` | Docker image publishing is currently disabled. Re-enable them when ready to publish `ghcr.io/aster-id/aster-portal`. |
 | `.vscode/settings.json` | `cSpell.words` includes "Eurosky" — add "Aster" if needed (cosmetic) |
 | `.env.docker.example` | Referenced by README; check for Eurosky defaults if/when present |
 

@@ -70,7 +70,8 @@ jobs:
   publish:
     needs: [release]
     name: Publish release
-    if: ${{ needs.release.outputs.published == 'true' }}
+    # Docker image publishing is disabled until publish.yaml has been reviewed.
+    if: ${{ false }}
     uses: ./.github/workflows/publish.yaml
     secrets: inherit
     with:

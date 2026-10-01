@@ -1,6 +1,6 @@
 {
   "name": "aster-portal",
-  "version": "1.7.2",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "license": "MIT",
@@ -22,7 +22,9 @@
     "lex:build": "pnpm lex build --clear --indexFile --out ./app/lexicons",
     "changeset": "changeset",
     "release": "changeset publish",
-    "version-package": "changeset version"
+    "version-package": "changeset version",
+    "build-image": "docker build --platform=linux/amd64 -t ghcr.io/aster-id/aster-portal:${IMAGE_TAG:-$npm_package_version} ."
+
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",

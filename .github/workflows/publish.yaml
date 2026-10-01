@@ -1,7 +1,6 @@
 name: Publish docker image
 
-# We publish the docker image as dev for pushes to main,
-# and we create releases via Changesets for the tags.
+# Docker image publishing is disabled until this workflow has been reviewed.
 on:
   workflow_call:
     inputs:
@@ -9,9 +8,7 @@ on:
         description: 'A github ref passed from the publish workflow'
         required: true
         type: string
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 env:
   publish_ref: ${{ inputs.tag_ref || github.ref }}
@@ -22,7 +19,8 @@ concurrency:
 jobs:
   release:
     name: Publish docker image
-    if: github.repository == 'eurosky-social/eurosky-portal'
+    # Disabled until Docker image publishing is explicitly re-enabled.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -50,7 +48,7 @@ jobs:
         with:
           context: git
           images: |
-            ghcr.io/eurosky-social/eurosky-portal
+            ghcr.io/aster-id/aster-portal
           tags: |
             type=sha,enable=true,priority=100,format=long
             type=match,pattern=v(\d+\.\d+\.\d+),group=1,enable=${{ inputs.tag_ref != '' }}
