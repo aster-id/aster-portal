@@ -25,16 +25,15 @@
   },
   {
     "question": "Is my data safe?",
-    "answer": "Your data is hosted on servers in _, subject to GDPR and European law. Aster is operated by _, a Dutch non-profit foundation. We do not sell your data. You can read the full Terms of Service and Privacy Policy from the Portal sidebar."
+    "answer": "Your data is hosted on servers in _, subject to GDPR and European law. Aster is operated by _, a _ non-profit foundation. We do not sell your data. You can read the full Terms of Service and Privacy Policy from the Portal sidebar."
   },
   {
     "question": "How do I manage my account settings?",
     "answer": "From the Portal sidebar, use \"Manage account\" to view connected devices and authorised apps. From there you can also change your password. In a future Portal release, these settings will be available directly within Portal itself."
   },
-
   {
     "question": "I need help, where do I go?",
-    "answer": "The Portal sidebar has links to our [Help page](https://aster.id/help/), our [main FAQ page](https://aster.id/faq/), and the [Contact us](https://aster.id/contact/) page. You can also email _ directly."
+    "answer": "The Portal sidebar has links to our [Contact us](https://aster.id/contact/) page. You can also email _ directly."
   },
   {
     "question": "Is the Portal open source?",

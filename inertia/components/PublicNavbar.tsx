@@ -23,6 +23,9 @@ export default function PublicNavbar() {
         <NavbarItem href={`${urlFor('home')}#apps`} current={page.url === '/#apps'}>
           Apps
         </NavbarItem>
+        <NavbarItem route="faq.show" current={page.url === '/faq'}>
+          FAQ
+        </NavbarItem>
         <NavbarItem
           route="legal.show"
           routeParams={{ document: 'privacy' }}
