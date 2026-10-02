@@ -1,5 +1,98 @@
 # eurosky-portal
 
+## 1.8.0
+
+### Minor Changes
+
+- [#266](https://github.com/eurosky-social/eurosky-portal/pull/266) [`64ef2da`](https://github.com/eurosky-social/eurosky-portal/commit/64ef2dafa2d5cf229fb8f43657f12b99c53253e2) Thanks [@gingkopr](https://github.com/gingkopr)! - Add support for multiple handle domains in `ATPROTO_HANDLE_DOMAIN`, as a
+  comma-separated list (such as `eurosky.social,example.social`).
+  The first domain completes bare usernames.
+
+### Patch Changes
+
+- [#244](https://github.com/eurosky-social/eurosky-portal/pull/244) [`ab24d20`](https://github.com/eurosky-social/eurosky-portal/commit/ab24d200ef2870eabe4de9bab53606168a6816ac) Thanks [@wooorm](https://github.com/wooorm)! - Add middleware in development to redirect between IPs (`127.0.0.1:4075`) and
+  hostnames (`localhost:4075`), based on what’s configured in `.env`.
+  Needs to be correct for OAuth flow.
+
+- [#265](https://github.com/eurosky-social/eurosky-portal/pull/265) [`92652bc`](https://github.com/eurosky-social/eurosky-portal/commit/92652bcc188f8278e0ec2c90344e1017a1fc6f4d) Thanks [@gingkopr](https://github.com/gingkopr)! - Fix missing `og-image.png` in the Vite manifest since Vite 8, which crashed
+  every page in production builds.
+
+- [#248](https://github.com/eurosky-social/eurosky-portal/pull/248) [`6d763eb`](https://github.com/eurosky-social/eurosky-portal/commit/6d763eb3a70fe81f1b7bc405ef047c44ec8b44c5) Thanks [@wooorm](https://github.com/wooorm)! - Fix out of sync privacy policy, terms
+
+  Previously there was a copy here and there were copies in other places.
+  That makes it easy for things to get out of sync.
+  Now the privacy policy and terms _there_ are linked to.
+  For the places that display them inline, we can display the data from there.
+
+- [#243](https://github.com/eurosky-social/eurosky-portal/pull/243) [`63a986f`](https://github.com/eurosky-social/eurosky-portal/commit/63a986f86cda503b6fd849263321e5e4cb30e1a2) Thanks [@wooorm](https://github.com/wooorm)! - Fix crash in exception handler w/o `auth` context.
+  Can happen if errors occur before auth middleware runs.
+
+- [#259](https://github.com/eurosky-social/eurosky-portal/pull/259) [`a71f421`](https://github.com/eurosky-social/eurosky-portal/commit/a71f421fb0a3c71f76a2bf1c91e7674eb2555f95) Thanks [@wooorm](https://github.com/wooorm)! - Fix grouping of activity query
+
+- [#258](https://github.com/eurosky-social/eurosky-portal/pull/258) [`bc8bbd0`](https://github.com/eurosky-social/eurosky-portal/commit/bc8bbd07f0711dd97851eda2ba69f2f0b89b7aa2) Thanks [@wooorm](https://github.com/wooorm)! - Remove docs on workaround for bsky
+
+- [#261](https://github.com/eurosky-social/eurosky-portal/pull/261) [`b291d4e`](https://github.com/eurosky-social/eurosky-portal/commit/b291d4ec7216351972e455dfb7d3953351113054) Thanks [@wooorm](https://github.com/wooorm)! - Fix duplicate migration messages
+
+- [#253](https://github.com/eurosky-social/eurosky-portal/pull/253) [`bb16c24`](https://github.com/eurosky-social/eurosky-portal/commit/bb16c2427d1018d5bc3fc4d55fa79f2ecc5a7c21) Thanks [@wooorm](https://github.com/wooorm)! - Fix faq, explore responding to locale change
+
+- [#266](https://github.com/eurosky-social/eurosky-portal/pull/266) [`341a223`](https://github.com/eurosky-social/eurosky-portal/commit/341a22392f4e2ddb8f5f93a739aca12d7276adef) Thanks [@gingkopr](https://github.com/gingkopr)! - Fix logins with custom handles timing out, by allowing 5 seconds instead of 1
+  to resolve an identity. Configurable with `ATPROTO_RESOLVE_TIMEOUT`
+  (milliseconds).
+
+- [#246](https://github.com/eurosky-social/eurosky-portal/pull/246) [`d43abc2`](https://github.com/eurosky-social/eurosky-portal/commit/d43abc24e07d75639f3e790ad827d0ed6db3a86b) Thanks [@wooorm](https://github.com/wooorm)! - Add better OAuth input resolution
+
+  - add support for auth server as input;
+  - do not crash on unresolvable handle handling;
+  - refactor to externalize some of the logic in this growing function
+
+- [#260](https://github.com/eurosky-social/eurosky-portal/pull/260) [`411e421`](https://github.com/eurosky-social/eurosky-portal/commit/411e421361637b77a8037645c725f71227ea7502) Thanks [@wooorm](https://github.com/wooorm)! - Add chosen locale to oauth flow
+
+- [#250](https://github.com/eurosky-social/eurosky-portal/pull/250) [`26f4d33`](https://github.com/eurosky-social/eurosky-portal/commit/26f4d336f380e8634f6e01308c4b6dcaac207cf8) Thanks [@wooorm](https://github.com/wooorm)! - Add i18n for data
+
+  This adds translations for large content, notably the FAQ and Explore pages.
+  Also translates app categories and activity categories.
+  Finally, also translates OAuth error messages, and some last UI strings.
+
+- [#249](https://github.com/eurosky-social/eurosky-portal/pull/249) [`f8c5881`](https://github.com/eurosky-social/eurosky-portal/commit/f8c58811bff65d6f33386ea97deb72d805130406) Thanks [@wooorm](https://github.com/wooorm)! - Add i18n for all ui strings
+
+  This uses the chosen locale to display numbers, dates, lists, and messages.
+  Also includes support for tags _in_ messages.
+
+  Next: translate large content (md files, some json).
+
+- [#257](https://github.com/eurosky-social/eurosky-portal/pull/257) [`9f0dac5`](https://github.com/eurosky-social/eurosky-portal/commit/9f0dac592ce863223f432f5a964500f5c21db7a8) Thanks [@wooorm](https://github.com/wooorm)! - Add alert for existing account holders
+
+- [#264](https://github.com/eurosky-social/eurosky-portal/pull/264) [`e05f697`](https://github.com/eurosky-social/eurosky-portal/commit/e05f697a3ba76bdf5c111dc374f6c01dca6335b1) Thanks [@wooorm](https://github.com/wooorm)! - Use `@adonisjs/otel`
+
+  This makes things vendor-neutral with OpenTelemetry, off by default.
+  Set `OTEL_ENABLED=true` and `OTEL_EXPORTER_OTLP_*` environment variables to
+  send telemetry.
+  Removes `MONOCLE_API_KEY`.
+
+- [#256](https://github.com/eurosky-social/eurosky-portal/pull/256) [`083792a`](https://github.com/eurosky-social/eurosky-portal/commit/083792aebaa62bf3b24c1d6c7575493c6fc75e45) Thanks [@wooorm](https://github.com/wooorm)! - Add script to check i18n keys, messages
+
+- [#255](https://github.com/eurosky-social/eurosky-portal/pull/255) [`6124722`](https://github.com/eurosky-social/eurosky-portal/commit/61247226ef3ed1e5e31f91a77b61c05e7e3c3d13) Thanks [@wooorm](https://github.com/wooorm)! - Add French, German
+
+- [#254](https://github.com/eurosky-social/eurosky-portal/pull/254) [`cf33b21`](https://github.com/eurosky-social/eurosky-portal/commit/cf33b21901d5a36f8543a6ed78f3d61b688c8271) Thanks [@wooorm](https://github.com/wooorm)! - Fix i18n on hard refresh by using cookie
+
+- [#247](https://github.com/eurosky-social/eurosky-portal/pull/247) [`72a40ea`](https://github.com/eurosky-social/eurosky-portal/commit/72a40ea29aed8326dcc2855ba4d828a3948fa694) Thanks [@wooorm](https://github.com/wooorm)! - Add foundation of internationalization
+
+  This adds Dutch next to English, a language picker, and the server side
+  and client side infrastructure to render translations.
+  The only translations are error messages for forms now.
+  Next: a) extract and translate strings from JSX, b) translate large content (md files, some json).
+
+- [#263](https://github.com/eurosky-social/eurosky-portal/pull/263) [`0422036`](https://github.com/eurosky-social/eurosky-portal/commit/04220361fef3a22373d4a0db347379826be78108) Thanks [@wooorm](https://github.com/wooorm)! - Add “your apps” page
+
+- [#251](https://github.com/eurosky-social/eurosky-portal/pull/251) [`85003d4`](https://github.com/eurosky-social/eurosky-portal/commit/85003d4a1e567a6c9f07a3c34c275c85742322c5) Thanks [@wooorm](https://github.com/wooorm)! - Fix some i18n bugs
+
+  - fix crash on edge template
+  - fix flash of i18n labels
+  - fix some cached translated strings that didn’t respond to switching
+  - add `lang`s to language choices, which are in their own language
+  - fix display of app rating next to made in europe badge
+  - go through dutch and improve some wordings
+
 ## 1.7.2
 
 ### Patch Changes
