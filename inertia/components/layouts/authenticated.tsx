@@ -24,11 +24,13 @@ import {
   ArrowTopRightOnSquareIcon,
   LifebuoyIcon,
   LockClosedIcon,
+  StarIcon,
 } from '@heroicons/react/24/solid'
 import { useAuth } from '~/utils/use_auth'
 import { Form } from '@adonisjs/inertia/react'
 import { Button } from '~/lib/button'
 import BetaWarning from '~/components/BetaWarning'
+import { useT } from '~/lib/i18n'
 
 export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedProps> }) {
   const {
@@ -36,6 +38,7 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
     url,
   } = usePage()
   const user = useAuth()
+  const { t } = useT()
 
   const manageUrl = useMemo(() => {
     return new URL('/account', authorizationServer).toString()
@@ -53,52 +56,60 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
           sidebar={
             <Sidebar>
               <SidebarBody>
-                <SidebarHeading className="font-bold">My account</SidebarHeading>
+                <SidebarHeading className="font-bold">{t('sidebar.myAccount')}</SidebarHeading>
                 <SidebarSection>
                   <SidebarItem route="dashboard.show" current={url == '/dashboard'}>
                     <HomeIcon />
-                    <SidebarLabel>Dashboard</SidebarLabel>
+                    <SidebarLabel>{t('sidebar.dashboard')}</SidebarLabel>
                   </SidebarItem>
                   <SidebarItem route="activity.show" current={url.startsWith('/activity')}>
                     <ClockIcon />
-                    <SidebarLabel>Your activity</SidebarLabel>
+                    <SidebarLabel>{t('sidebar.yourActivity')}</SidebarLabel>
+                  </SidebarItem>
+                  <SidebarItem route="dashboard.apps" current={url.startsWith('/dashboard/apps')}>
+                    <StarIcon />
+                    <SidebarLabel>{t('sidebar.yourApps')}</SidebarLabel>
                   </SidebarItem>
                   <SidebarItem href={manageUrl} target="_blank" as={'a'}>
                     <Cog6ToothIcon />
                     <SidebarLabel className="flex gap-1">
-                      Manage account{' '}
+                      {t('sidebar.manageAccount')}{' '}
                       <ArrowTopRightOnSquareIcon className="size-4 inline-block self-center" />
                     </SidebarLabel>
                   </SidebarItem>
                 </SidebarSection>
-                <SidebarHeading className="mt-10 font-bold">Discover</SidebarHeading>
+                <SidebarHeading className="mt-10 font-bold">{t('sidebar.discover')}</SidebarHeading>
                 <SidebarSection>
                   <SidebarItem href="/apps" current={url.startsWith('/apps')}>
                     <GlobeAltIcon />
-                    <SidebarLabel>Applications</SidebarLabel>
+                    <SidebarLabel>{t('sidebar.applications')}</SidebarLabel>
                   </SidebarItem>
                 </SidebarSection>
-                <SidebarHeading className="mt-10 font-bold">Support</SidebarHeading>
+                <SidebarHeading className="mt-10 font-bold">{t('sidebar.support')}</SidebarHeading>
                 <SidebarSection>
                   <SidebarItem href="https://aster.id/" target="_blank" as={'a'}>
                     <LifebuoyIcon />
-                    <SidebarLabel>Help</SidebarLabel>
+                    <SidebarLabel>{t('sidebar.help')}</SidebarLabel>
                   </SidebarItem>
                   <SidebarItem route="faq.show">
                     <QuestionMarkCircleIcon />
-                    <SidebarLabel>FAQ</SidebarLabel>
+                    <SidebarLabel>{t('sidebar.faq')}</SidebarLabel>
                   </SidebarItem>
                   <SidebarItem href="https://aster.id/" target="_blank" as={'a'}>
                     <ChatBubbleOvalLeftEllipsisIcon />
-                    <SidebarLabel>Contact us</SidebarLabel>
+                    <SidebarLabel>{t('sidebar.contactUs')}</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem route="legal.show" routeParams={{ document: 'terms' }}>
+                  <SidebarItem href="https://eurosky.tech/accounts/terms/" target="_blank" as={'a'}>
                     <DocumentTextIcon />
-                    <SidebarLabel>Terms of service</SidebarLabel>
+                    <SidebarLabel>{t('sidebar.termsOfService')}</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem route="legal.show" routeParams={{ document: 'privacy' }}>
+                  <SidebarItem
+                    href="https://eurosky.tech/accounts/privacy/"
+                    target="_blank"
+                    as={'a'}
+                  >
                     <LockClosedIcon />
-                    <SidebarLabel>Privacy policy</SidebarLabel>
+                    <SidebarLabel>{t('sidebar.privacyPolicy')}</SidebarLabel>
                   </SidebarItem>
                 </SidebarSection>
               </SidebarBody>
@@ -110,7 +121,7 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
                   <SidebarItem as={'div'}>
                     <Form route="oauth.logout" className="w-full flex justify-stretch">
                       <Button type="submit" className="w-full text-left dark:bg-slate-800">
-                        Logout
+                        {t('nav.logout')}
                       </Button>
                     </Form>
                   </SidebarItem>

@@ -1,5 +1,5 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { Monocle } from '@monocle.sh/adonisjs-agent'
+import type { I18n } from '@adonisjs/i18n'
 import { OAuthCallbackError, OAuthResolverError } from '@atproto/oauth-client-node'
 import {
   isUriString,
@@ -16,11 +16,13 @@ import AuthFlowCompleted from '#events/auth_flow_completed'
 import AuthFlowStarted from '#events/auth_flow_started'
 import AuthLoggedOut from '#events/auth_logged_out'
 import activityService from '#services/activity_service'
+import { type FavoriteIntent, FavoriteService } from '#services/favorite_service'
 import jetstreamService from '#services/jetstream_service'
 import { SlingshotService } from '#services/slingshot_service'
 import { loginRequestValidator, signupRequestValidator } from '#validators/oauth'
 import { createFieldError } from '#utils/errors'
-import { getHandleDomain } from '#utils/oauth'
+import { getHandleDomain, loginScopes } from '#utils/oauth'
+import { captureException, captureMessage } from '#utils/telemetry'
 
 const oauthServerUrl = env.get('OAUTH_SERVICE')
 const allowExternalLogins = env.get('ALLOW_EXTERNAL_LOGINS', false)
@@ -83,7 +85,7 @@ export default class OAuthController {
     })
 
     const input = normalizeInput(data.input)
-    const result = checkAuthInput(input)
+    const result = checkAuthInput(input, i18n)
     let resolvedValue: AtIdentifierString | UriString
 
     if (result.type === 'unresolved') {
@@ -97,7 +99,10 @@ export default class OAuthController {
         throw createFieldError(
           'input',
           result.value,
-          `We couldn't find your Atmosphere account: ${result.value}, please try again later, or try logging in with: ${oauthServerUrl}`
+          i18n.t('oauth.accountNotFoundWithFallback', {
+            handle: result.value,
+            url: oauthServerUrl,
+          })
         )
       }
 
@@ -114,11 +119,16 @@ export default class OAuthController {
       resolvedValue = result.value
     }
 
+    // Drop stale favorite flows.
+    session.forget('favorite_intent')
     session.put('source', 'login')
     session.put('handle', input)
 
     try {
-      const authorizationUrl = await oauth.authorize(resolvedValue)
+      const authorizationUrl = await oauth.authorize(resolvedValue, {
+        scope: loginScopes.join(' '),
+        ui_locales: i18n.locale,
+      })
 
       AuthFlowStarted.dispatch({
         ip: request.ip(),
@@ -133,22 +143,24 @@ export default class OAuthController {
       // We expect this error, which is when the handle doesn't exist:
       if (err instanceof OAuthResolverError) {
         logger.error(err, 'Failed to resolve handle')
-        throw createFieldError('input', input, `We couldn't find your Atmosphere account: ${input}`)
+        throw createFieldError('input', input, i18n.t('oauth.accountNotFound', { handle: input }))
       }
 
-      Monocle.captureException(err, {
+      captureException(err, {
         tags: { component: 'oauth' },
         extra: { source: 'login', input },
       })
 
       logger.error(err, 'Error starting AT Protocol OAuth flow')
-      throw createFieldError('input', input, 'Unknown error occurred')
+      throw createFieldError('input', input, i18n.t('oauth.unknownError'))
     }
   }
 
-  async signup({ request, inertia, oauth, session, logger }: HttpContext) {
+  async signup({ i18n, inertia, logger, oauth, request, session }: HttpContext) {
     await request.validateUsing(signupRequestValidator)
 
+    // Drop stale favorite flows.
+    session.forget('favorite_intent')
     session.put('source', 'signup')
     session.put('terms_accepted', DateTime.now().toISO())
 
@@ -163,7 +175,10 @@ export default class OAuthController {
     // }
 
     try {
-      const authorizationUrl = await oauth.register(oauthServerUrl)
+      const authorizationUrl = await oauth.register(oauthServerUrl, {
+        scope: loginScopes.join(' '),
+        ui_locales: i18n.locale,
+      })
 
       AuthFlowStarted.dispatch({
         ip: request.ip(),
@@ -175,7 +190,7 @@ export default class OAuthController {
 
       inertia.location(authorizationUrl)
     } catch (err) {
-      Monocle.captureException(err, {
+      captureException(err, {
         tags: { component: 'oauth' },
         extra: { source: 'signup' },
       })
@@ -201,7 +216,60 @@ export default class OAuthController {
     return response.redirect().toRoute('home')
   }
 
-  async callback({ response, oauth, auth, request, session, logger }: HttpContext) {
+  async callback(ctx: HttpContext) {
+    const favoriteIntent: FavoriteIntent | undefined = ctx.session.pull('favorite_intent')
+    return favoriteIntent ? this.#favoriteCallback(ctx, favoriteIntent) : this.#loginCallback(ctx)
+  }
+
+  /**
+   * Finish favoriting after asking for more scopes,
+   * whether granted or not.
+   *
+   * See `DiscoverController`.
+   */
+  async #favoriteCallback(
+    { i18n, logger, oauth, response, session }: HttpContext,
+    intent: FavoriteIntent
+  ) {
+    try {
+      const { user } = await oauth.handleCallback()
+
+      // Another account was chosen, which is now logged in,
+      // have to log out of the other account.
+      if (user.did !== intent.did) {
+        await oauth.logout(user.did)
+        session.flash('errorsBag', { favorite: i18n.t('apps.favoriteOtherAccount') })
+        return response.redirect().toIntended('/apps')
+      }
+
+      await new FavoriteService()[intent.action](user, intent.subject)
+      // Pages showing favorites are now stale in history.
+      session.flash('clearHistory', true)
+    } catch (err) {
+      const denied =
+        err instanceof OAuthCallbackError &&
+        err.params.get('error')?.toLowerCase() === 'access_denied'
+
+      if (!denied) {
+        logger.error({ err }, 'favorites: cannot finish %s after oauth', intent.action)
+        captureException(err, {
+          extra: { action: intent.action, subject: intent.subject },
+          tags: { component: 'favorites' },
+        })
+      }
+
+      session.flash('errorsBag', {
+        favorite: i18n.t(denied ? 'apps.favoriteDenied' : 'apps.favoriteFailed'),
+      })
+    }
+
+    return response.redirect().toIntended('/apps')
+  }
+
+  /**
+   * Finish logging in or signing up.
+   */
+  async #loginCallback({ auth, i18n, logger, oauth, request, response, session }: HttpContext) {
     const termsAccepted = session.pull('terms_accepted', 'invalid')
     const source = session.pull('source', 'login')
     const initiatingHandle = session.pull('handle')
@@ -217,13 +285,13 @@ export default class OAuthController {
     // to cancel the flow:
     const termsAcceptedOn = DateTime.fromISO(termsAccepted)
     if (source === 'signup' && !termsAcceptedOn.isValid) {
-      Monocle.captureMessage('Invalid datetime for terms accepted from session cookie', {
+      captureMessage('Invalid datetime for terms accepted from session cookie', {
         level: 'warning',
         tags: { component: 'oauth', type: 'invalid_signup_date' },
         extra: { source, value: termsAccepted },
       })
 
-      session.flash('error', 'An error occurred during signup')
+      session.flash('error', i18n.t('oauth.signupError'))
       AuthFlowCompleted.dispatch({
         ip,
         outcome: 'error',
@@ -264,7 +332,7 @@ export default class OAuthController {
         await oauth.logout(did)
 
         session.flash('errorsBag', {
-          login_failed: 'We could not log you in at this time, please try again later.',
+          login_failed: i18n.t('oauth.loginFailed'),
         })
 
         AuthFlowCompleted.dispatch({
@@ -328,9 +396,7 @@ export default class OAuthController {
         if (error === 'access_denied') {
           session.flash('errorsBag', {
             access_denied:
-              source === 'signup'
-                ? 'You cancelled creating your account'
-                : 'You denied the sign in attempt',
+              source === 'signup' ? i18n.t('oauth.cancelledSignup') : i18n.t('oauth.deniedSignIn'),
           })
 
           AuthFlowCompleted.dispatch({
@@ -348,12 +414,10 @@ export default class OAuthController {
         if (error === 'server_error') {
           session.flash('errorsBag', {
             server_error:
-              source === 'signup'
-                ? "We couldn't create your account at this time, please try again later."
-                : "We couldn't sign you in at this time, please try again later.",
+              source === 'signup' ? i18n.t('oauth.signupServerError') : i18n.t('oauth.loginFailed'),
           })
 
-          Monocle.captureException(err, {
+          captureException(err, {
             tags: { component: 'oauth', type: 'server_error' },
             extra: {
               source,
@@ -374,7 +438,7 @@ export default class OAuthController {
         }
 
         // Capture all other OAuthCallbackErrors, including the `error` parameter if available:
-        Monocle.captureException(err, {
+        captureException(err, {
           tags: {
             component: 'oauth',
             type: error && KNOWN_OAUTH_ERRORS.includes(error) ? error : 'unknown_error',
@@ -389,7 +453,7 @@ export default class OAuthController {
         // Handle OAuth failing
         logger.error(err, 'Unknown error completing OAuth callback')
 
-        Monocle.captureException(err, {
+        captureException(err, {
           tags: { component: 'oauth', type: 'unknown' },
           extra: {
             source,
@@ -399,7 +463,7 @@ export default class OAuthController {
       }
 
       session.flash('errorsBag', {
-        error: 'An unknown error occurred, please try again later.',
+        error: i18n.t('oauth.unknownCallbackError'),
       })
 
       AuthFlowCompleted.dispatch({
@@ -458,7 +522,10 @@ interface UnresolvedInput {
  * @throws
  *   When known invalid input is used.
  */
-function checkAuthInput(value: string): AllowedIdInput | ServiceUrlInput | UnresolvedInput {
+function checkAuthInput(
+  value: string,
+  i18n: I18n
+): AllowedIdInput | ServiceUrlInput | UnresolvedInput {
   // OAuth server (example: `https://aster.id`).
   if (isUriString(value)) {
     // Reject early if external logins are not allowed (example:
@@ -480,7 +547,7 @@ function checkAuthInput(value: string): AllowedIdInput | ServiceUrlInput | Unres
 
   // Error early for non-did and non-handle.
   if (!isIdentifier(value)) {
-    throw createFieldError('input', value, 'Please enter a valid Atmosphere account')
+    throw createFieldError('input', value, i18n.t('oauth.invalidAccount'))
   }
 
   // Externals allowed, so any identifier goes (example: `"did:plc:1234..."`, `"alice.bsky.social"`).

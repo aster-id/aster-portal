@@ -2,6 +2,7 @@ import { Data } from '@generated/data'
 import { ChevronLeftIcon } from '@heroicons/react/20/solid'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid'
 import { Head } from '@inertiajs/react'
+import { FavoriteButton } from '~/components/FavoriteButton'
 import { MarkdownContent } from '~/components/MarkdownContent'
 import { Rating } from '~/components/Rating'
 import { Avatar } from '~/lib/avatar'
@@ -11,8 +12,14 @@ import { Heading } from '~/lib/heading'
 import { BackLink } from '~/lib/link'
 import { Text } from '~/lib/text'
 import { InertiaProps } from '~/types'
+import { useT } from '~/lib/i18n'
+import { formatNumber } from '~/utils/number'
 
-export default function AppDetailPage({ app }: InertiaProps<{ app: Data.App }>) {
+export default function AppDetailPage({
+  app,
+  favorite,
+}: InertiaProps<{ app: Data.App; favorite: boolean | undefined }>) {
+  const { locale, tPlain, t } = useT()
   const { externalUrl, listing, madeInEurope } = app
   const {
     appTags,
@@ -38,14 +45,24 @@ export default function AppDetailPage({ app }: InertiaProps<{ app: Data.App }>) 
     <Card className="p-6 sm:p-8">
       <Head title={name} />
 
-      <nav aria-label="Breadcrumb" className="text-sm text-zinc-500 dark:text-zinc-400 mb-8">
-        <BackLink className="hover:text-zinc-700 dark:hover:text-zinc-300" route="discover.apps">
-          <ChevronLeftIcon aria-hidden="true" className="size-4 inline-block" />
-          Applications
-        </BackLink>
-        {' / '}
-        <span aria-current="page">{name}</span>
-      </nav>
+      <div className="mb-8 flex items-start justify-between gap-4">
+        <nav
+          aria-label={tPlain('common.breadcrumb')}
+          className="text-sm text-zinc-500 dark:text-zinc-400"
+        >
+          <BackLink className="hover:text-zinc-700 dark:hover:text-zinc-300" route="discover.apps">
+            <ChevronLeftIcon aria-hidden="true" className="size-4 inline-block" />
+            {t('sidebar.applications')}
+          </BackLink>
+          {' / '}
+          <span aria-current="page" lang="en">
+            {name}
+          </span>
+        </nav>
+        {typeof favorite === 'boolean' ? (
+          <FavoriteButton favorite={favorite} name={name} rkey={app.rkey} />
+        ) : undefined}
+      </div>
 
       <div className="grid gap-8 sm:grid-cols-[1fr_2fr]">
         <div className="space-y-4">
@@ -56,16 +73,20 @@ export default function AppDetailPage({ app }: InertiaProps<{ app: Data.App }>) 
               src={iconUrl}
             />
             <div className="min-w-0">
-              <Heading>{name}</Heading>
-              <Text className="mt-1">{tagline}</Text>
+              <Heading lang="en">{name}</Heading>
+              <Text className="mt-1" lang="en">
+                {tagline}
+              </Text>
             </div>
           </div>
 
           {madeInEurope || tags.length > 0 ? (
             <div className="flex flex-wrap gap-2">
-              {madeInEurope ? <Badge color="blue">Made in Europe</Badge> : undefined}
+              {madeInEurope ? <Badge color="blue">{t('apps.madeInEurope')}</Badge> : undefined}
               {tags.map((tag) => (
-                <Badge key={tag}>{tag}</Badge>
+                <Badge key={tag} lang="en">
+                  {tag}
+                </Badge>
               ))}
             </div>
           ) : undefined}
@@ -74,7 +95,9 @@ export default function AppDetailPage({ app }: InertiaProps<{ app: Data.App }>) 
             <span className="flex items-center gap-2">
               <span className="flex items-center gap-0.5 text-sm text-amber-500">
                 <Rating value={parseFloat(rating)} />
-                <span className="ml-0.5 text-zinc-400 dark:text-zinc-500">({reviewCount})</span>
+                <span className="ml-0.5 text-zinc-400 dark:text-zinc-500">
+                  ({formatNumber(reviewCount, locale)})
+                </span>
               </span>
               {reviewsUrl ? (
                 <a
@@ -83,7 +106,7 @@ export default function AppDetailPage({ app }: InertiaProps<{ app: Data.App }>) 
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  See all reviews
+                  {t('apps.detail.seeAllReviews')}
                 </a>
               ) : undefined}
             </span>
@@ -101,7 +124,7 @@ export default function AppDetailPage({ app }: InertiaProps<{ app: Data.App }>) 
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Explore
+                {t('apps.detail.explore')}
                 <ArrowTopRightOnSquareIcon className="ml-1 size-4" />
               </a>
             ) : undefined}

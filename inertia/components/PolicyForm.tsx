@@ -1,6 +1,9 @@
 import { Form, FormRouteProps } from '@adonisjs/inertia/react'
-import type { ReactNode } from 'react'
 import { ChevronDownIcon, DocumentTextIcon, LockClosedIcon } from '@heroicons/react/24/solid'
+import { toJsxRuntime } from 'hast-util-to-jsx-runtime'
+import type { Nodes } from 'hast'
+import { Fragment, jsx, jsxs } from 'react/jsx-runtime'
+import type { ReactNode } from 'react'
 import { Button } from '~/lib/button'
 import { Checkbox, CheckboxField } from '~/lib/checkbox'
 import { Label } from '~/lib/fieldset'
@@ -8,12 +11,12 @@ import { Link } from '~/lib/link'
 import { Text } from '~/lib/text'
 import { useForm } from '@inertiajs/react'
 import type { routes } from '@generated/registry'
-import MarkdownDocument from './MarkdownDocument'
+import { useT } from '~/lib/i18n'
 
 type Routes = keyof typeof routes
 type PolicyFormProps<Route extends Routes> = {
-  terms: string
-  privacy: string
+  terms: unknown
+  privacy: unknown
   submitDisabled?: boolean
 } & Pick<FormRouteProps<Route>, 'route'>
 
@@ -26,6 +29,7 @@ export function PolicyForm({
   const form = useForm({
     terms: false,
   })
+  const { t } = useT()
 
   return (
     <>
@@ -34,7 +38,7 @@ export function PolicyForm({
           header={
             <>
               <DocumentTextIcon className="w-6 h-6 inline-block text-slate-500" />
-              Terms of service
+              {t('sidebar.termsOfService')}
             </>
           }
           document={terms}
@@ -43,7 +47,7 @@ export function PolicyForm({
           header={
             <>
               <LockClosedIcon className="w-6 h-6 inline-block text-slate-500" />
-              Privacy policy
+              {t('sidebar.privacyPolicy')}
             </>
           }
           document={privacy}
@@ -62,22 +66,30 @@ export function PolicyForm({
                   onChange={(checked) => form.setData('terms', checked)}
                 />
                 <Label>
-                  I have read and accept the{' '}
-                  <Link
-                    route="legal.show"
-                    routeParams={{ document: 'terms' }}
-                    className="text-blue-500 hover:underline"
-                  >
-                    Terms of service
-                  </Link>{' '}
-                  and{' '}
-                  <Link
-                    route="legal.show"
-                    routeParams={{ document: 'privacy' }}
-                    className="text-blue-500 hover:underline"
-                  >
-                    Privacy policy
-                  </Link>
+                  {t('policy.accept', {
+                    terms(chunks) {
+                      return (
+                        <Link
+                          route="legal.show"
+                          routeParams={{ document: 'terms' }}
+                          className="text-blue-500 hover:underline"
+                        >
+                          {chunks}
+                        </Link>
+                      )
+                    },
+                    privacy(chunks) {
+                      return (
+                        <Link
+                          route="legal.show"
+                          routeParams={{ document: 'privacy' }}
+                          className="text-blue-500 hover:underline"
+                        >
+                          {chunks}
+                        </Link>
+                      )
+                    },
+                  })}
                 </Label>
               </CheckboxField>
             </div>
@@ -88,7 +100,7 @@ export function PolicyForm({
               className="mt-2 py-3! disabled:cursor-default"
               disabled={!form.data.terms || processing || submitDisabled}
             >
-              Continue &rarr;
+              {t('login.continue')}
             </Button>
           </div>
         )}
@@ -97,7 +109,7 @@ export function PolicyForm({
   )
 }
 
-function PolicyDetails({ header, document }: { header: ReactNode; document: string }) {
+function PolicyDetails({ header, document }: { header: ReactNode; document: unknown }) {
   return (
     <details
       name="policy"
@@ -107,7 +119,9 @@ function PolicyDetails({ header, document }: { header: ReactNode; document: stri
         <span className="flex flex-row gap-1">{header}</span>
         <ChevronDownIcon className="details-icon w-6 h-6 flex" />
       </summary>
-      <MarkdownDocument className="p-4" document={document} />
+      <div className="markdown-document dark:text-slate-200 text-grey-800 p-4" lang="en">
+        {toJsxRuntime(document as Nodes, { Fragment, jsx, jsxs })}
+      </div>
     </details>
   )
 }

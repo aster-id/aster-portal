@@ -10,6 +10,8 @@ export default class AppsTransformer extends BaseTransformer<{
     const recommended: App[] = []
 
     for (const app of this.resource.apps) {
+      // Hidden.
+      if (!app.category) continue
       const apps = byCategory.get(app.category) ?? []
       apps.push(app)
       byCategory.set(app.category, apps)
@@ -21,7 +23,7 @@ export default class AppsTransformer extends BaseTransformer<{
       .sort((a, b) => a.category.localeCompare(b.category))
     const sections =
       recommended.length > 0
-        ? [{ apps: recommended, category: 'recommended' }, ...categories]
+        ? [{ apps: recommended, category: 'apps.category.recommended' }, ...categories]
         : categories
 
     return {

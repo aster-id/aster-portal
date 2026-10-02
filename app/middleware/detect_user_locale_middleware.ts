@@ -25,14 +25,20 @@ export default class DetectUserLocaleMiddleware {
    * Set the locale for the current context.
    */
   async handle(ctx: HttpContext, next: NextFn) {
-    // Prefer `X-Locale` that we set on the client side.
-    // Fall back to `Accept-Language` by browsers.
+    // Either a cookie set by language picker on the client or the
+    // `Accept-Language` sent by the browser.
     const locale = i18nManager.getSupportedLocaleFor(
-      ctx.request.header('x-locale') || ctx.request.header('accept-language') || ''
+      ctx.request.plainCookie('locale', { encoded: false }) ||
+        ctx.request.header('accept-language') ||
+        ''
     )
 
     ctx.i18n = i18nManager.locale(locale || i18nManager.defaultLocale)
     ctx.containerResolver.bindValue(I18n, ctx.i18n)
+    ctx.view.share({
+      locale: ctx.i18n.locale,
+      metaDescription: ctx.i18n.t('meta.description'),
+    })
     return next()
   }
 }

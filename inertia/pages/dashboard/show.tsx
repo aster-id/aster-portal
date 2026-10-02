@@ -14,22 +14,29 @@ import { client } from '~/client'
 import { useRouter } from '@adonisjs/inertia/react'
 import { INVALID_HANDLE } from '@atproto/syntax'
 import { ExclamationTriangleIcon } from '@heroicons/react/20/solid'
+import { useT } from '~/lib/i18n'
+import { formatNumber } from '~/utils/number'
 
 export default function Dashboard({
   activities,
   activityState,
   apps,
+  appsKind,
+  favorites,
   profile,
   showWelcomeMessage,
 }: InertiaProps<{
   activities: ActivityRow[]
   activityState: GetRecordsResult['state']
   apps: Data.AppSummary[]
+  appsKind: 'featured' | 'yours'
+  favorites: Array<string>
   profile: Data.Profile | undefined
   showWelcomeMessage: boolean
 }>) {
   const user = useAuth()
   const router = useRouter()
+  const { locale, t } = useT()
   const isHandleInvalid = user.handle === INVALID_HANDLE
 
   const dismissWelcome = useCallback(async () => {
@@ -54,16 +61,12 @@ export default function Dashboard({
           </div>
           <div>
             <Text className="font-semibold text-white! text-shadow-sm text-shadow-amber-600/80">
-              Your handle is currently invalid
+              {t('dashboard.invalidHandle.title')}
             </Text>
             <Text className="text-white! text-shadow-sm text-shadow-amber-600/80">
-              It looks like you've attempted to change your handle, and we can't verify it.{' '}
-              <a
-                href="https://aster.id/"
-                target="_blank"
-                className="font-semibold hover:underline"
-              >
-                Learn more
+              {t('dashboard.invalidHandle.text')}{' '}
+              <a href="https://aster.id/" target="_blank" className="font-semibold hover:underline">
+                {t('common.learnMore')}
               </a>
             </Text>
           </div>
@@ -73,19 +76,24 @@ export default function Dashboard({
         <Card className="py-3 px-4 flex flex-col grow md:flex-row items-center justify-between gap-x-6 gap-y-4">
           <div className="flex-1">
             <h2 className="text-lg/8 sm:text-xl/8 font-semibold text-gray-900 dark:text-gray-200 mb-2">
-              Welcome to the Atmosphere
+              {t('dashboard.welcome.heading')}
             </h2>
             <p className="mt-0.5 text-xs/6 text-gray-500 dark:text-gray-300">
-              Aster is your home on the Atmosphere &ndash; a global network of social
-              apps and services.
+              Aster is your home on the Atmosphere &ndash; a global network of social apps and
+              services.
             </p>
             {!isHandleInvalid && (
               <p className="mt-0.5 text-xs/6 text-gray-500 dark:text-gray-300">
-                Your handle is{' '}
-                <strong className="text-brand-border font-semibold whitespace-pre">
-                  {user.handle}
-                </strong>
-                , you&apos;ll use this to login across the Atmosphere.
+                {t('dashboard.welcome.handle', {
+                  handle: user.handle,
+                  strong(chunks) {
+                    return (
+                      <strong className="text-brand-border font-semibold whitespace-pre">
+                        {chunks}
+                      </strong>
+                    )
+                  },
+                })}
               </p>
             )}
           </div>
@@ -94,7 +102,7 @@ export default function Dashboard({
             outline
             className="w-full md:w-auto dark:border-slate-600!"
           >
-            Dismiss
+            {t('dashboard.welcome.dismiss')}
           </Button>
         </Card>
       )}
@@ -107,7 +115,9 @@ export default function Dashboard({
               </div>
               <div className="flex flex-col">
                 <h2 className="text-lg/8 font-semibold text-zinc-950 sm:text-2xl/8 dark:text-white">
-                  Welcome back{profile?.displayName ? ', ' + profile.displayName : ''}!
+                  {profile?.displayName
+                    ? t('dashboard.greeting.withName', { name: profile.displayName })
+                    : t('dashboard.greeting.plain')}
                 </h2>
                 {isHandleInvalid ? (
                   <Text className="text-amber-500!">
@@ -120,16 +130,16 @@ export default function Dashboard({
                 {profile?.stats && (
                   <div className="hidden md:grid grid-cols-1 sm:grid-cols-3">
                     <div className="pr-4 py-2 sm:col-span-1 flex flex-col-reverse">
-                      <StatHeading>Posts</StatHeading>
-                      <StatValue>{profile.stats.posts ?? 0}</StatValue>
+                      <StatHeading>{t('dashboard.stats.posts')}</StatHeading>
+                      <StatValue>{formatNumber(profile.stats.posts ?? 0, locale)}</StatValue>
                     </div>
                     <div className="px-4 py-2 sm:col-span-1 sm:px-4 flex flex-col-reverse">
-                      <StatHeading>Following</StatHeading>
-                      <StatValue>{profile.stats.follows ?? 0}</StatValue>
+                      <StatHeading>{t('dashboard.stats.following')}</StatHeading>
+                      <StatValue>{formatNumber(profile.stats.follows ?? 0, locale)}</StatValue>
                     </div>
                     <div className="px-4 py-2 sm:col-span-1 sm:px-4 flex flex-col-reverse">
-                      <StatHeading>Followers</StatHeading>
-                      <StatValue>{profile.stats.followers ?? 0}</StatValue>
+                      <StatHeading>{t('dashboard.stats.followers')}</StatHeading>
+                      <StatValue>{formatNumber(profile.stats.followers ?? 0, locale)}</StatValue>
                     </div>
                   </div>
                 )}
@@ -140,7 +150,7 @@ export default function Dashboard({
 
         <Card className="py-3 px-4 col-span-3 md:col-span-1">
           <h2 className="text-lg/8 sm:text-xl/8 font-semibold text-gray-900 dark:text-gray-200 mb-2">
-            Explore the ecosystem
+            {t('dashboard.explore.heading')}
           </h2>
           <p className="text-xs/6 text-gray-500 dark:text-gray-300">
             Your Aster account works with dozens of apps. Browse the featured apps below and click
@@ -151,25 +161,27 @@ export default function Dashboard({
             color="zinc"
             className="mt-3 w-full sm:w-auto dark:bg-slate-700!"
           >
-            Learn more
+            {t('common.learnMore')}
           </Button>
         </Card>
       </div>
       <div>
         <h2 className="text-xl font-medium text-neutral-500 dark:text-slate-200">
-          Recent activity
+          {t('dashboard.activity.heading')}
         </h2>
-        <p className="text-base text-neutral-400 dark:text-slate-400 mb-6">Your latest activity.</p>
+        <p className="text-base text-neutral-400 dark:text-slate-400 mb-6">
+          {t('dashboard.activity.subheading')}
+        </p>
 
         {activityState === 'syncing' ? (
           <Card className="p-4">
             <Text aria-live="polite" role="status">
-              Syncing your activity, this may take a moment…
+              {t('dashboard.activity.syncing')}
             </Text>
           </Card>
         ) : activities.length === 0 ? (
           <Card className="p-4">
-            <Text>Nothing here yet; maybe make a post on Mu?</Text>
+            <Text>{t('dashboard.activity.empty')}</Text>
           </Card>
         ) : (
           <ActivityList activities={activities} />
@@ -177,24 +189,31 @@ export default function Dashboard({
 
         <div className="mt-4 flex justify-center">
           <Button route="activity.show" className="w-full sm:w-auto dark:bg-slate-700!">
-            View all activity
+            {t('dashboard.activity.viewAll')}
           </Button>
         </div>
       </div>
 
       <div className="pt-4">
         <h2 className="text-xl font-medium text-neutral-500 dark:text-slate-200">
-          Featured applications
+          {t(appsKind === 'yours' ? 'sidebar.yourApps' : 'dashboard.featuredApps.heading')}
         </h2>
         <p className="text-base text-neutral-400 dark:text-slate-400 mb-6">
           Your Aster account works with all of these.
         </p>
 
-        <AppGrid apps={apps} />
+        <AppGrid apps={apps} favorites={favorites} />
 
         <div className="mt-1 flex justify-center">
-          <Button route="discover.apps" className="w-full sm:w-auto dark:bg-slate-700!">
-            Browse more apps
+          <Button
+            route={appsKind === 'yours' ? 'dashboard.apps' : 'discover.apps'}
+            className="w-full sm:w-auto dark:bg-slate-700!"
+          >
+            {t(
+              appsKind === 'yours'
+                ? 'dashboard.yourApps.viewAll'
+                : 'dashboard.featuredApps.browseMore'
+            )}
           </Button>
         </div>
       </div>

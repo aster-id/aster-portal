@@ -8,6 +8,7 @@ import Notice from '~/lib/notice'
 import { Form } from '@adonisjs/inertia/react'
 import { Button } from '~/lib/button'
 import { Text } from '~/lib/text'
+import { useT } from '~/lib/i18n'
 
 export default function Onboarding(
   props: InertiaProps<{
@@ -16,15 +17,17 @@ export default function Onboarding(
     legalDocuments: Data.LegalDocuments
   }>
 ) {
+  const { tPlain } = useT()
+
   return (
     <div className="bg-neutral-50 dark:bg-slate-900 min-h-dvh-minus-35">
-      <Head title="Accept terms & conditions" />
+      <Head title={tPlain('onboarding.pageTitle')} />
       <Container className="pt-10 md:pt-24">
         <Card className="w-full md:w-1/2 m-auto p-4 mb-6">
           <h1 className="mx-auto max-w-4xl mb-2 text-center font-display text-3xl leading-[1.2] font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-5xl">
             Welcome to <span className="text-brand">Aster.</span>
           </h1>
-          {renderNotice(props.termsUpdated, props.privacyUpdated)}
+          <UpdateNotice termsUpdated={props.termsUpdated} privacyUpdated={props.privacyUpdated} />
           <PolicyForm
             route="account.store_acceptance"
             terms={props.legalDocuments.terms}
@@ -47,17 +50,26 @@ export default function Onboarding(
   )
 }
 
-function renderNotice(termsUpdated: boolean, privacyUpdated: boolean) {
-  if (!termsUpdated && !privacyUpdated) {
-    return
+function UpdateNotice({
+  termsUpdated,
+  privacyUpdated,
+}: {
+  termsUpdated: boolean
+  privacyUpdated: boolean
+}) {
+  const { tPlain } = useT()
+  let title: string | undefined
+
+  if (privacyUpdated && termsUpdated) {
+    title = tPlain('onboarding.notice.bothUpdated')
+  } else if (privacyUpdated) {
+    title = tPlain('onboarding.notice.privacyUpdated')
+  } else if (termsUpdated) {
+    title = tPlain('onboarding.notice.termsUpdated')
   }
 
-  let title = `Our Terms of service and Privacy policy have been updated`
-  if (termsUpdated && !privacyUpdated) {
-    title = `Our Terms of service has been updated`
-  }
-  if (privacyUpdated && !termsUpdated) {
-    title = `Our Privacy policy has been updated`
+  if (!title) {
+    return
   }
 
   return <Notice title={title} text="Please accept the changes to continue using Aster Portal" />
