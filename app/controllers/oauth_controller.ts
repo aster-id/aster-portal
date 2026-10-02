@@ -29,6 +29,12 @@ const allowExternalLogins = env.get('ALLOW_EXTERNAL_LOGINS', false)
 const handleDomains = getHandleDomains()
 const handleDomain = handleDomains.at(0)
 
+/**
+ * Time allowed to resolve an identity (handle > DID > PDS > authorization
+ * server); takes several network requests, especially for custom handles.
+ */
+const resolveIdentityTimeout = env.get('ATPROTO_RESOLVE_TIMEOUT', 5000)
+
 const KNOWN_OAUTH_ERRORS = [
   'login_required',
   'invalid_scope',
@@ -92,7 +98,7 @@ export default class OAuthController {
 
     if (result.type === 'unresolved') {
       const resolved = await oauth
-        .resolveIdentity(result.value, AbortSignal.timeout(1000))
+        .resolveIdentity(result.value, AbortSignal.timeout(resolveIdentityTimeout))
         .catch((err: unknown): undefined => {
           logger.error(err, 'Failed to resolveIdentity for handle: %s', result.value)
         })
@@ -306,7 +312,7 @@ export default class OAuthController {
       const did = result.user.did
 
       const resolved = await oauth
-        .resolveIdentity(did, AbortSignal.timeout(1000))
+        .resolveIdentity(did, AbortSignal.timeout(resolveIdentityTimeout))
         .catch((error) => {
           // Timeout.
           if (error instanceof DOMException && error.name === 'AbortError') {

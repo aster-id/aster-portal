@@ -44,6 +44,8 @@ export default await Env.create(new URL('../', import.meta.url), {
     return value.split(',').map((domain) => validateDomain(key, domain.trim()))
   },
   ALLOW_EXTERNAL_LOGINS: Env.schema.boolean.optional(),
+  // Milliseconds to resolve an identity (handle > DID > PDS > authorization server):
+  ATPROTO_RESOLVE_TIMEOUT: Env.schema.number.optional(),
   OAUTH_SERVICE: Env.schema.string({ format: 'url', tld: true, protocol: true }),
   MIGRATION_SERVICE: Env.schema.string.optional({ format: 'url', tld: true, protocol: true }),
   ATPROTO_OAUTH_CLIENT_ID: Env.schema.string.optional({ format: 'url', tld: true, protocol: true }),
