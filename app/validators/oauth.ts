@@ -1,7 +1,8 @@
 import vine from '@vinejs/vine'
-import { getHandleDomain } from '#utils/oauth'
+import { getHandleDomains } from '#utils/oauth'
 
-const handleDomain = getHandleDomain()
+const handleDomains = getHandleDomains()
+const handleDomain = handleDomains.at(0)
 
 export const loginRequestValidator = vine.create({
   input: vine.unionOfTypes([
@@ -29,9 +30,9 @@ export const loginRequestValidator = vine.create({
         }
 
         // Remove @ signs separating username from handle domain component:
-        // e.g., username@eurosky.social, but only if it's the handle domain
+        // e.g., username@eurosky.social, but only if it's a handle domain
         // so username@gmail.com won't be converted to username.gmail.com
-        if (handleDomain && newValue.includes('@') && newValue.endsWith(handleDomain)) {
+        if (newValue.includes('@') && handleDomains.some((domain) => newValue.endsWith(domain))) {
           newValue = newValue.replace('@', '.')
         }
 

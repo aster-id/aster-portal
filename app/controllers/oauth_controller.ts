@@ -21,12 +21,13 @@ import jetstreamService from '#services/jetstream_service'
 import { SlingshotService } from '#services/slingshot_service'
 import { loginRequestValidator, signupRequestValidator } from '#validators/oauth'
 import { createFieldError } from '#utils/errors'
-import { getHandleDomain, loginScopes } from '#utils/oauth'
+import { getHandleDomains, loginScopes } from '#utils/oauth'
 import { captureException, captureMessage } from '#utils/telemetry'
 
 const oauthServerUrl = env.get('OAUTH_SERVICE')
 const allowExternalLogins = env.get('ALLOW_EXTERNAL_LOGINS', false)
-const handleDomain = getHandleDomain()
+const handleDomains = getHandleDomains()
+const handleDomain = handleDomains.at(0)
 
 const KNOWN_OAUTH_ERRORS = [
   'login_required',
@@ -49,7 +50,7 @@ const WELL_KNOWN_HANDLE_DOMAINS = [
   '.myatproto.social',
   '.blacksky.app',
   '.cryptoanarchy.network',
-].filter((domain) => domain !== handleDomain)
+].filter((domain) => !handleDomains.includes(domain))
 
 function isIdentifier(input: string): input is AtIdentifierString {
   try {
@@ -551,12 +552,12 @@ function checkAuthInput(
   // Handle configured, we can check it early (example: `alice.eurosky.social`).
   if (handleDomain && isHandleString(value)) {
     // We know these are not us.
-    // Note that `handleDomain` is already filtered out.
+    // Note that `handleDomains` are already filtered out.
     if (WELL_KNOWN_HANDLE_DOMAINS.some((serviceDomain) => value.endsWith(serviceDomain))) {
       throw createFieldError('input', value, i18n.t('oauth.notEurosky'))
     }
 
-    if (value.endsWith(handleDomain)) {
+    if (handleDomains.some((domain) => value.endsWith(domain))) {
       return { type: 'allowed-id', value }
     }
 
