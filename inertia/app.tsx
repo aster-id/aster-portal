@@ -9,7 +9,7 @@ import { TuyauProvider } from '@adonisjs/inertia/react'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 import { I18nProvider } from '~/lib/i18n'
 
-import.meta.glob(['../resources/images/og-image.png', './images/**'])
+import.meta.glob(['../resources/images/og-image.png', './images/**'], { eager: true })
 
 const appName = import.meta.env.VITE_APP_NAME || 'Eurosky Portal'
 
