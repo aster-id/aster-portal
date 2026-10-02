@@ -11,6 +11,8 @@
 
 import { Env } from '@adonisjs/core/env'
 
+const validateDomain = Env.schema.string({ format: 'url', tld: true, protocol: false })
+
 export default await Env.create(new URL('../', import.meta.url), {
   // Node
   NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
@@ -34,8 +36,16 @@ export default await Env.create(new URL('../', import.meta.url), {
   DATABASE_AUTOMIGRATE: Env.schema.boolean.optional(),
 
   // AT Protocol OAuth:
-  ATPROTO_HANDLE_DOMAIN: Env.schema.string.optional({ format: 'url', tld: true, protocol: false }),
+  // Comma-separated list of domains, the first one is the default:
+  ATPROTO_HANDLE_DOMAIN: (key: string, value?: string) => {
+    if (!value) {
+      return undefined
+    }
+    return value.split(',').map((domain) => validateDomain(key, domain.trim()))
+  },
   ALLOW_EXTERNAL_LOGINS: Env.schema.boolean.optional(),
+  // Milliseconds to resolve an identity (handle > DID > PDS > authorization server):
+  ATPROTO_RESOLVE_TIMEOUT: Env.schema.number.optional(),
   OAUTH_SERVICE: Env.schema.string({ format: 'url', tld: true, protocol: true }),
   MIGRATION_SERVICE: Env.schema.string.optional({ format: 'url', tld: true, protocol: true }),
   ATPROTO_OAUTH_CLIENT_ID: Env.schema.string.optional({ format: 'url', tld: true, protocol: true }),

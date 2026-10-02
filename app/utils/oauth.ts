@@ -24,15 +24,19 @@ export const loginScopes = [
   'rpc:app.bsky.actor.getProfile?aud=did:web:api.bsky.app%23bsky_appview',
 ]
 
-export function getHandleDomain(): string | undefined {
-  let value = env.get('ATPROTO_HANDLE_DOMAIN')
-  if (!value) {
-    return undefined
-  }
-  if (value.startsWith('.')) {
-    return value
-  }
-  return '.' + value
+/**
+ * Get the configured handle domains, each with a leading dot.
+ *
+ * The first one is the default, used to complete bare usernames
+ * (`alice` > `alice.eurosky.social`).
+ */
+export function getHandleDomains(): string[] {
+  const values = env.get('ATPROTO_HANDLE_DOMAIN') ?? []
+  const domains = values.map((value) => {
+    const domain = value.toLowerCase()
+    return domain.startsWith('.') ? domain : '.' + domain
+  })
+  return [...new Set(domains)]
 }
 
 /**
