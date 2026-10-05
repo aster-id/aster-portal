@@ -1,9 +1,11 @@
 # Security Policy
 
-## Supported Versions
+**Please do not report security vulnerabilities in public issues, pull requests or discussions.**
 
-This project is currently does not have an LTS policy, only the latest version of `main` or the latest docker images are supported.
+Report them privately, either through [GitHub private vulnerability reporting](https://github.com/eurosky-social/eurosky-portal/security/advisories/new) on this repository, or by email to [security@eurosky.tech](mailto:security@eurosky.tech).
 
-## Reporting a Vulnerability
+This repository follows the [Eurosky Security Policy](https://github.com/eurosky-social/.github/blob/main/SECURITY.md), which covers what to include in a report, our response times, scope and safe-harbour terms.
 
-If you have found a vulnerability in this project, please email: [security@eurosky.tech](mailto:security@eurosky.tech) and [emelia@brandedcode.com](mailto:emelia@brandedcode.com).
+## Supported versions
+
+Only the latest release and the current `main` branch, and the Docker images built from them, receive security fixes.
