@@ -1,4 +1,4 @@
 export const brand = {
-  orgName: 'Eurosky',
-  productTitle: 'Eurosky Portal',
+  orgName: 'Aster',
+  productTitle: 'Aster Portal',
 }
