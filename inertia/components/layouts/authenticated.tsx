@@ -87,7 +87,7 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
                 </SidebarSection>
                 <SidebarHeading className="mt-10 font-bold">{t('sidebar.support')}</SidebarHeading>
                 <SidebarSection>
-                  <SidebarItem href="https://eurosky.tech/help/" target="_blank" as={'a'}>
+                  <SidebarItem href="https://aster.place/help/" target="_blank" as={'a'}>
                     <LifebuoyIcon />
                     <SidebarLabel>{t('sidebar.help')}</SidebarLabel>
                   </SidebarItem>
@@ -95,16 +95,16 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
                     <QuestionMarkCircleIcon />
                     <SidebarLabel>{t('sidebar.faq')}</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem href="https://eurosky.tech/contact/" target="_blank" as={'a'}>
+                  <SidebarItem href="https://aster.place/contact/" target="_blank" as={'a'}>
                     <ChatBubbleOvalLeftEllipsisIcon />
                     <SidebarLabel>{t('sidebar.contactUs')}</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem href="https://eurosky.tech/accounts/terms/" target="_blank" as={'a'}>
+                  <SidebarItem href="https://aster.place/accounts/terms/" target="_blank" as={'a'}>
                     <DocumentTextIcon />
                     <SidebarLabel>{t('sidebar.termsOfService')}</SidebarLabel>
                   </SidebarItem>
                   <SidebarItem
-                    href="https://eurosky.tech/accounts/privacy/"
+                    href="https://aster.place/accounts/privacy/"
                     target="_blank"
                     as={'a'}
                   >
