@@ -11,7 +11,7 @@ import { dormancyCutoff } from '#utils/dormancy'
 
 const cursorCacheKey = 'jetstream:cursor'
 const cursorSaveInterval = 500
-const jetstreamUrl = 'wss://jetstream1.eurosky.network/subscribe'
+const jetstreamUrl = 'wss://frankfurt.firehose.stream/tap'
 const reconnectDelay = 5_000
 const wantedCollections = [...supportedCollections]
 
