@@ -26,10 +26,12 @@ export function SiteStandardDocument({ activity }: { activity: SiteStandardDocum
           className="aspect-video w-full rounded-lg object-cover"
         />
       ) : undefined}
-      <h1 className="text-center text-3xl font-semibold text-zinc-950 sm:text-4xl dark:text-white">
+      {/* Flagged: document titles run one step larger (text-4xl) than heading-1 at sm. */}
+      <h1 className="text-center type-heading-1 text-zinc-950 sm:text-4xl dark:text-white">
         {activity.title}
       </h1>
       {activity.description ? (
+        // Flagged: the lede runs text-lg; no lede role exists in the type system.
         <p className="text-center text-lg text-zinc-500 dark:text-zinc-400">
           {activity.description}
         </p>

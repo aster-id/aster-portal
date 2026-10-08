@@ -26,7 +26,7 @@ export function Embed({
       return (
         <div className="flex items-center gap-3 rounded-lg border border-dashed border-zinc-300 p-4 text-zinc-500 dark:border-zinc-600 dark:text-zinc-400">
           <NoSymbolIcon aria-hidden="true" className="size-6 shrink-0" />
-          <p className="text-sm">{t('activity.embed.notDisplayed')}</p>
+          <p className="type-meta">{t('activity.embed.notDisplayed')}</p>
         </div>
       )
   }

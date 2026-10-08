@@ -27,6 +27,7 @@ export default function DashboardNavbar({ className }: React.ComponentProps<'div
       </Link>
       <NavbarSpacer />
       <NavbarSection>
+        {/* Flagged: the handle chip forces base/sm sizes with 1.5rem leading to align with the icon; not role-driven. */}
         <NavbarItem route="dashboard.show" className="hidden md:flex">
           {isHandleInvalid ? (
             <span className="text-base/6! sm:text-sm/6! text-amber-500 dark:text-amber-400!">
