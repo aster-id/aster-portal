@@ -3,9 +3,9 @@
 @layer theme, base, components, utilities;
 
 @theme {
-  --font-family-sans: Inter, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, Sans-Serif;
-  --font-family-serif: Georgia, serif;
-  --font-family-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-family-sans: 'Fira Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-family-serif: 'Playfair Display', Georgia, serif;
+  --font-family-mono: 'Fira Code', ui-monospace, monospace;
 }
 
 :root {
