@@ -26,7 +26,7 @@ export default function Activity(result: InertiaProps<GetRecordsResult>) {
   return (
     <div className="flex flex-col gap-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+        <h1 className="type-heading-1 text-gray-900 dark:text-white">
           {t('sidebar.yourActivity')}
         </h1>
         <p aria-live="polite" className="mt-1 text-gray-500 dark:text-gray-400" role="status">

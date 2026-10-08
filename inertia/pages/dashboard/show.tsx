@@ -79,14 +79,14 @@ export default function Dashboard({
       {showWelcomeMessage && (
         <Card className="py-3 px-4 flex flex-col grow md:flex-row items-center justify-between gap-x-6 gap-y-4">
           <div className="flex-1">
-            <h2 className="text-lg/8 sm:text-xl/8 font-semibold text-gray-900 dark:text-gray-200 mb-2">
+            <h2 className="type-heading-2 sm:text-xl/8 text-gray-900 dark:text-gray-200 mb-2">
               {t('dashboard.welcome.heading')}
             </h2>
-            <p className="mt-0.5 text-xs/6 text-gray-500 dark:text-gray-300">
+            <p className="mt-0.5 type-body text-gray-500 dark:text-gray-300">
               {t('dashboard.welcome.text')}
             </p>
             {!isHandleInvalid && (
-              <p className="mt-0.5 text-xs/6 text-gray-500 dark:text-gray-300">
+              <p className="mt-0.5 type-body text-gray-500 dark:text-gray-300">
                 {t('dashboard.welcome.handle', {
                   handle: user.handle,
                   strong(chunks) {
@@ -117,7 +117,7 @@ export default function Dashboard({
                 <UserAvatar avatar={profile?.avatar} />
               </div>
               <div className="flex flex-col">
-                <h2 className="text-lg/8 font-semibold text-zinc-950 sm:text-2xl/8 dark:text-white">
+                <h2 className="type-heading-2 text-zinc-950 sm:text-2xl/8 dark:text-white">
                   {profile?.displayName
                     ? t('dashboard.greeting.withName', { name: profile.displayName })
                     : t('dashboard.greeting.plain')}
@@ -152,10 +152,10 @@ export default function Dashboard({
         </Card>
 
         <Card className="py-3 px-4 col-span-3 md:col-span-1">
-          <h2 className="text-lg/8 sm:text-xl/8 font-semibold text-gray-900 dark:text-gray-200 mb-2">
+          <h2 className="type-heading-2 sm:text-xl/8 text-gray-900 dark:text-gray-200 mb-2">
             {t('dashboard.explore.heading')}
           </h2>
-          <p className="text-xs/6 text-gray-500 dark:text-gray-300">
+          <p className="type-body text-gray-500 dark:text-gray-300">
             {t('dashboard.explore.text')}
           </p>
           <Button
@@ -168,10 +168,10 @@ export default function Dashboard({
         </Card>
       </div>
       <div>
-        <h2 className="text-xl font-medium text-neutral-500 dark:text-slate-200">
+        <h2 className="type-heading-3 text-neutral-500 dark:text-slate-200">
           {t('dashboard.activity.heading')}
         </h2>
-        <p className="text-base text-neutral-400 dark:text-slate-400 mb-6">
+        <p className="type-body text-neutral-400 dark:text-slate-400 mb-6">
           {t('dashboard.activity.subheading')}
         </p>
 
@@ -197,10 +197,10 @@ export default function Dashboard({
       </div>
 
       <div className="pt-4">
-        <h2 className="text-xl font-medium text-neutral-500 dark:text-slate-200">
+        <h2 className="type-heading-3 text-neutral-500 dark:text-slate-200">
           {t(appsKind === 'yours' ? 'sidebar.yourApps' : 'dashboard.featuredApps.heading')}
         </h2>
-        <p className="text-base text-neutral-400 dark:text-slate-400 mb-6">
+        <p className="type-body text-neutral-400 dark:text-slate-400 mb-6">
           {t(appsKind === 'yours' ? 'dashboard.yourApps.text' : 'dashboard.featuredApps.text')}
         </p>
 
@@ -225,13 +225,14 @@ export default function Dashboard({
 
 function StatHeading({ children }: React.ComponentPropsWithoutRef<'dt'>) {
   return (
-    <span className="text-sm/6 font-medium text-slate-500 dark:text-slate-400">{children}</span>
+    <span className="type-label text-slate-500 dark:text-slate-400">{children}</span>
   )
 }
 
 function StatValue({ children }: React.ComponentPropsWithoutRef<'dd'>) {
   return (
-    <div className="mt-1 text-sm/6 font-extrabold sm:mt-2 text-gray-900 dark:text-white">
+    // Flagged: stat values intentionally use display weight (800) at label size; no role tier covers this.
+    <div className="mt-1 type-label font-extrabold sm:mt-2 text-gray-900 dark:text-white">
       {children}
     </div>
   )
