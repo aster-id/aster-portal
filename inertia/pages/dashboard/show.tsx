@@ -79,7 +79,7 @@ export default function Dashboard({
       {showWelcomeMessage && (
         <Card className="py-3 px-4 flex flex-col grow md:flex-row items-center justify-between gap-x-6 gap-y-4">
           <div className="flex-1">
-            <h2 className="type-heading-2 sm:text-xl/8 text-gray-900 dark:text-gray-200 mb-2">
+            <h2 className="type-heading-2 text-gray-900 dark:text-gray-200 mb-2">
               {t('dashboard.welcome.heading')}
             </h2>
             <p className="mt-0.5 type-body text-gray-500 dark:text-gray-300">
@@ -117,7 +117,7 @@ export default function Dashboard({
                 <UserAvatar avatar={profile?.avatar} />
               </div>
               <div className="flex flex-col">
-                <h2 className="type-heading-2 text-zinc-950 sm:text-2xl/8 dark:text-white">
+                <h2 className="type-heading-2 text-zinc-950 dark:text-white">
                   {profile?.displayName
                     ? t('dashboard.greeting.withName', { name: profile.displayName })
                     : t('dashboard.greeting.plain')}
@@ -152,7 +152,7 @@ export default function Dashboard({
         </Card>
 
         <Card className="py-3 px-4 col-span-3 md:col-span-1">
-          <h2 className="type-heading-2 sm:text-xl/8 text-gray-900 dark:text-gray-200 mb-2">
+          <h2 className="type-heading-2 text-gray-900 dark:text-gray-200 mb-2">
             {t('dashboard.explore.heading')}
           </h2>
           <p className="type-body text-gray-500 dark:text-gray-300">

@@ -26,8 +26,7 @@ export function SiteStandardDocument({ activity }: { activity: SiteStandardDocum
           className="aspect-video w-full rounded-lg object-cover"
         />
       ) : undefined}
-      {/* Flagged: document titles run one step larger (text-4xl) than heading-1 at sm. */}
-      <h1 className="text-center type-heading-1 text-zinc-950 sm:text-4xl dark:text-white">
+      <h1 className="text-center type-heading-1 text-zinc-950 dark:text-white">
         {activity.title}
       </h1>
       {activity.description ? (

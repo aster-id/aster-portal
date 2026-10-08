@@ -13,7 +13,7 @@ export default function Faq(props: InertiaProps<{ faq: { question: string; answe
     <>
       <Head title={tPlain('faq.title')} />
       <Container className="py-16 md:py-24 px-4">
-        <h1 className="mb-6 type-heading-1 md:text-5xl text-black dark:text-slate-200 text-center">
+        <h1 className="mb-6 type-heading-1 text-black dark:text-slate-200 text-center">
           {t('faq.title')}
         </h1>
       </Container>
