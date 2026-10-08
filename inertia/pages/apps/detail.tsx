@@ -118,7 +118,6 @@ export default function AppDetailPage({
 
           <div className="flex flex-wrap items-center gap-3">
             {externalUrl ? (
-              // Flagged: mirrors lib/button base typography; adopt roles when the button primitive does.
               <a
                 className="inline-flex items-center justify-center rounded-lg bg-zinc-900 px-3.5 py-2.5 text-base/6 font-semibold text-white sm:px-3 sm:py-1.5 sm:text-sm/6 dark:bg-zinc-600"
                 href={externalUrl}

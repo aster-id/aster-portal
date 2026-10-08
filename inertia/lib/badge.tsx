@@ -43,6 +43,7 @@ export function Badge({
       {...props}
       className={clsx(
         className,
+        // Flagged: badges intentionally compact (xs/5) below the label tier.
         'inline-flex items-center gap-x-1.5 rounded-md px-1.5 py-0.5 text-sm/5 font-medium sm:text-xs/5 forced-colors:outline',
         colors[color]
       )}

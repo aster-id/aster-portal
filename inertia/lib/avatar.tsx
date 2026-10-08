@@ -36,6 +36,7 @@ export function Avatar({
       )}
     >
       <svg
+        // Flagged: avatar initials intentionally display-weight at 48px; no role tier covers this.
         className="size-full fill-current p-[5%] text-[48px] font-medium uppercase select-none"
         viewBox="0 0 100 100"
         aria-hidden={alt ? undefined : 'true'}
