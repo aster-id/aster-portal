@@ -66,7 +66,7 @@ export default function Dashboard({
             <Text className="text-white! text-shadow-sm text-shadow-amber-600/80">
               {t('dashboard.invalidHandle.text')}{' '}
               <a
-                href="https://eurosky.tech/help/#handle-invalid"
+                href="https://aster.place/help/#handle-invalid"
                 target="_blank"
                 className="font-semibold hover:underline"
               >

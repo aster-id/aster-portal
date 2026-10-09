@@ -19,13 +19,13 @@ export interface LegalDocument {
 }
 
 const legalUrls: Record<LegalDocumentName, string> = {
-  privacy: 'https://eurosky.tech/accounts/privacy/',
-  terms: 'https://eurosky.tech/accounts/terms/',
+  privacy: 'https://aster.place/accounts/privacy/',
+  terms: 'https://aster.place/accounts/terms/',
 }
 
 class LegalService {
   /**
-   * Get a legal document from `eurosky.tech`.
+   * Get a legal document from `aster.place`.
    */
   async getDocument(name: LegalDocumentName): Promise<LegalDocument> {
     const cached = await cache.getOrSet({
