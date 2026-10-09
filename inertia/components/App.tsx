@@ -30,7 +30,7 @@ export function App({ app, favorite }: { app: Data.AppSummary; favorite?: boolea
       >
         <div className="flex flex-row grow flex-1 gap-4">
           <div className="flex flex-col">
-            <Heading level={4} className="text-base!" lang="en">
+            <Heading level={4} className="type-heading-3!" lang="en">
               {app.listing.name}
             </Heading>
             <Text
@@ -50,7 +50,7 @@ export function App({ app, favorite }: { app: Data.AppSummary; favorite?: boolea
         {typeof app.listing.rating === 'string' || app.madeInEurope || favoritable ? (
           <div className={clsx('flex w-full items-center gap-2', favoritable && 'min-h-6 pr-10')}>
             {typeof app.listing.rating === 'string' ? (
-              <span className="flex items-center gap-0.5 text-sm text-amber-500">
+              <span className="type-meta flex items-center gap-0.5 text-amber-500">
                 <Rating value={parseFloat(app.listing.rating)} />
                 <span className="text-gray-400 dark:text-slate-500 ml-0.5">
                   ({formatNumber(app.listing.reviewCount, locale)})

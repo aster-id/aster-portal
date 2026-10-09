@@ -1,9 +1,10 @@
+@import './typography.css';
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --default-font-family: Inter, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, Sans-Serif;
-  --default-mono-font-family: 'IBM Plex Mono', monospace;
+  --default-font-family: var(--font-family-sans);
+  --default-mono-font-family: var(--font-family-mono);
   --text-tiny: 0.625rem;
   /* --color-brand: oklch(0.723 0.178 158.4);
   --color-brand-border: oklch(0.603 0.178 158.4); */
@@ -105,6 +106,11 @@ details:open summary > svg {
 .legal-details .markdown-document h1 {
   font-weight: normal;
 }
+
+/* `.markdown-document` styles user-authored documents (markdown, lexicon
+   documents) with their own token-driven scale rather than the portal's UI
+   type roles - deliberate, so documents keep a consistent reading hierarchy
+   regardless of where they're rendered. */
 
 /* `.markdown-document` also renders compact blurbs (app descriptions, legal
    text in a collapsible box) that bring their own font size - only the

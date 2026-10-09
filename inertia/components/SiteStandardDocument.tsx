@@ -26,11 +26,11 @@ export function SiteStandardDocument({ activity }: { activity: SiteStandardDocum
           className="aspect-video w-full rounded-lg object-cover"
         />
       ) : undefined}
-      <h1 className="text-center text-3xl font-semibold text-zinc-950 sm:text-4xl dark:text-white">
+      <h1 className="text-center type-heading-1 text-zinc-950 dark:text-white">
         {activity.title}
       </h1>
       {activity.description ? (
-        <p className="text-center text-lg text-zinc-500 dark:text-zinc-400">
+        <p className="text-center type-lead text-zinc-500 dark:text-zinc-400">
           {activity.description}
         </p>
       ) : undefined}

@@ -24,7 +24,7 @@ export default function Onboarding(
       <Head title={tPlain('onboarding.pageTitle')} />
       <Container className="pt-10 md:pt-24">
         <Card className="w-full md:w-1/2 m-auto p-4 mb-6">
-          <h1 className="mx-auto max-w-4xl mb-2 text-center font-display text-3xl leading-[1.2] font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-5xl">
+          <h1 className="mx-auto max-w-4xl mb-2 text-center type-title text-slate-900 dark:text-slate-200">
             {t('onboarding.title', {
               brand(chunks) {
                 return <span className="text-brand">{chunks}</span>

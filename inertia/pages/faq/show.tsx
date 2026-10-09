@@ -13,7 +13,7 @@ export default function Faq(props: InertiaProps<{ faq: { question: string; answe
     <>
       <Head title={tPlain('faq.title')} />
       <Container className="py-16 md:py-24 px-4">
-        <h1 className="mb-6 text-4xl md:text-5xl text-black dark:text-slate-200 font-semibold text-center">
+        <h1 className="mb-6 type-heading-1 text-black dark:text-slate-200 text-center">
           {t('faq.title')}
         </h1>
       </Container>
@@ -27,7 +27,7 @@ export default function Faq(props: InertiaProps<{ faq: { question: string; answe
               key={idx}
               className="border border-charcoal/20 dark:border-slate-700 rounded-lg mb-4 overflow-hidden hover:border-charcoal dark:hover:border-slate-600 transition-colors"
             >
-              <summary className="flex items-center justify-between relative font-semibold text-ink/80 dark:text-slate-300 p-6 cursor-pointer bg-stone/60 hover:bg-stone-light  dark:bg-slate-900/50  dark:hover:bg-slate-900 transition-colors">
+              <summary className="flex items-center justify-between relative type-label text-ink/80 dark:text-slate-300 p-6 cursor-pointer bg-stone/60 hover:bg-stone-light  dark:bg-slate-900/50  dark:hover:bg-slate-900 transition-colors">
                 {entry.question}
                 <ArrowDownIcon className="w-6 h-6 flex text-charcoal dark:text-slate-400 transition-transform" />
               </summary>

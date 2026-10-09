@@ -20,17 +20,17 @@ export function Hero() {
           </span>
         </div>
 
-        <h1 className="mx-auto max-w-4xl font-display text-3xl sm:text-6xl lg:text-5xl leading-[1.3] font-extrabold tracking-tight text-slate-900 dark:text-slate-200">
+        <h1 className="mx-auto max-w-4xl type-display text-slate-900 dark:text-slate-200">
           {t('hero.title', {
             brand(chunks) {
               return <span className="text-brand">{chunks}</span>
             },
           })}
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-500 dark:text-slate-400 font-bold">
+        <p className="mx-auto mt-6 max-w-2xl type-eyebrow text-gray-500 dark:text-slate-400">
           {t('hero.subtitle')}
         </p>
-        <div className="my-6 flex justify-center gap-4 md:gap-6 text-2xl flex-col md:flex-row">
+        <div className="my-6 flex justify-center gap-4 md:gap-6 flex-col md:flex-row">
           <Button route="account.create" className="py-3! px-6!" color="brand">
             {t('hero.createAccount')}
           </Button>

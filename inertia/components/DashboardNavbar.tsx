@@ -27,14 +27,15 @@ export default function DashboardNavbar({ className }: React.ComponentProps<'div
       </Link>
       <NavbarSpacer />
       <NavbarSection>
+        {/* Handle chips = type-meta, with leading pinned to the 24px icon. */}
         <NavbarItem route="dashboard.show" className="hidden md:flex">
           {isHandleInvalid ? (
-            <span className="text-base/6! sm:text-sm/6! text-amber-500 dark:text-amber-400!">
+            <span className="type-meta leading-6! text-amber-500 dark:text-amber-400!">
               <ExclamationTriangleIcon color="amber" className="h-6 w-6 inline-block" />{' '}
               {user.handle}
             </span>
           ) : (
-            <span className="text-base/6! text-zinc-500! sm:text-sm/6! dark:text-slate-400!">
+            <span className="type-meta leading-6! text-zinc-500! dark:text-slate-400!">
               @{user.handle}
             </span>
           )}

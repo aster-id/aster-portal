@@ -1,0 +1,90 @@
+/* Semantic type roles for the portal's typography. */
+
+@layer theme, base, components, utilities;
+
+@theme {
+  --font-family-sans: 'Fira Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-family-serif: 'Playfair Display', Georgia, serif;
+  --font-family-mono: 'Fira Code', ui-monospace, monospace;
+}
+
+:root {
+  --type-display: 400 clamp(2.5rem, calc(1.5rem + 5vw), 6rem) / 1.04 var(--font-family-serif);
+  --type-display-tracking: -0.03em;
+  --type-title: 400 clamp(1.625rem, calc(1.518rem + 0.536vw), 2rem) / 1.15 var(--font-family-serif);
+  --type-title-tracking: -0.02em;
+  --type-heading-1: 400 clamp(1.875rem, calc(1.768rem + 0.536vw), 2.25rem) / 1.15 var(--font-family-serif);
+  --type-heading-1-tracking: -0.02em;
+  --type-heading-2: 400 clamp(1.5rem, calc(1.429rem + 0.357vw), 1.75rem) / 1.15 var(--font-family-serif);
+  --type-heading-2-tracking: 0;
+  --type-heading-3: 600 var(--text-base) / 1.15 var(--font-family-sans);
+  --type-body: 400 1.125rem / 1.45 var(--font-family-sans);
+  --type-meta: 400 var(--text-sm) / 1.45 var(--font-family-sans);
+  --type-lead: 400 1.125rem / 1.55 var(--font-family-sans);
+  --type-prose: 400 var(--text-base) / 1.55 var(--font-family-sans);
+  --type-label: 600 var(--text-base) / 1.15 var(--font-family-sans);
+  --type-eyebrow: 500 var(--text-sm) / 1.45 var(--font-family-mono);
+  --type-eyebrow-tracking: 0.1em;
+  --type-mono: 400 var(--text-base) / 1.25 var(--font-family-mono);
+
+  --type-micro: 500 var(--text-xs) / 1.5 var(--font-family-sans);
+}
+
+@layer utilities {
+  .type-display {
+    font: var(--type-display);
+    letter-spacing: var(--type-display-tracking);
+  }
+
+  .type-title {
+    font: var(--type-title);
+    letter-spacing: var(--type-title-tracking);
+  }
+
+  .type-heading-1 {
+    font: var(--type-heading-1);
+    letter-spacing: var(--type-heading-1-tracking);
+  }
+
+  .type-heading-2 {
+    font: var(--type-heading-2);
+    letter-spacing: var(--type-heading-2-tracking);
+  }
+
+  .type-heading-3 {
+    font: var(--type-heading-3);
+  }
+
+  .type-body {
+    font: var(--type-body);
+  }
+
+  .type-meta {
+    font: var(--type-meta);
+  }
+
+  .type-lead {
+    font: var(--type-lead);
+  }
+
+  .type-micro {
+    font: var(--type-micro);
+  }
+
+  .type-prose {
+    font: var(--type-prose);
+  }
+
+  .type-label {
+    font: var(--type-label);
+  }
+
+  .type-eyebrow {
+    font: var(--type-eyebrow);
+    letter-spacing: var(--type-eyebrow-tracking);
+  }
+
+  .type-mono {
+    font: var(--type-mono);
+  }
+}

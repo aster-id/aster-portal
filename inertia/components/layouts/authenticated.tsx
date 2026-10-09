@@ -56,7 +56,7 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
           sidebar={
             <Sidebar>
               <SidebarBody>
-                <SidebarHeading className="font-bold">{t('sidebar.myAccount')}</SidebarHeading>
+                <SidebarHeading>{t('sidebar.myAccount')}</SidebarHeading>
                 <SidebarSection>
                   <SidebarItem route="dashboard.show" current={url == '/dashboard'}>
                     <HomeIcon />
@@ -78,14 +78,14 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
                     </SidebarLabel>
                   </SidebarItem>
                 </SidebarSection>
-                <SidebarHeading className="mt-10 font-bold">{t('sidebar.discover')}</SidebarHeading>
+                <SidebarHeading className="mt-10">{t('sidebar.discover')}</SidebarHeading>
                 <SidebarSection>
                   <SidebarItem href="/apps" current={url.startsWith('/apps')}>
                     <GlobeAltIcon />
                     <SidebarLabel>{t('sidebar.applications')}</SidebarLabel>
                   </SidebarItem>
                 </SidebarSection>
-                <SidebarHeading className="mt-10 font-bold">{t('sidebar.support')}</SidebarHeading>
+                <SidebarHeading className="mt-10">{t('sidebar.support')}</SidebarHeading>
                 <SidebarSection>
                   <SidebarItem href="https://aster.place/help/" target="_blank" as={'a'}>
                     <LifebuoyIcon />

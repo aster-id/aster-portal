@@ -34,7 +34,7 @@ export default function YourApps({
     <div className="flex flex-col gap-y-6">
       <Head title={tPlain('sidebar.yourApps')} />
       <div>
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
+        <h1 className="type-heading-1 text-gray-900 dark:text-white">
           {t('sidebar.yourApps')}
         </h1>
         <p className="mt-1 text-gray-500 dark:text-gray-400">{t('yourApps.subheading')}</p>
