@@ -30,8 +30,7 @@ export function SiteStandardDocument({ activity }: { activity: SiteStandardDocum
         {activity.title}
       </h1>
       {activity.description ? (
-        // Flagged: the lede runs text-lg; no lede role exists in the type system.
-        <p className="text-center text-lg text-zinc-500 dark:text-zinc-400">
+        <p className="text-center type-lead text-zinc-500 dark:text-zinc-400">
           {activity.description}
         </p>
       ) : undefined}

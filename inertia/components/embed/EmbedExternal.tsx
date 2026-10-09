@@ -16,8 +16,7 @@ export function EmbedExternal({ embed }: { embed: External }) {
               {embed.description}
             </p>
           ) : undefined}
-          {/* Flagged: deliberately smaller (text-xs) URL metadata below body/label tier; left unconverted. */}
-          <p className="mt-1 truncate text-xs text-zinc-400 dark:text-zinc-500">{embed.uri}</p>
+          <p className="mt-1 truncate type-micro text-zinc-400 dark:text-zinc-500">{embed.uri}</p>
         </div>
       </div>
     </div>

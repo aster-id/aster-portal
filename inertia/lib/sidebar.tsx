@@ -77,8 +77,7 @@ export function SidebarHeading({ className, ...props }: React.ComponentPropsWith
       {...props}
       className={clsx(
         className,
-        // Flagged: sidebar headings intentionally run at text-xs, below the label tier.
-        'mb-1 px-2 text-xs/6 font-medium text-zinc-500 dark:text-zinc-400'
+        'mb-1 px-2 type-meta text-zinc-500 dark:text-zinc-400'
       )}
     />
   )

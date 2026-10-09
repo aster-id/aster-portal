@@ -27,8 +27,7 @@ export default function Faq(props: InertiaProps<{ faq: { question: string; answe
               key={idx}
               className="border border-charcoal/20 dark:border-slate-700 rounded-lg mb-4 overflow-hidden hover:border-charcoal dark:hover:border-slate-600 transition-colors"
             >
-              {/* Flagged: summary rows intentionally run semibold at base size, larger than the label tier. */}
-              <summary className="flex items-center justify-between relative font-semibold text-ink/80 dark:text-slate-300 p-6 cursor-pointer bg-stone/60 hover:bg-stone-light  dark:bg-slate-900/50  dark:hover:bg-slate-900 transition-colors">
+              <summary className="flex items-center justify-between relative type-label text-ink/80 dark:text-slate-300 p-6 cursor-pointer bg-stone/60 hover:bg-stone-light  dark:bg-slate-900/50  dark:hover:bg-slate-900 transition-colors">
                 {entry.question}
                 <ArrowDownIcon className="w-6 h-6 flex text-charcoal dark:text-slate-400 transition-transform" />
               </summary>

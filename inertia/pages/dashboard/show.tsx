@@ -231,8 +231,7 @@ function StatHeading({ children }: React.ComponentPropsWithoutRef<'dt'>) {
 
 function StatValue({ children }: React.ComponentPropsWithoutRef<'dd'>) {
   return (
-    // Flagged: stat values intentionally use display weight (800) at label size; no role tier covers this.
-    <div className="mt-1 type-label font-extrabold sm:mt-2 text-gray-900 dark:text-white">
+    <div className="mt-1 type-label sm:mt-2 text-gray-900 dark:text-white">
       {children}
     </div>
   )

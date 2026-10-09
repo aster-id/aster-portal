@@ -30,8 +30,7 @@ export function App({ app, favorite }: { app: Data.AppSummary; favorite?: boolea
       >
         <div className="flex flex-row grow flex-1 gap-4">
           <div className="flex flex-col">
-            {/* Flagged: app names intentionally run at text-base, below the heading-3 tier. */}
-            <Heading level={4} className="text-base!" lang="en">
+            <Heading level={4} className="type-heading-3!" lang="en">
               {app.listing.name}
             </Heading>
             <Text
