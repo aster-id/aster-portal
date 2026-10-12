@@ -117,18 +117,18 @@ export default function Dashboard({
                 <UserAvatar avatar={profile?.avatar} />
               </div>
               <div className="flex flex-col">
-                <h2 className="type-heading-2 text-zinc-950 dark:text-white">
+                <h2 className="type-heading-1 text-zinc-950 dark:text-white">
                   {profile?.displayName
                     ? t('dashboard.greeting.withName', { name: profile.displayName })
                     : t('dashboard.greeting.plain')}
                 </h2>
                 {isHandleInvalid ? (
-                  <Text className="text-amber-500!">
+                  <Text className="type-mono! text-amber-500!">
                     <ExclamationTriangleIcon color="amber" className="h-6 w-6 inline-block" />{' '}
                     {user.handle}
                   </Text>
                 ) : (
-                  <Text className="text-slate-400!">@{user.handle}</Text>
+                  <Text className="type-mono! text-slate-400!">@{user.handle}</Text>
                 )}
                 {profile?.stats && (
                   <div className="hidden md:grid grid-cols-1 sm:grid-cols-3">
@@ -225,13 +225,13 @@ export default function Dashboard({
 
 function StatHeading({ children }: React.ComponentPropsWithoutRef<'dt'>) {
   return (
-    <span className="type-label text-slate-500 dark:text-slate-400">{children}</span>
+    <span className="type-eyebrow uppercase text-slate-500 dark:text-slate-400">{children}</span>
   )
 }
 
 function StatValue({ children }: React.ComponentPropsWithoutRef<'dd'>) {
   return (
-    <div className="mt-1 type-label sm:mt-2 text-gray-900 dark:text-white">
+    <div className="mt-1 type-title sm:mt-2 text-gray-900 dark:text-white">
       {children}
     </div>
   )
