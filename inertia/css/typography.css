@@ -18,6 +18,7 @@
   --type-heading-2: 400 clamp(1.5rem, calc(1.429rem + 0.357vw), 1.75rem) / 1.15 var(--font-family-serif);
   --type-heading-2-tracking: 0;
   --type-heading-3: 600 var(--text-base) / 1.15 var(--font-family-sans);
+  --type-heading-small: 400 1.25rem / 1.25 var(--font-family-serif);
   --type-body: 400 1.125rem / 1.45 var(--font-family-sans);
   --type-meta: 400 var(--text-sm) / 1.45 var(--font-family-sans);
   --type-lead: 400 1.125rem / 1.55 var(--font-family-sans);
@@ -28,6 +29,11 @@
   --type-mono: 400 var(--text-base) / 1.25 var(--font-family-mono);
 
   --type-micro: 500 var(--text-xs) / 1.5 var(--font-family-sans);
+}
+
+@utility type-heading-small {
+  font: var(--type-heading-small);
+  letter-spacing: 0;
 }
 
 @layer utilities {
@@ -54,6 +60,7 @@
   .type-heading-3 {
     font: var(--type-heading-3);
   }
+
 
   .type-body {
     font: var(--type-body);

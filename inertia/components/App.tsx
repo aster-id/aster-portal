@@ -30,7 +30,7 @@ export function App({ app, favorite }: { app: Data.AppSummary; favorite?: boolea
       >
         <div className="flex flex-row grow flex-1 gap-4">
           <div className="flex flex-col">
-            <Heading level={4} className="type-heading-2!" lang="en">
+            <Heading level={4} className="type-heading-small!" lang="en">
               {app.listing.name}
             </Heading>
             <Text
