@@ -72,8 +72,8 @@
   --accent-mint-700: #609fa4; /* Approximate 700 step; use dark labels. */
   --accent-mint-800: #427982; /* Approximate 800 step; darker fill for white labels. */
   --accent-cyan-500: #7ccbdf;
-  --aster-teal: ##00c8b3;
-  --aster-coral:
+  --aster-teal: #00c8b3;
+  --aster-coral: #f2a392;
 }
 
 /* Expose semantic roles as Tailwind utilities, e.g. bg-brand and text-brand. */
