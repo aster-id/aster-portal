@@ -1,39 +1,80 @@
 name: Publish docker image
 
-# Docker image publishing is disabled until this workflow has been reviewed.
+# Main publishes dev images; Changesets releases publish version tags and latest.
 on:
+  push:
+    branches:
+      - main
   workflow_call:
     inputs:
       tag_ref:
-        description: 'A github ref passed from the publish workflow'
+        description: 'Release tag passed from the release workflow'
         required: true
         type: string
   workflow_dispatch:
 
-env:
-  publish_ref: ${{ inputs.tag_ref || github.ref }}
+permissions:
+  contents: read
+
 concurrency:
-  group: publish-${{ github.workflow }}-${{ inputs.tag_ref || github.ref }}
+  group: publish-${{ inputs.tag_ref || github.ref }}
   cancel-in-progress: false
 
 jobs:
+  resolve-ref:
+    name: Resolve immutable build commit
+    if: github.repository == 'aster-id/aster-portal' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.ref.outputs.sha }}
+      version: ${{ steps.ref.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+      - name: Resolve source revision
+        id: ref
+        env:
+          RELEASE_TAG: ${{ inputs.tag_ref }}
+        run: |
+          if [[ -n "$RELEASE_TAG" ]]; then
+            if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo 'Expected a release tag in the form vMAJOR.MINOR.PATCH' >&2
+              exit 1
+            fi
+            git fetch --no-tags origin "refs/tags/$RELEASE_TAG:refs/tags/$RELEASE_TAG"
+            sha=$(git --no-pager rev-parse "refs/tags/$RELEASE_TAG^{commit}")
+            version=${RELEASE_TAG#v}
+          else
+            sha=$(git --no-pager rev-parse HEAD)
+            version=''
+          fi
+          printf 'sha=%s\nversion=%s\n' "$sha" "$version" >> "$GITHUB_OUTPUT"
+
+  checks:
+    needs: [resolve-ref]
+    uses: ./.github/workflows/checks.yaml
+    with:
+      ref: ${{ needs.resolve-ref.outputs.sha }}
+
   release:
     name: Publish docker image
-    # Disabled until Docker image publishing is explicitly re-enabled.
-    if: ${{ false }}
+    needs: [resolve-ref, checks]
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
       packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
-          ref: ${{ env.publish_ref }}
+          ref: ${{ needs.resolve-ref.outputs.sha }}
 
-      - uses: docker/setup-buildx-action@v4
-        id: buildx
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
 
       - name: Log in to the GitHub Container registry
         uses: docker/login-action@v4
@@ -50,14 +91,15 @@ jobs:
           images: |
             ghcr.io/aster-id/aster-portal
           tags: |
-            type=sha,enable=true,priority=100,format=long
-            type=match,pattern=v(\d+\.\d+\.\d+),group=1,enable=${{ inputs.tag_ref != '' }}
-            type=match,pattern=v(\d+\.\d+),group=1,enable=${{ inputs.tag_ref != '' }}
-            type=raw,value=latest,enable=${{ inputs.tag_ref != '' }}
-            type=raw,value=dev,enable={{is_default_branch}}
+            type=raw,value=sha-${{ needs.resolve-ref.outputs.sha }}
+            type=semver,pattern={{version}},value=${{ needs.resolve-ref.outputs.version }},enable=${{ needs.resolve-ref.outputs.version != '' }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ needs.resolve-ref.outputs.version }},enable=${{ needs.resolve-ref.outputs.version != '' }}
+            type=raw,value=latest,enable=${{ needs.resolve-ref.outputs.version != '' }}
+            type=raw,value=dev,enable=${{ needs.resolve-ref.outputs.version == '' }}
+          flavor: |
+            latest=false
 
       - name: Build and push Docker image
-        id: build-and-push
         uses: docker/build-push-action@v7
         with:
           platforms: |
