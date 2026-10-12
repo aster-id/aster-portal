@@ -32,7 +32,7 @@ export function App({ app, favorite }: { app: Data.AppSummary; favorite?: boolea
           className="size-14 sm:size-16 bg-brand-700 text-neutral-100 [--avatar-radius:4px]!"
         />
         <div className="min-w-0 flex-1">
-          <h4 className="type-heading-2 text-surface-foreground" lang="en">
+          <h4 className="type-heading-small text-surface-foreground" lang="en">
             {app.listing.name}
           </h4>
           <p className="type-prose text-surface-muted line-clamp-2" lang="en">
