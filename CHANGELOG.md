@@ -1,5 +1,13 @@
 # eurosky-portal
 
+## 1.8.1
+
+### Patch Changes
+
+- Apply Aster branding and theme tokens throughout the portal, refine app listings and dashboard typography, align account screens, update contact and navigation links, and support white-backed transparent app logos.
+
+- [#268](https://github.com/eurosky-social/eurosky-portal/pull/268) [`74293fa`](https://github.com/aster-id/aster-portal/commit/74293fa92a170a94f11cdccdff6d27ad2617cb79) Thanks [@wooorm](https://github.com/wooorm)! - Add branding config
+
 ## 1.8.0
 
 ### Minor Changes
