@@ -1,4 +1,4 @@
-import { Link } from '~/lib/link'
+
 import { Navbar, NavbarItem, NavbarSection, NavbarSpacer } from '~/lib/navbar'
 import { Logo } from './Logo'
 import { Form } from '@adonisjs/inertia/react'
@@ -18,13 +18,9 @@ export default function DashboardNavbar({ className }: React.ComponentProps<'div
 
   return (
     <Navbar className={clsx(className, 'dark:bg-slate-800/70')}>
-      <Link
-        route="dashboard.show"
-        aria-label={tPlain('nav.home')}
-        className="rounded-sm md:ml-6 mt-1 mb-2"
-      >
+      <a href="https://aster.place/" aria-label={tPlain('nav.home')} className="rounded-sm md:ml-6 mt-1 mb-2">
         <Logo />
-      </Link>
+      </a>
       <NavbarSpacer />
       <NavbarSection>
         {/* Handle chips = type-meta, with leading pinned to the 24px icon. */}

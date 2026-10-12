@@ -1,4 +1,4 @@
-import { Link } from '~/lib/link'
+
 import { Navbar, NavbarItem, NavbarSection, NavbarSpacer } from '~/lib/navbar'
 import { Logo } from './Logo'
 import { LanguageToggle } from './LanguageToggle'
@@ -14,9 +14,9 @@ export default function PublicNavbar() {
 
   return (
     <Navbar className="gap-2! md:gap-4! md:px-6 px-3 bg-neutral-50 dark:bg-slate-800 sticky top-0 z-50">
-      <Link route="home" aria-label={tPlain('nav.home')} className="pb-3 mt-1">
+      <a href="https://aster.place/" aria-label={tPlain('nav.home')} className="pb-3 mt-1">
         <Logo />
-      </Link>
+      </a>
       <NavbarSpacer />
       <NavbarSection>
         <NavbarItem route="home" current={page.url === '/'}>
