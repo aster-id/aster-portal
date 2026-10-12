@@ -18,14 +18,15 @@ export default function CreateAccount(
   const { props: pageProps } = usePage()
   const { tPlain, t } = useT()
   return (
-    <div className="bg-surface-canvas dark:bg-dashboard-canvas min-h-dvh-minus-35">
+    <div className="create-account bg-surface-canvas dark:bg-dashboard-canvas min-h-dvh-minus-35">
       <Head title={tPlain('createAccount.pageTitle')} />
       <Container className="pt-6 md:pt-12">
         {props.migrationUrl && (
           <div className="w-full md:w-3/4 lg:w-1/2 m-auto">
             <Notice
+              tone="gold"
               action={
-                <a href={props.migrationUrl} className="text-brand hover:underline">
+                <a href={props.migrationUrl} className="text-migration-notice-foreground underline hover:text-migration-notice-muted">
                   {tPlain('migrationAlert.cta')}
                 </a>
               }
@@ -45,14 +46,14 @@ export default function CreateAccount(
           </Card>
         )}
         <Card className="w-full md:w-3/4 lg:w-1/2 m-auto p-4 mb-8">
-          <h1 className="mx-auto max-w-4xl mb-2 text-center type-title text-slate-900 dark:text-surface-foreground">
+          <h1 className="mx-auto max-w-4xl mb-2 text-center type-title text-surface-foreground">
             {t('createAccount.title', {
               brand(chunks) {
-                return <span className="text-brand">{chunks}</span>
+                return <span className="text-login-highlight">{chunks}</span>
               },
             })}
           </h1>
-          <Text className="text-center text-slate-600">{t('createAccount.subtitle')}</Text>
+          <Text className="text-center">{t('createAccount.subtitle')}</Text>
           <PolicyForm
             route="oauth.signup"
             terms={props.legalDocuments.terms}
