@@ -153,7 +153,7 @@ export default function Dashboard({
           <h2 className="type-heading-2 text-surface-foreground mb-2">
             {t('dashboard.explore.heading')}
           </h2>
-          <p className="type-body text-surface-muted">
+          <p className="type-prose text-surface-muted">
             {t('dashboard.explore.text')}
           </p>
           <Button
@@ -166,7 +166,7 @@ export default function Dashboard({
         </Card>
       </div>
       <div>
-        <h2 className="type-heading-3 text-surface-foreground">
+        <h2 className="type-heading-2 text-surface-foreground">
           {t('dashboard.activity.heading')}
         </h2>
         <p className="type-body text-surface-muted mb-6">
@@ -195,7 +195,7 @@ export default function Dashboard({
       </div>
 
       <div className="pt-4">
-        <h2 className="type-heading-3 text-surface-foreground">
+        <h2 className="type-heading-2 text-surface-foreground">
           {t(appsKind === 'yours' ? 'sidebar.yourApps' : 'dashboard.featuredApps.heading')}
         </h2>
         <p className="type-body text-surface-muted mb-6">

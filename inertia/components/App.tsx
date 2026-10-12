@@ -31,14 +31,14 @@ export function App({ app, favorite }: { app: Data.AppSummary; favorite?: boolea
           className="size-14 sm:size-16 bg-brand-700 text-neutral-100 [--avatar-radius:4px]!"
         />
         <div className="min-w-0 flex-1">
-          <h4 className="type-heading-3 text-surface-foreground" lang="en">
+          <h4 className="type-heading-2 text-surface-foreground" lang="en">
             {app.listing.name}
           </h4>
           <p className="type-prose text-surface-muted line-clamp-2" lang="en">
             {app.listing.tagline}
           </p>
           {Number.isFinite(rating) || app.madeInEurope ? (
-            <div className="type-meta mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-surface-muted">
+            <div className="type-eyebrow mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-surface-muted">
               {Number.isFinite(rating) ? (
                 <span className="inline-flex items-center gap-1">
                   <StarIcon aria-hidden="true" className="size-3.5 text-warning-foreground" />
