@@ -1,4 +1,4 @@
 portal.eurosky.tech {
-	tls support@eurosky.tech
+	tls support@aster.place
 	reverse_proxy http://localhost:4075
 }
