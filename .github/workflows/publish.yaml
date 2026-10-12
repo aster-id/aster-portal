@@ -12,6 +12,12 @@ on:
         required: true
         type: string
   workflow_dispatch:
+    inputs:
+      tag_ref:
+        description: 'Existing release tag to publish; leave empty to rebuild dev'
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: read
@@ -87,7 +93,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v6
         with:
-          context: git
+          # The source checkout is detached; tags come from resolve-ref, not Git inference.
+          context: workflow
           images: |
             ghcr.io/aster-id/aster-portal
           tags: |
@@ -98,6 +105,8 @@ jobs:
             type=raw,value=dev,enable=${{ needs.resolve-ref.outputs.version == '' }}
           flavor: |
             latest=false
+          labels: |
+            org.opencontainers.image.revision=${{ needs.resolve-ref.outputs.sha }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v7

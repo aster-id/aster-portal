@@ -104,7 +104,7 @@ cp .env.docker.example .env.docker.local
 docker run -p 4075:4075 --rm --env-file .env.docker.local ghcr.io/aster-id/aster-portal:dev
 ```
 
-Pre-built images are published to `ghcr.io/aster-id/aster-portal` after the translation, lint/format, and TypeScript checks pass. Pushes to `main` publish `dev` and a commit-SHA tag; Changesets releases publish version tags, `latest`, and a commit-SHA tag. The publish workflow can also be run manually from `main` to rebuild `dev`.
+Pre-built images are published to `ghcr.io/aster-id/aster-portal` after the translation, lint/format, and TypeScript checks pass. Pushes to `main` publish `dev` and a commit-SHA tag; Changesets releases publish version tags, `latest`, and a commit-SHA tag. The publish workflow can also be run manually from `main` to rebuild `dev`. To retry publishing an existing release without bumping its version, run it from `main` with `tag_ref` set to the release tag (for example, `v1.8.1`).
 
 An example production setup with Caddy and automatic updates is in [`service/`](service). It follows `latest`, so pushing to `main` alone does not update that deployment: publish a release, or explicitly choose the `dev` tag for a rolling-main deployment. The server needs pull access to the GHCR package (public visibility or registry credentials).
 
