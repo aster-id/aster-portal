@@ -46,10 +46,7 @@ export default function AppDetailPage({
       <Head title={name} />
 
       <div className="mb-8 flex items-start justify-between gap-4">
-        <nav
-          aria-label={tPlain('common.breadcrumb')}
-          className="type-meta text-surface-muted"
-        >
+        <nav aria-label={tPlain('common.breadcrumb')} className="type-meta text-surface-muted">
           <BackLink className="hover:text-surface-foreground" route="discover.apps">
             <ChevronLeftIcon aria-hidden="true" className="size-4 inline-block" />
             {t('sidebar.applications')}

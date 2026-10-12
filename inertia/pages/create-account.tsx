@@ -26,7 +26,10 @@ export default function CreateAccount(
             <Notice
               tone="gold"
               action={
-                <a href={props.migrationUrl} className="text-migration-notice-foreground underline hover:text-migration-notice-muted">
+                <a
+                  href={props.migrationUrl}
+                  className="text-migration-notice-foreground underline hover:text-migration-notice-muted"
+                >
                   {tPlain('migrationAlert.cta')}
                 </a>
               }

@@ -37,14 +37,15 @@ export default function Activity(result: InertiaProps<GetRecordsResult>) {
       </div>
 
       <Card className="p-4 bg-warning-surface! flex flex-row gap-3">
-        <TriangleAlert aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-warning-foreground" />
+        <TriangleAlert
+          aria-hidden="true"
+          className="mt-1 h-5 w-5 shrink-0 text-warning-foreground"
+        />
         <div>
           <Text className="font-semibold text-warning-foreground!">
             {t('activity.underConstruction.title')}
           </Text>
-          <Text className="text-warning-foreground!">
-            {t('activity.underConstruction.text')}
-          </Text>
+          <Text className="text-warning-foreground!">{t('activity.underConstruction.text')}</Text>
           <Text className="text-warning-foreground!">
             <a
               className="font-semibold underline hover:text-warning-foreground/80"
@@ -64,7 +65,11 @@ export default function Activity(result: InertiaProps<GetRecordsResult>) {
         <>
           <ActivityList activities={result.activities} />
           <div className="flex justify-center">
-            <Button disabled={result.activities.length >= result.total} onClick={more} color="dashboard">
+            <Button
+              disabled={result.activities.length >= result.total}
+              onClick={more}
+              color="dashboard"
+            >
               {t('activity.loadMore')}
             </Button>
           </div>

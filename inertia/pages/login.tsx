@@ -23,7 +23,10 @@ export default function Login({ migrationUrl }: InertiaProps<{ migrationUrl?: st
             <Notice
               tone="gold"
               action={
-                <a href={migrationUrl} className="text-migration-notice-foreground underline hover:text-migration-notice-muted">
+                <a
+                  href={migrationUrl}
+                  className="text-migration-notice-foreground underline hover:text-migration-notice-muted"
+                >
                   {tPlain('migrationAlert.cta')}
                 </a>
               }
@@ -75,9 +78,7 @@ export default function Login({ migrationUrl }: InertiaProps<{ migrationUrl?: st
                     autoCorrect="off"
                     autoComplete="off"
                   />
-                  {errors?.input && (
-                    <ErrorMessage>{errors.input}</ErrorMessage>
-                  )}
+                  {errors?.input && <ErrorMessage>{errors.input}</ErrorMessage>}
                 </Field>
                 <Field className="mt-2 flex justify-end justify-items-stretch">
                   <Button

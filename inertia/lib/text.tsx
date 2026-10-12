@@ -3,11 +3,7 @@ import { Link } from './link'
 
 export function Text({ className, ...props }: React.ComponentPropsWithoutRef<'p'>) {
   return (
-    <p
-      data-slot="text"
-      {...props}
-      className={clsx(className, 'type-prose text-surface-muted')}
-    />
+    <p data-slot="text" {...props} className={clsx(className, 'type-prose text-surface-muted')} />
   )
 }
 

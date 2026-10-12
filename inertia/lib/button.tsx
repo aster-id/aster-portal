@@ -39,7 +39,6 @@ export const styles = {
     'data-active:after:bg-(--btn-hover-overlay) data-hover:after:bg-(--btn-hover-overlay)',
     // Dark mode: `after` layer expands to cover entire button
     'dark:after:-inset-px dark:after:rounded-full',
-
   ],
   outline: [
     // Base

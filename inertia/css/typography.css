@@ -13,9 +13,11 @@
   --type-display-tracking: -0.03em;
   --type-title: 400 clamp(1.625rem, calc(1.518rem + 0.536vw), 2rem) / 1.15 var(--font-family-serif);
   --type-title-tracking: -0.02em;
-  --type-heading-1: 400 clamp(1.875rem, calc(1.768rem + 0.536vw), 2.25rem) / 1.15 var(--font-family-serif);
+  --type-heading-1: 400 clamp(1.875rem, calc(1.768rem + 0.536vw), 2.25rem) / 1.15
+    var(--font-family-serif);
   --type-heading-1-tracking: -0.02em;
-  --type-heading-2: 400 clamp(1.5rem, calc(1.429rem + 0.357vw), 1.75rem) / 1.15 var(--font-family-serif);
+  --type-heading-2: 400 clamp(1.5rem, calc(1.429rem + 0.357vw), 1.75rem) / 1.15
+    var(--font-family-serif);
   --type-heading-2-tracking: 0;
   --type-heading-3: 600 var(--text-base) / 1.15 var(--font-family-sans);
   --type-heading-small: 400 1.25rem / 1.25 var(--font-family-serif);
@@ -60,7 +62,6 @@
   .type-heading-3 {
     font: var(--type-heading-3);
   }
-
 
   .type-body {
     font: var(--type-body);

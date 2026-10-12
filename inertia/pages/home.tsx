@@ -15,9 +15,7 @@ export default function Home({ sections }: InertiaProps<Data.Apps>) {
         <h2 className="type-eyebrow text-surface-foreground uppercase text-center">
           {t('home.heading')}
         </h2>
-        <p className="text-center text-surface-muted mb-12">
-          {t('home.subheading')}
-        </p>
+        <p className="text-center text-surface-muted mb-12">{t('home.subheading')}</p>
 
         <Apps sections={sections} />
       </Container>

@@ -1,4 +1,3 @@
-
 import { Navbar, NavbarItem, NavbarSection, NavbarSpacer } from '~/lib/navbar'
 import { Logo } from './Logo'
 import { LanguageToggle } from './LanguageToggle'

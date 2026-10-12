@@ -10,10 +10,7 @@ export function Heading({ className, level = 1, ...props }: HeadingProps) {
   return (
     <Element
       {...props}
-      className={clsx(
-        className,
-        'text-2xl/8 font-semibold text-surface-foreground sm:text-xl/8'
-      )}
+      className={clsx(className, 'text-2xl/8 font-semibold text-surface-foreground sm:text-xl/8')}
     />
   )
 }

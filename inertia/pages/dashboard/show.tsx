@@ -82,9 +82,7 @@ export default function Dashboard({
             <h2 className="type-heading-2 text-surface-foreground mb-2">
               {t('dashboard.welcome.heading')}
             </h2>
-            <p className="mt-0.5 type-body text-surface-muted">
-              {t('dashboard.welcome.text')}
-            </p>
+            <p className="mt-0.5 type-body text-surface-muted">{t('dashboard.welcome.text')}</p>
             {!isHandleInvalid && (
               <p className="mt-0.5 type-body text-surface-muted">
                 {t('dashboard.welcome.handle', {
@@ -100,11 +98,7 @@ export default function Dashboard({
               </p>
             )}
           </div>
-          <Button
-            onClick={dismissWelcome}
-            color="dashboard"
-            className="w-full md:w-auto"
-          >
+          <Button onClick={dismissWelcome} color="dashboard" className="w-full md:w-auto">
             {t('dashboard.welcome.dismiss')}
           </Button>
         </Card>
@@ -123,11 +117,12 @@ export default function Dashboard({
               </h2>
               {isHandleInvalid ? (
                 <Text className="mt-1 type-mono! break-words text-error-foreground!">
-                  <ExclamationTriangleIcon className="h-6 w-6 inline-block" />{' '}
-                  {user.handle}
+                  <ExclamationTriangleIcon className="h-6 w-6 inline-block" /> {user.handle}
                 </Text>
               ) : (
-                <Text className="mt-1 type-mono! break-words text-surface-muted!">@{user.handle}</Text>
+                <Text className="mt-1 type-mono! break-words text-surface-muted!">
+                  @{user.handle}
+                </Text>
               )}
             </div>
             {profile?.stats && (
@@ -153,14 +148,8 @@ export default function Dashboard({
           <h2 className="type-heading-2 text-surface-foreground mb-2">
             {t('dashboard.explore.heading')}
           </h2>
-          <p className="type-prose text-surface-muted">
-            {t('dashboard.explore.text')}
-          </p>
-          <Button
-            route="explore.learn_more"
-            color="dashboard"
-            className="mt-3 w-full sm:w-auto"
-          >
+          <p className="type-prose text-surface-muted">{t('dashboard.explore.text')}</p>
+          <Button route="explore.learn_more" color="dashboard" className="mt-3 w-full sm:w-auto">
             {t('common.learnMore')}
           </Button>
         </Card>
@@ -169,9 +158,7 @@ export default function Dashboard({
         <h2 className="type-heading-2 text-surface-foreground">
           {t('dashboard.activity.heading')}
         </h2>
-        <p className="type-body text-surface-muted mb-6">
-          {t('dashboard.activity.subheading')}
-        </p>
+        <p className="type-body text-surface-muted mb-6">{t('dashboard.activity.subheading')}</p>
 
         {activityState === 'syncing' ? (
           <Card className="p-4">
@@ -223,15 +210,9 @@ export default function Dashboard({
 }
 
 function StatHeading({ children }: React.ComponentPropsWithoutRef<'dt'>) {
-  return (
-    <span className="type-eyebrow uppercase text-surface-muted">{children}</span>
-  )
+  return <span className="type-eyebrow uppercase text-surface-muted">{children}</span>
 }
 
 function StatValue({ children }: React.ComponentPropsWithoutRef<'dd'>) {
-  return (
-    <div className="mt-1 type-title sm:mt-2 text-surface-foreground">
-      {children}
-    </div>
-  )
+  return <div className="mt-1 type-title sm:mt-2 text-surface-foreground">{children}</div>
 }

@@ -160,7 +160,11 @@
   --color-panel: var(--purple-neutral-600);
   --color-clickable-panel: var(--purple-neutral-600);
   --color-panel-hover: var(--purple-neutral-500);
-  --color-panel-border: color-mix(in srgb, var(--purple-neutral-400) 45%, var(--purple-neutral-600));
+  --color-panel-border: color-mix(
+    in srgb,
+    var(--purple-neutral-400) 45%,
+    var(--purple-neutral-600)
+  );
   --color-panel-border-hover: var(--purple-neutral-400);
   --color-hero: var(--brand-900);
   --color-hero-foreground: var(--aster-paper);
@@ -188,7 +192,11 @@
   --color-panel: var(--purple-neutral-700);
   --color-clickable-panel: var(--purple-neutral-700);
   --color-panel-hover: var(--purple-neutral-600);
-  --color-panel-border: color-mix(in srgb, var(--purple-neutral-400) 45%, var(--purple-neutral-700));
+  --color-panel-border: color-mix(
+    in srgb,
+    var(--purple-neutral-400) 45%,
+    var(--purple-neutral-700)
+  );
   --color-panel-border-hover: var(--purple-neutral-500);
   --color-surface-foreground: var(--neutral-100);
   --color-surface-muted: var(--neutral-300);
@@ -251,7 +259,7 @@
   color: var(--color-surface-foreground) !important;
 }
 
-.dashboard-navbar [data-slot=icon] {
+.dashboard-navbar [data-slot='icon'] {
   color: var(--color-surface-muted) !important;
   fill: var(--color-surface-muted) !important;
 }

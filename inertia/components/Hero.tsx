@@ -34,7 +34,11 @@ export function Hero() {
           <Button route="account.create" className="py-3! px-6!" color="brand">
             {t('hero.createAccount')}
           </Button>
-          <Button route="auth.login" className="py-3! px-6! text-hero-foreground! border-hero-foreground/30!" outline>
+          <Button
+            route="auth.login"
+            className="py-3! px-6! text-hero-foreground! border-hero-foreground/30!"
+            outline
+          >
             {t('nav.signIn')}
           </Button>
         </div>

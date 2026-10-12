@@ -14,10 +14,7 @@ export function AppGrid({
   favorites?: ReadonlyArray<string> | undefined
 }) {
   return (
-    <ul
-      role="list"
-      className="mt-4 mb-8 grid grid-cols-1 gap-x-8 lg:gap-x-10 md:grid-cols-2"
-    >
+    <ul role="list" className="mt-4 mb-8 grid grid-cols-1 gap-x-8 lg:gap-x-10 md:grid-cols-2">
       {apps.map((app) => (
         <App
           key={app.atUri}

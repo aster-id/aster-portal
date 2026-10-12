@@ -41,10 +41,10 @@ function MobileSidebar({
         <div className="dashboard-sidebar flex h-full flex-col rounded-lg bg-sidebar text-surface-foreground shadow-xs ring-1 ring-surface-foreground/10">
           <div className="-mb-3 px-4 pt-3 self-end">
             <Headless.CloseButton
-                          as={NavbarItem}
-                          aria-label={tPlain('nav.closeNavigation')}
-                          className="text-surface-foreground! *:data-[slot=icon]:fill-surface-foreground!"
-                        >
+              as={NavbarItem}
+              aria-label={tPlain('nav.closeNavigation')}
+              className="text-surface-foreground! *:data-[slot=icon]:fill-surface-foreground!"
+            >
               <CloseMenuIcon />
             </Headless.CloseButton>
           </div>
@@ -66,7 +66,9 @@ export function SidebarLayout({
   return (
     <div className="relative isolate flex min-h-dvh-minus-32 w-full bg-dashboard-chrome max-lg:flex-col">
       {/* Sidebar on desktop */}
-      <div className="dashboard-sidebar inset-y-0 left-0 w-64 bg-sidebar text-surface-foreground max-lg:hidden">{sidebar}</div>
+      <div className="dashboard-sidebar inset-y-0 left-0 w-64 bg-sidebar text-surface-foreground max-lg:hidden">
+        {sidebar}
+      </div>
 
       {/* Sidebar on mobile */}
       <MobileSidebar open={showSidebar} close={() => setShowSidebar(false)}>
