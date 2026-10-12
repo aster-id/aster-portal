@@ -61,6 +61,7 @@ export type LauncherApp = {
    * Icon.
    */
   iconUrl: string | null
+  iconBackground?: CatalogApp['iconBackground']
 
   /**
    * Name.
@@ -106,6 +107,7 @@ export class AtStoreService {
         atUri: app.atUri,
         favorite: favoriteSet.has(app.atUri),
         iconUrl: app.listing.iconUrl,
+        iconBackground: app.iconBackground,
         name: app.listing.name,
       }))
   }

@@ -71,6 +71,7 @@ export default function AppDetailPage({
               className="size-16 shrink-0 bg-gray-100 outline-none! dark:bg-panel"
               square
               src={iconUrl}
+              imageBackground={app.iconBackground}
             />
             <div className="min-w-0">
               <Heading lang="en">{name}</Heading>
