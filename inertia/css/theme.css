@@ -211,7 +211,8 @@
 }
 
 .dark .login-submit,
-.dark .onboarding .policy-submit {
+.dark .onboarding .policy-submit,
+.dark .create-account .policy-submit {
   --color-brand: var(--brand-700);
   --color-brand-border: var(--brand-600);
   --color-brand-foreground: var(--neutral-100);
