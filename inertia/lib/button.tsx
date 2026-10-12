@@ -7,7 +7,7 @@ import type { LinkProps } from '@adonisjs/inertia/react'
 export const styles = {
   base: [
     // Base
-    'relative isolate inline-flex items-baseline justify-center gap-x-2 rounded-lg border text-base/6 font-semibold',
+    'relative isolate inline-flex items-baseline justify-center gap-x-2 rounded-full border text-base/6 font-semibold',
     // Sizing
     'px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)] sm:text-sm/6',
     // Focus
@@ -26,23 +26,20 @@ export const styles = {
     // Dark mode: border is rendered on `after` so background is set to button background
     'dark:bg-(--btn-bg)',
     // Button background, implemented as foreground layer to stack on top of pseudo-border layer
-    'before:absolute before:inset-0 before:-z-10 before:rounded-[calc(var(--radius-lg)-1px)] before:bg-(--btn-bg)',
-    // Drop shadow, applied to the inset `before` layer so it blends with the border
-    'before:shadow-sm',
-    // Background color is moved to control and shadow is removed in dark mode so hide `before` pseudo
+    'before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-(--btn-bg)',
+
+    // Background color is moved to the control in dark mode so hide `before` pseudo
     'dark:before:hidden',
     // Dark mode: Subtle white outline is applied using a border
     'dark:border-white/5',
-    // Shim/overlay, inset to match button foreground and used for hover state + highlight shadow
-    'after:absolute after:inset-0 after:-z-10 after:rounded-[calc(var(--radius-lg)-1px)]',
-    // Inner highlight shadow
-    'after:shadow-[inset_0_1px_--theme(--color-white/15%)]',
+    // Overlay for hover and pressed states
+    'after:absolute after:inset-0 after:-z-10 after:rounded-full',
+
     // White overlay on hover
     'data-active:after:bg-(--btn-hover-overlay) data-hover:after:bg-(--btn-hover-overlay)',
     // Dark mode: `after` layer expands to cover entire button
-    'dark:after:-inset-px dark:after:rounded-lg',
-    // Disabled
-    'data-disabled:before:shadow-none data-disabled:after:shadow-none',
+    'dark:after:-inset-px dark:after:rounded-full',
+
   ],
   outline: [
     // Base

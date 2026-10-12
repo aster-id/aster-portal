@@ -110,48 +110,46 @@ export default function Dashboard({
         </Card>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        <Card className="dashboard-welcome bg-welcome! p-3 md:p-4 col-span-3 md:col-span-2">
-          <div className="flex flex-row justify-between">
-            <div className="flex flex-row gap-6">
-              <div className="size-14 md:size-20 md:self-center">
-                <UserAvatar avatar={profile?.avatar} />
-              </div>
-              <div className="flex flex-col">
-                <h2 className="type-heading-2 text-surface-foreground">
-                  {profile?.displayName
-                    ? t('dashboard.greeting.withName', { name: profile.displayName })
-                    : t('dashboard.greeting.plain')}
-                </h2>
-                {isHandleInvalid ? (
-                  <Text className="text-error-foreground!">
-                    <ExclamationTriangleIcon className="h-6 w-6 inline-block" />{' '}
-                    {user.handle}
-                  </Text>
-                ) : (
-                  <Text className="text-surface-muted!">@{user.handle}</Text>
-                )}
-                {profile?.stats && (
-                  <div className="hidden md:grid grid-cols-1 sm:grid-cols-3">
-                    <div className="pr-4 py-2 sm:col-span-1 flex flex-col-reverse">
-                      <StatHeading>{t('dashboard.stats.posts')}</StatHeading>
-                      <StatValue>{formatNumber(profile.stats.posts ?? 0, locale)}</StatValue>
-                    </div>
-                    <div className="px-4 py-2 sm:col-span-1 sm:px-4 flex flex-col-reverse">
-                      <StatHeading>{t('dashboard.stats.following')}</StatHeading>
-                      <StatValue>{formatNumber(profile.stats.follows ?? 0, locale)}</StatValue>
-                    </div>
-                    <div className="px-4 py-2 sm:col-span-1 sm:px-4 flex flex-col-reverse">
-                      <StatHeading>{t('dashboard.stats.followers')}</StatHeading>
-                      <StatValue>{formatNumber(profile.stats.followers ?? 0, locale)}</StatValue>
-                    </div>
-                  </div>
-                )}
-              </div>
+        <Card className="dashboard-welcome bg-welcome! rounded-none! p-6 sm:p-8 col-span-3 md:col-span-2">
+          <div className="grid grid-cols-[4rem_minmax(0,1fr)] gap-x-6 gap-y-6 sm:grid-cols-[6rem_minmax(0,1fr)]">
+            <div className="size-16 sm:size-24 sm:row-span-2">
+              <UserAvatar avatar={profile?.avatar} />
             </div>
+            <div className="min-w-0">
+              <h2 className="type-heading-2 text-surface-foreground">
+                {profile?.displayName
+                  ? t('dashboard.greeting.withName', { name: profile.displayName })
+                  : t('dashboard.greeting.plain')}
+              </h2>
+              {isHandleInvalid ? (
+                <Text className="mt-1 break-words text-error-foreground!">
+                  <ExclamationTriangleIcon className="h-6 w-6 inline-block" />{' '}
+                  {user.handle}
+                </Text>
+              ) : (
+                <Text className="mt-1 break-words text-surface-muted!">@{user.handle}</Text>
+              )}
+            </div>
+            {profile?.stats && (
+              <div className="col-span-2 grid w-fit max-w-full grid-cols-3 gap-x-4 sm:col-span-1 sm:col-start-2 sm:gap-x-8">
+                <div className="flex min-w-0 flex-col-reverse gap-1">
+                  <StatHeading>{t('dashboard.stats.posts')}</StatHeading>
+                  <StatValue>{formatNumber(profile.stats.posts ?? 0, locale)}</StatValue>
+                </div>
+                <div className="flex min-w-0 flex-col-reverse gap-1">
+                  <StatHeading>{t('dashboard.stats.following')}</StatHeading>
+                  <StatValue>{formatNumber(profile.stats.follows ?? 0, locale)}</StatValue>
+                </div>
+                <div className="flex min-w-0 flex-col-reverse gap-1">
+                  <StatHeading>{t('dashboard.stats.followers')}</StatHeading>
+                  <StatValue>{formatNumber(profile.stats.followers ?? 0, locale)}</StatValue>
+                </div>
+              </div>
+            )}
           </div>
         </Card>
 
-        <Card className="py-3 px-4 col-span-3 md:col-span-1">
+        <Card className="rounded-none! py-3 px-4 col-span-3 md:col-span-1">
           <h2 className="type-heading-2 text-surface-foreground mb-2">
             {t('dashboard.explore.heading')}
           </h2>

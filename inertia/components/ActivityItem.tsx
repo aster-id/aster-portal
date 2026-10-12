@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { Heart, LucideIcon, MessageSquareText, Newspaper, UserPlus } from 'lucide-react'
 import type { ActivityRow } from '#services/activity_service'
 import type { SupportedCollection } from '#utils/activity'
-import { ClickableCard } from '~/lib/card'
+
 import { Link } from '~/lib/link'
 import { RelativeTime } from '~/lib/relative-time'
 import { useT } from '~/lib/i18n'
@@ -30,18 +30,17 @@ export function ActivityItem({ activity }: { activity: ActivityRow }) {
 
   return (
     <li>
-      <ClickableCard
-        as={Link}
-        className="block w-full p-4 text-surface-foreground"
+      <Link
+        className="block w-full rounded-sm py-5 text-surface-foreground transition-colors hover:bg-surface-muted/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
         route="activity.detail"
         routeParams={{ collection, rkey }}
       >
-        <div className="flex items-center justify-between gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 px-2 py-1 type-label dark:border-neutral-600">
-            <Icon aria-hidden="true" className="h-4 w-4" />
+        <div className="flex items-center justify-between gap-4">
+          <span className="inline-flex items-center gap-2 type-label">
+            <Icon aria-hidden="true" className="size-4 shrink-0 text-brand" />
             {label}
           </span>
-          <span className="type-meta text-surface-muted">
+          <span className="type-meta shrink-0 text-surface-muted">
             <RelativeTime value={createdAt} />
           </span>
         </div>
@@ -55,7 +54,7 @@ export function ActivityItem({ activity }: { activity: ActivityRow }) {
             {text}
           </p>
         )}
-      </ClickableCard>
+      </Link>
     </li>
   )
 }

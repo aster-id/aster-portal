@@ -3,7 +3,7 @@ import { ActivityItem } from '~/components/ActivityItem'
 
 export function ActivityList({ activities }: { activities: Array<ActivityRow> }) {
   return (
-    <ul className="flex flex-col gap-3">
+    <ul role="list" className="flex flex-col border-y border-neutral-300 divide-y divide-neutral-300 dark:border-panel-border dark:divide-panel-border">
       {activities.map((activity) => (
         <ActivityItem activity={activity} key={activity.uri} />
       ))}
