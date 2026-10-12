@@ -23,7 +23,7 @@ const en = {
   'apps.category.bookmark': 'Bookmark',
   'apps.category.development': 'Development',
   'apps.category.events': 'Events',
-  'apps.category.personalPage': 'Personal page',
+  'apps.category.personalPage': 'Networking',
   'apps.category.photoVideo': 'Photo & video',
   'apps.category.readWrite': 'Read & write',
   'apps.category.recommended': 'Recommended',

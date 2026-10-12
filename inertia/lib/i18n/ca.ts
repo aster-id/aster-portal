@@ -23,7 +23,7 @@ const ca = {
   'apps.category.bookmark': 'Afegeix a marcadors',
   'apps.category.development': 'Desenvolupament',
   'apps.category.events': 'Esdeveniments',
-  'apps.category.personalPage': 'Pàgina personal',
+  'apps.category.personalPage': 'Xarxes',
   'apps.category.photoVideo': 'Fotos i vídeos',
   'apps.category.readWrite': 'Lectura i escriptura',
   'apps.category.recommended': 'Recomanacions',

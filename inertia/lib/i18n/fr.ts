@@ -23,7 +23,7 @@ const fr = {
   'apps.category.bookmark': 'Signets',
   'apps.category.development': 'Développement',
   'apps.category.events': 'Événements',
-  'apps.category.personalPage': 'Page personnelle',
+  'apps.category.personalPage': 'Networking',
   'apps.category.photoVideo': 'Photo & vidéo',
   'apps.category.readWrite': 'Lecture & écriture',
   'apps.category.recommended': 'Recommandé',

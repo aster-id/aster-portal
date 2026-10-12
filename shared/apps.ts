@@ -16,6 +16,14 @@ export interface AtTagUriParts {
  * (for example,
  * `https://atstore.fyi/xrpc/fyi.atstore.directory.searchListings?q=sifa`),
  * and use the `at://…` URI you see there as `atUri`.
+ *
+ * The visible list mirrors the research-ecosystem directory at
+ * `https://atproto.science/ecosystem/`.
+ * Ecosystem projects without an atstore listing can’t be added yet
+ * (as of 2026-10: BlueNotes, Layers, ViewSift, SciOS Graph Infrastructure,
+ * Standard.site itself, Groundmist.xyz, Matadisco, Podium, Underlay, atdata,
+ * nebra, Habitat, Lea, Paperstars, Breadcrumbs, BioKEA, hypgen, GreenEarth
+ * Social, Paper Skygest, Aster.id, Catalyze, Hypercerts, Astrosky and fray).
  */
 export interface CatalogApp {
   /**
@@ -80,114 +88,59 @@ export type ToAtUri = (url: URL) => AtUriParts | AtTagUriParts | undefined
  * Catalog.
  */
 export const apps: ReadonlyArray<CatalogApp> = [
-  // atmo.rsvp
+  // — Annotation & knowledge tools —
+
+  // lichen.wiki
   {
-    atUri: 'at://did:plc:b63bmauox6z5rbibwrhxrdnw/fyi.atstore.listing.detail/3moebodfjt2oq',
-    category: 'apps.category.events',
-    madeInEurope: true,
+    atUri: 'at://did:plc:xfs42pjf3n7imvgrdrp7xvez/fyi.atstore.listing.detail/3mkihgsgwb27y',
+    category: 'apps.category.readWrite',
+  },
+  // Margin
+  {
+    atUri: 'at://did:plc:rjqn3agdb74cszhqcpii4sne/fyi.atstore.listing.detail/3mkid4nadskrz',
+    category: 'apps.category.bookmark',
+  },
+  // Semble
+  {
+    atUri: 'at://did:plc:k7wclckeajmuibxbamtbejjg/fyi.atstore.listing.detail/3mkiitkc44spk',
+    category: 'apps.category.bookmark',
+    featured: true,
     recommended: true,
   },
-  // Atstore
+  // Skyreader
   {
-    atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mkjss6n7vuza',
-    category: 'apps.category.reviews',
+    atUri: 'at://did:plc:ra4jsemddo2ii4pn5jaf6x4v/fyi.atstore.listing.detail/3mkmvxopqgsia',
+    category: 'apps.category.readWrite',
   },
-  // Blento
+  // Skysquare
   {
-    atUri: 'at://did:plc:4fdwezqvlw4mu2qwn7wqsmej/fyi.atstore.listing.detail/3mkk4kacxbk3a',
-    category: 'apps.category.personalPage',
-    featured: true,
-    madeInEurope: true,
+    atUri: 'at://did:plc:7dfrk2q5qhd3e7yyel444gam/fyi.atstore.listing.detail/3mlgbqxse6kny',
+    category: 'apps.category.readWrite',
   },
-  // Bluesky
-  {
-    atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mj667g65ct2x',
-    launcher: {
-      fromAtUri: (parts) => {
-        if ('tag' in parts) return `https://bsky.app/hashtag/${encodeURIComponent(parts.tag)}`
-        const base = `https://bsky.app/profile/${parts.authority}`
-        if (!parts.collection) return base
-        if (parts.collection === 'app.bsky.feed.post' && parts.rkey) {
-          return `${base}/post/${parts.rkey}`
-        }
-      },
-      toAtUri: (url) => {
-        if (url.hostname !== 'bsky.app') return
 
-        const hashtagMatch = /^\/hashtag\/([^/]+)\/?$/.exec(url.pathname)
-        if (hashtagMatch) {
-          try {
-            return { tag: decodeURIComponent(hashtagMatch[1]) }
-          } catch {
-            return
-          }
-        }
+  // — Publishing (standard.site family) —
 
-        const profileMatch = /^\/profile\/([^/]+)(?:\/post\/([^/]+))?\/?$/.exec(url.pathname)
-        if (!profileMatch) return
-        const [, rawAuthority, rkey] = profileMatch
-        const authority = rawAuthority ? ifAtIdentifierString(rawAuthority) : undefined
-        if (!authority) return
-        if (rkey) return { authority, collection: 'app.bsky.feed.post', rkey }
-        return { authority }
-      },
-    },
-  },
-  // Bookhive
-  {
-    atUri: 'at://did:plc:enu2j5xjlqsjaylv3du4myh4/fyi.atstore.listing.detail/3mkigtshwosb3',
-    category: 'apps.category.reviews',
-  },
-  // Cartes.app
-  {
-    atUri: 'at://did:plc:eypg6v3q62jkpoxbgicirvjs/fyi.atstore.listing.detail/3mnhhgryggkoj',
-    category: 'apps.category.reviews',
-    madeInEurope: true,
-  },
   // Chive
   {
     atUri: 'at://did:plc:7natp5xae72bddaqlkef2t4e/fyi.atstore.listing.detail/3mkkxgeomikmf',
     category: 'apps.category.readWrite',
-  },
-  // Colibri
-  {
-    atUri: 'at://did:plc:mprdjqjluoswa7awzggaggj3/fyi.atstore.listing.detail/3mkiem5w5k2l6',
-    category: 'apps.category.social',
+    featured: true,
     madeInEurope: true,
   },
-  // Currents
+  // Octosphere
   {
-    atUri: 'at://did:plc:jaur46k6ijyfvl4lojza7eic/fyi.atstore.listing.detail/3mkl2pbqle2p6',
-    category: 'apps.category.photoVideo',
-    madeInEurope: true,
-  },
-  // Flashes
-  {
-    atUri: 'at://did:plc:24kqkpfy6z7avtgu3qg57vvl/fyi.atstore.listing.detail/3mkizzu7lp2a3',
-    category: 'apps.category.photoVideo',
-    madeInEurope: true,
-    recommended: true,
-  },
-  // Germ
-  {
-    atUri: 'at://did:plc:4yvwfwxfz5sney4twepuzdu7/fyi.atstore.listing.detail/3ml2bxdff2kv7',
-    category: 'apps.category.social',
-  },
-  // Glean
-  {
-    atUri: 'at://did:plc:7fx3svzgnlvzighbczz3mmsd/fyi.atstore.listing.detail/3mklb6venl2dg',
+    atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mjd5ck4rs6nw',
     category: 'apps.category.readWrite',
   },
-  // Grain
+  // Offprint
   {
-    atUri: 'at://did:plc:e7rftrdyz5e2rw4y6ocszew2/fyi.atstore.listing.detail/3mkinhlyjfk55',
-    category: 'apps.category.photoVideo',
-    recommended: true,
+    atUri: 'at://did:plc:pgjkomf37an4czloay5zeth6/fyi.atstore.listing.detail/3mkni5k5q5kxx',
+    category: 'apps.category.readWrite',
   },
-  // kipclip
+  // pckt
   {
-    atUri: 'at://did:plc:3zzkrrjtsmo7nnwnvhex3auj/fyi.atstore.listing.detail/3mkip5bumt2p5',
-    category: 'apps.category.bookmark',
+    atUri: 'at://did:plc:revjuqmkvrw6fnkxppqtszpv/fyi.atstore.listing.detail/3mkkyjyup6kdv',
+    category: 'apps.category.readWrite',
   },
   // Leaflet
   {
@@ -213,122 +166,6 @@ export const apps: ReadonlyArray<CatalogApp> = [
         return { authority }
       },
     },
-  },
-  // Margin
-  {
-    atUri: 'at://did:plc:rjqn3agdb74cszhqcpii4sne/fyi.atstore.listing.detail/3mkid4nadskrz',
-    category: 'apps.category.bookmark',
-  },
-  // Marque
-  {
-    atUri: 'at://did:plc:nckosudltxrtrjkt4zz4jy5y/fyi.atstore.listing.detail/3mlweswilzk3p',
-    category: 'apps.category.development',
-  },
-  // Mu
-  {
-    atUri: 'at://did:plc:izttpdp3l6vss5crelt5kcux/fyi.atstore.listing.detail/3mqmb7emiusy5',
-    category: 'apps.category.social',
-    featured: true,
-    launcher: {
-      fromAtUri: (parts) => {
-        if ('tag' in parts) return `https://mu.social/hashtag/${encodeURIComponent(parts.tag)}`
-        const base = `https://mu.social/profile/${parts.authority}`
-        if (!parts.collection) return base
-        if (parts.collection === 'app.bsky.feed.post' && parts.rkey)
-          return `${base}/post/${parts.rkey}`
-      },
-      toAtUri: (url) => {
-        if (url.hostname !== 'mu.social') return
-
-        const hashtagMatch = /^\/hashtag\/([^/]+)\/?$/.exec(url.pathname)
-        if (hashtagMatch) {
-          try {
-            return { tag: decodeURIComponent(hashtagMatch[1]) }
-          } catch {
-            return
-          }
-        }
-
-        const profileMatch = /^\/profile\/([^/]+)(?:\/post\/([^/]+))?\/?$/.exec(url.pathname)
-        if (!profileMatch) return
-        const [, rawAuthority, rkey] = profileMatch
-        const authority = rawAuthority ? ifAtIdentifierString(rawAuthority) : undefined
-        if (!authority) return
-        if (rkey) return { authority, collection: 'app.bsky.feed.post', rkey }
-        return { authority }
-      },
-    },
-    madeInEurope: true,
-    recommended: true,
-  },
-  // npmx
-  {
-    atUri: 'at://did:plc:u5zp7npt5kpueado77kuihyz/fyi.atstore.listing.detail/3mknyydlui2jc',
-    category: 'apps.category.development',
-    madeInEurope: true,
-  },
-  // Offprint
-  {
-    atUri: 'at://did:plc:pgjkomf37an4czloay5zeth6/fyi.atstore.listing.detail/3mkni5k5q5kxx',
-    category: 'apps.category.readWrite',
-  },
-  // pckt
-  {
-    atUri: 'at://did:plc:revjuqmkvrw6fnkxppqtszpv/fyi.atstore.listing.detail/3mkkyjyup6kdv',
-    category: 'apps.category.readWrite',
-    featured: true,
-    recommended: true,
-  },
-  // Popfeed
-  {
-    atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mj66fhgmnh2x',
-    category: 'apps.category.reviews',
-    recommended: true,
-  },
-  // Semble
-  {
-    atUri: 'at://did:plc:k7wclckeajmuibxbamtbejjg/fyi.atstore.listing.detail/3mkiitkc44spk',
-    category: 'apps.category.bookmark',
-  },
-  // Sifa ID
-  {
-    atUri: 'at://did:plc:2f2ahswozqy4v5lvu676375y/fyi.atstore.listing.detail/3mkduyazhqc6y',
-    category: 'apps.category.personalPage',
-    madeInEurope: true,
-    recommended: true,
-  },
-  // Sill
-  {
-    atUri: 'at://did:plc:ryed5tnzwmpwbidrsuwrlwwb/fyi.atstore.listing.detail/3mkkdlphhxkgj',
-    category: 'apps.category.readWrite',
-    recommended: true,
-  },
-  // Skeets
-  {
-    atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mj66gqhdkq2f',
-    category: 'apps.category.social',
-    madeInEurope: true,
-  },
-  // Skylights
-  {
-    atUri: 'at://did:plc:4adlzwqtkv4dirxjwq4c3tlm/fyi.atstore.listing.detail/3mknw3yzlz2bp',
-    category: 'apps.category.photoVideo',
-  },
-  // Skywalker
-  {
-    atUri: 'at://did:plc:zzmeflm2wzrrgcaam6bw3kaf/fyi.atstore.listing.detail/3mkpls2aa62c3',
-    category: 'apps.category.social',
-    madeInEurope: true,
-  },
-  // Smoke signal
-  {
-    atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mj66hobtig2d',
-    category: 'apps.category.events',
-  },
-  // Spark
-  {
-    atUri: 'at://did:plc:cveom2iroj3mt747sd4qqnr2/fyi.atstore.listing.detail/3mkqg5sf3gsde',
-    category: 'apps.category.photoVideo',
   },
   // Standard reader
   {
@@ -363,20 +200,143 @@ export const apps: ReadonlyArray<CatalogApp> = [
     },
     recommended: true,
   },
-  // Stream.place
+
+  // — Data —
+
+  // SensorThings (Meitheal)
   {
-    atUri: 'at://did:plc:rbvrr34edl5ddpuwcubjiost/fyi.atstore.listing.detail/3mkijapfmwcvs',
-    category: 'apps.category.photoVideo',
+    atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mjbv5u2mocit',
+    category: 'apps.category.development',
   },
+  // lexicons.bio
+  {
+    atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mjdstabcw3fs',
+    category: 'apps.category.development',
+  },
+
+  // — AI —
+
+  // Tiles
+  {
+    atUri: 'at://did:plc:mqmcsjuerbjhu65mpmvkcuw2/fyi.atstore.listing.detail/3mnl4gh2rkkpc',
+    category: 'apps.category.development',
+  },
+  // co/core
+  {
+    atUri: 'at://did:plc:5quuhkmwe2q4k3azfsgg7kdz/fyi.atstore.listing.detail/3mpjcr4d3ycv7',
+    category: 'apps.category.development',
+  },
+
+  // — Citizen science —
+
+  // Observ.ing
+  {
+    atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mjfqg3jqb642',
+    category: 'apps.category.social',
+  },
+  // GainForest
+  {
+    atUri: 'at://did:plc:qoti4acfmc5wg6zzmtix6hse/fyi.atstore.listing.detail/3mqpstfiimsuz',
+    category: 'apps.category.social',
+    featured: true,
+  },
+
+  // — Communities —
+
+  // Medsky
+  {
+    atUri: 'at://did:plc:an5cb3ab3cjswxhb3czqqjov/fyi.atstore.listing.detail/3mswtcqnitkb4',
+    category: 'apps.category.social',
+  },
+
+  // — Networking —
+
+  // Sifa ID
+  {
+    atUri: 'at://did:plc:2f2ahswozqy4v5lvu676375y/fyi.atstore.listing.detail/3mkduyazhqc6y',
+    category: 'apps.category.personalPage',
+    featured: true,
+    recommended: true,
+    madeInEurope: true,
+  },
+
+  // — Version control —
+
   // Tangled
   {
     atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mj66idq2fp2t',
     category: 'apps.category.development',
     madeInEurope: true,
   },
-  // Wisp
+
+  // — Launcher only (hidden from the apps page) —
+
+  // Bluesky
   {
-    atUri: 'at://did:plc:7puq73yz2hkvbcpdhnsze2qw/fyi.atstore.listing.detail/3mkqaxwdkz2mp',
-    category: 'apps.category.development',
+    atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mj667g65ct2x',
+    launcher: {
+      fromAtUri: (parts) => {
+        if ('tag' in parts) return `https://bsky.app/hashtag/${encodeURIComponent(parts.tag)}`
+        const base = `https://bsky.app/profile/${parts.authority}`
+        if (!parts.collection) return base
+        if (parts.collection === 'app.bsky.feed.post' && parts.rkey) {
+          return `${base}/post/${parts.rkey}`
+        }
+      },
+      toAtUri: (url) => {
+        if (url.hostname !== 'bsky.app') return
+
+        const hashtagMatch = /^\/hashtag\/([^/]+)\/?$/.exec(url.pathname)
+        if (hashtagMatch) {
+          try {
+            return { tag: decodeURIComponent(hashtagMatch[1]) }
+          } catch {
+            return
+          }
+        }
+
+        const profileMatch = /^\/profile\/([^/]+)(?:\/post\/([^/]+))?\/?$/.exec(url.pathname)
+        if (!profileMatch) return
+        const [, rawAuthority, rkey] = profileMatch
+        const authority = rawAuthority ? ifAtIdentifierString(rawAuthority) : undefined
+        if (!authority) return
+        if (rkey) return { authority, collection: 'app.bsky.feed.post', rkey }
+        return { authority }
+      },
+    },
+  },
+  // Mu
+  {
+    atUri: 'at://did:plc:izttpdp3l6vss5crelt5kcux/fyi.atstore.listing.detail/3mqmb7emiusy5',
+    launcher: {
+      fromAtUri: (parts) => {
+        if ('tag' in parts) return `https://mu.social/hashtag/${encodeURIComponent(parts.tag)}`
+        const base = `https://mu.social/profile/${parts.authority}`
+        if (!parts.collection) return base
+        if (parts.collection === 'app.bsky.feed.post' && parts.rkey)
+          return `${base}/post/${parts.rkey}`
+      },
+      toAtUri: (url) => {
+        if (url.hostname !== 'mu.social') return
+
+        const hashtagMatch = /^\/hashtag\/([^/]+)\/?$/.exec(url.pathname)
+        if (hashtagMatch) {
+          try {
+            return { tag: decodeURIComponent(hashtagMatch[1]) }
+          } catch {
+            return
+          }
+        }
+
+        const profileMatch = /^\/profile\/([^/]+)(?:\/post\/([^/]+))?\/?$/.exec(url.pathname)
+        if (!profileMatch) return
+        const [, rawAuthority, rkey] = profileMatch
+        const authority = rawAuthority ? ifAtIdentifierString(rawAuthority) : undefined
+        if (!authority) return
+        if (rkey) return { authority, collection: 'app.bsky.feed.post', rkey }
+        return { authority }
+      },
+    },
+    madeInEurope: true,
   },
 ]

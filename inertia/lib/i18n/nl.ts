@@ -23,7 +23,7 @@ const nl = {
   'apps.category.bookmark': 'Bladwijzers',
   'apps.category.development': 'Ontwikkeling',
   'apps.category.events': 'Evenementen',
-  'apps.category.personalPage': 'Persoonlijke pagina',
+  'apps.category.personalPage': 'Netwerken',
   'apps.category.photoVideo': 'Foto & video',
   'apps.category.readWrite': 'Lezen & schrijven',
   'apps.category.recommended': 'Aanbevolen',

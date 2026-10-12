@@ -23,7 +23,7 @@ const de = {
   'apps.category.bookmark': 'Lesezeichen',
   'apps.category.development': 'Entwicklung',
   'apps.category.events': 'Veranstaltungen',
-  'apps.category.personalPage': 'Persönliche Seite',
+  'apps.category.personalPage': 'Networking',
   'apps.category.photoVideo': 'Foto & Video',
   'apps.category.readWrite': 'Lesen & Schreiben',
   'apps.category.recommended': 'Empfohlen',
