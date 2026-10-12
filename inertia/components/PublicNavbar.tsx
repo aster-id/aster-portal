@@ -14,7 +14,7 @@ export default function PublicNavbar() {
 
   return (
     <Navbar className="gap-2! md:gap-4! md:px-6 px-3 bg-surface-canvas dark:bg-dashboard-chrome sticky top-0 z-50">
-      <a href="https://aster.place/" aria-label={tPlain('nav.home')} className="pb-3 mt-1">
+      <a href={urlFor('home')} aria-label={tPlain('nav.home')} className="pb-3 mt-1">
         <Logo />
       </a>
       <NavbarSpacer />
