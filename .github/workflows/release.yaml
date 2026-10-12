@@ -33,8 +33,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
-        with:
-          run_install: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
@@ -42,6 +40,9 @@ jobs:
           node-version-file: '.node-version'
           check-latest: true
           cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Create pull request for next release, or Publish a new github release and tag
         id: changesets
@@ -57,10 +58,12 @@ jobs:
 
       - name: Setup release variables
         id: release
+        if: steps.changesets.outputs.published == 'true'
+        env:
+          PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.published-packages }}
         run: |
-          echo '${{steps.changesets.outputs.published-packages}}'
-          release_version=$(jq -cr '.[] | select(.name | contains("eurosky-portal")) | .version' <<< '${{ steps.changesets.outputs.published-packages }}')
-          echo "tag_ref=v${release_version%,}" >> "$GITHUB_OUTPUT"
+          release_version=$(printf '%s' "$PUBLISHED_PACKAGES" | jq -er '.[] | select(.name == "eurosky-portal") | .version')
+          echo "tag_ref=v${release_version}" >> "$GITHUB_OUTPUT"
 
       - name: Print tag_ref
         if: ${{ steps.changesets.outputs.published == 'true' }}
@@ -70,8 +73,7 @@ jobs:
   publish:
     needs: [release]
     name: Publish release
-    # Docker image publishing is disabled until publish.yaml has been reviewed.
-    if: ${{ false }}
+    if: ${{ needs.release.outputs.published == 'true' }}
     uses: ./.github/workflows/publish.yaml
     secrets: inherit
     with:

@@ -94,17 +94,19 @@ Then open <http://127.0.0.1:4075>. The development config signs in against a tes
 Build an image:
 
 ```sh
-docker build -f Dockerfile -t ghcr.io/eurosky-social/eurosky-portal:dev .
+docker build -f Dockerfile -t ghcr.io/aster-id/aster-portal:dev .
 ```
 
 Run it:
 
 ```sh
 cp .env.docker.example .env.docker.local
-docker run -p 4075:4075 --rm --env-file .env.docker.local ghcr.io/eurosky-social/eurosky-portal:dev
+docker run -p 4075:4075 --rm --env-file .env.docker.local ghcr.io/aster-id/aster-portal:dev
 ```
 
-Pre-built images are published to `ghcr.io/eurosky-social/eurosky-portal` (`dev` tracks `main`; version tags and `latest` are published on release). An example production setup with Caddy and automatic updates is in [`service/`](service).
+Pre-built images are published to `ghcr.io/aster-id/aster-portal` after the translation, lint/format, and TypeScript checks pass. Pushes to `main` publish `dev` and a commit-SHA tag; Changesets releases publish version tags, `latest`, and a commit-SHA tag. The publish workflow can also be run manually from `main` to rebuild `dev`.
+
+An example production setup with Caddy and automatic updates is in [`service/`](service). It follows `latest`, so pushing to `main` alone does not update that deployment: publish a release, or explicitly choose the `dev` tag for a rolling-main deployment. The server needs pull access to the GHCR package (public visibility or registry credentials).
 
 ## Configuration
 
