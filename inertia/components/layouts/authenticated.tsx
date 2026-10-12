@@ -116,7 +116,7 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
                   </SidebarItem>
                   <SidebarItem as={'div'}>
                     <Form route="oauth.logout" className="w-full flex justify-stretch">
-                      <Button type="submit" className="w-full text-left dark:bg-panel">
+                      <Button type="submit" color="dashboard" className="w-full text-left">
                         {t('nav.logout')}
                       </Button>
                     </Form>

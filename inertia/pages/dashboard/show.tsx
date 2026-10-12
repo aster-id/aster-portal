@@ -102,8 +102,8 @@ export default function Dashboard({
           </div>
           <Button
             onClick={dismissWelcome}
-            outline
-            className="w-full md:w-auto dark:border-neutral-600!"
+            color="dashboard"
+            className="w-full md:w-auto"
           >
             {t('dashboard.welcome.dismiss')}
           </Button>
@@ -158,8 +158,8 @@ export default function Dashboard({
           </p>
           <Button
             route="explore.learn_more"
-            color="zinc"
-            className="mt-3 w-full sm:w-auto dark:bg-dashboard-control!"
+            color="dashboard"
+            className="mt-3 w-full sm:w-auto"
           >
             {t('common.learnMore')}
           </Button>
@@ -188,7 +188,7 @@ export default function Dashboard({
         )}
 
         <div className="mt-4 flex justify-center">
-          <Button route="activity.show" className="w-full sm:w-auto dark:bg-dashboard-control!">
+          <Button color="dashboard" route="activity.show" className="w-full sm:w-auto">
             {t('dashboard.activity.viewAll')}
           </Button>
         </div>
@@ -206,8 +206,9 @@ export default function Dashboard({
 
         <div className="mt-1 flex justify-center">
           <Button
+            color="dashboard"
             route={appsKind === 'yours' ? 'dashboard.apps' : 'discover.apps'}
-            className="w-full sm:w-auto dark:bg-dashboard-control!"
+            className="w-full sm:w-auto"
           >
             {t(
               appsKind === 'yours'

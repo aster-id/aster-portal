@@ -68,6 +68,10 @@
   --aster-paper: var(--neutral-100);
   --aster-lime: #bfdb38;
   --aster-mint: #8be7d8;
+  --accent-mint-600: #7fc3be; /* Approximate 600 step from the supplied swatch. */
+  --accent-mint-700: #609fa4; /* Approximate 700 step; use dark labels. */
+  --accent-mint-800: #427982; /* Approximate 800 step; darker fill for white labels. */
+  --accent-cyan-500: #7ccbdf;
   --aster-teal: ##00c8b3;
   --aster-coral:
 }
@@ -147,6 +151,9 @@
   --color-brand-border: var(--aster-purple-border);
   --color-brand-foreground: var(--aster-paper);
   --color-sidebar: var(--brand-700);
+  --color-sidebar-heading: var(--color-surface-muted);
+  --color-dashboard-action: var(--color-feedback);
+  --color-dashboard-action-foreground: var(--color-feedback-foreground);
   --color-dashboard-canvas: var(--purple-neutral-800);
   --color-dashboard-chrome: var(--brand-700);
   --color-dashboard-control: var(--purple-neutral-400);
@@ -173,6 +180,8 @@
 }
 
 .dark {
+  --color-dashboard-action: var(--aster-mint);
+  --color-dashboard-action-foreground: var(--neutral-950);
   --color-dashboard-canvas: var(--purple-neutral-900);
   --color-dashboard-chrome: var(--brand-950);
   --color-dashboard-control: var(--purple-neutral-500);
@@ -236,8 +245,8 @@
   --color-brand: var(--aster-gold);
 }
 
-.dashboard-navbar a,
-.dashboard-navbar button {
+.dashboard-navbar a:not(.dashboard-action),
+.dashboard-navbar button:not(.dashboard-action) {
   color: var(--color-surface-foreground) !important;
 }
 
@@ -252,6 +261,7 @@
 
 /* Sidebar chrome uses light text regardless of the page theme. */
 .dashboard-sidebar {
+  --color-sidebar-heading: var(--aster-gold);
   --color-surface-foreground: var(--neutral-100);
   --color-surface-muted: var(--neutral-300);
   --color-brand: var(--aster-gold);

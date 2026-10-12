@@ -116,6 +116,10 @@ export const styles = {
       'text-brand-foreground [--btn-hover-overlay:var(--color-black)]/10 [--btn-bg:var(--color-brand)] [--btn-border:var(--color-brand-border)]/60',
       '[--btn-icon:var(--color-brand-foreground)]',
     ],
+    'dashboard': [
+      'dashboard-action text-dashboard-action-foreground [--btn-bg:var(--color-dashboard-action)] [--btn-border:var(--color-dashboard-action)] [--btn-hover-overlay:var(--color-black)]/10',
+      '[--btn-icon:var(--color-dashboard-action-foreground)]',
+    ],
     'lime': [
       'text-lime-950 [--btn-hover-overlay:var(--color-white)]/25 [--btn-bg:var(--color-lime-300)] [--btn-border:var(--color-lime-400)]/80',
       '[--btn-icon:var(--color-lime-600)] data-active:[--btn-icon:var(--color-lime-700)] data-hover:[--btn-icon:var(--color-lime-700)]',

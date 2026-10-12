@@ -64,7 +64,7 @@ export default function Activity(result: InertiaProps<GetRecordsResult>) {
         <>
           <ActivityList activities={result.activities} />
           <div className="flex justify-center">
-            <Button disabled={result.activities.length >= result.total} onClick={more} outline>
+            <Button disabled={result.activities.length >= result.total} onClick={more} color="dashboard">
               {t('activity.loadMore')}
             </Button>
           </div>

@@ -75,7 +75,7 @@ export function SidebarHeading({ className, ...props }: React.ComponentPropsWith
   return (
     <h3
       {...props}
-      className={clsx(className, 'mb-1 px-2 type-eyebrow uppercase text-surface-muted')}
+      className={clsx(className, 'mb-1 px-2 type-eyebrow uppercase text-sidebar-heading')}
     />
   )
 }
