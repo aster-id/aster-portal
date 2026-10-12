@@ -51,4 +51,4 @@ Any references in this repository to Eurosky-operated infrastructure (including 
 ## Contact
 
 For permission requests regarding branding or official integrations, please contact:  
-team@eurosky.tech
+contact@aster.place

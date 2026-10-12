@@ -1,4 +1,4 @@
 portal.aster.place {
-	tls support@aster.id
+	tls support@aster.place
 	reverse_proxy http://localhost:4075
 }

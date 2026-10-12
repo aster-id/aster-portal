@@ -194,4 +194,4 @@ Releases are automated with [Changesets](https://github.com/changesets/changeset
 
 - Questions about the code: open a [GitHub issue](https://github.com/eurosky-social/eurosky-portal/issues) or ask in your pull request.
 - Problems with a Eurosky account or the PDS: [eurosky-social/tech-support](https://github.com/eurosky-social/tech-support).
-- Branding or partnership questions: team@eurosky.tech.
+- Branding or partnership questions: contact@aster.place.
