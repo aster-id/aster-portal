@@ -25,7 +25,7 @@ export default function PublicNavbar() {
         <NavbarItem href={`${urlFor('home')}#apps`} current={page.url === '/#apps'}>
           {t('nav.apps')}
         </NavbarItem>
-        <NavbarItem href="https://aster.place/accounts/privacy/" target="_blank">
+        <NavbarItem href="https://aster.place/privacy" target="_blank">
           {t('nav.privacy')}
         </NavbarItem>
         <Button route="auth.login" outline className="hidden! md:inline-flex!">

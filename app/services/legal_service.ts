@@ -19,8 +19,8 @@ export interface LegalDocument {
 }
 
 const legalUrls: Record<LegalDocumentName, string> = {
-  privacy: 'https://aster.place/accounts/privacy/',
-  terms: 'https://aster.place/accounts/terms/',
+  privacy: 'https://aster.place/privacy',
+  terms: 'https://aster.place/terms',
 }
 
 class LegalService {

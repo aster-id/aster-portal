@@ -99,15 +99,11 @@ export function AuthenticatedLayout(props: { children: ReactElement<Data.SharedP
                     <ChatBubbleOvalLeftEllipsisIcon />
                     <SidebarLabel>{t('sidebar.contactUs')}</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem href="https://aster.place/accounts/terms/" target="_blank" as={'a'}>
+                  <SidebarItem href="https://aster.place/terms" target="_blank" as={'a'}>
                     <DocumentTextIcon />
                     <SidebarLabel>{t('sidebar.termsOfService')}</SidebarLabel>
                   </SidebarItem>
-                  <SidebarItem
-                    href="https://aster.place/accounts/privacy/"
-                    target="_blank"
-                    as={'a'}
-                  >
+                  <SidebarItem href="https://aster.place/privacy" target="_blank" as={'a'}>
                     <LockClosedIcon />
                     <SidebarLabel>{t('sidebar.privacyPolicy')}</SidebarLabel>
                   </SidebarItem>
