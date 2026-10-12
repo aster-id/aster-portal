@@ -29,25 +29,25 @@ export default function Activity(result: InertiaProps<GetRecordsResult>) {
         <h1 className="type-heading-1 text-gray-900 dark:text-white">
           {t('sidebar.yourActivity')}
         </h1>
-        <p aria-live="polite" className="mt-1 text-gray-500 dark:text-gray-400" role="status">
+        <p aria-live="polite" className="mt-1 text-gray-500 dark:text-surface-muted" role="status">
           {result.state === 'syncing'
             ? t('dashboard.activity.syncing')
             : t('activity.showing', { count: result.activities.length, total: result.total })}
         </p>
       </div>
 
-      <Card className="p-4 bg-amber-50! dark:bg-amber-400/10! flex flex-row gap-3">
-        <TriangleAlert aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-amber-400" />
+      <Card className="p-4 bg-warning-surface! flex flex-row gap-3">
+        <TriangleAlert aria-hidden="true" className="mt-1 h-5 w-5 shrink-0 text-warning-foreground" />
         <div>
-          <Text className="font-semibold text-amber-800! dark:text-amber-200!">
+          <Text className="font-semibold text-warning-foreground!">
             {t('activity.underConstruction.title')}
           </Text>
-          <Text className="text-amber-700! dark:text-amber-200/80!">
+          <Text className="text-warning-foreground!">
             {t('activity.underConstruction.text')}
           </Text>
-          <Text className="text-amber-700! dark:text-amber-200/80!">
+          <Text className="text-warning-foreground!">
             <a
-              className="font-semibold underline hover:text-amber-900 dark:hover:text-amber-100"
+              className="font-semibold underline hover:text-warning-foreground/80"
               href={feedbackUrl}
               rel="noopener noreferrer"
               target="_blank"
@@ -59,7 +59,7 @@ export default function Activity(result: InertiaProps<GetRecordsResult>) {
       </Card>
 
       {result.state === 'syncing' ? null : result.activities.length === 0 ? (
-        <p className="text-gray-500 dark:text-gray-400">{t('activity.noRecords')}</p>
+        <p className="text-gray-500 dark:text-surface-muted">{t('activity.noRecords')}</p>
       ) : (
         <>
           <ActivityList activities={result.activities} />

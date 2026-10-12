@@ -1,0 +1,265 @@
+/* Aster palette primitives; semantic roles below determine where they are used. */
+:root {
+  /* Keep these scales in sync with branding/design-system/tokens.css. */
+  --brand-100: #eae4f5;
+  --brand-200: #d7d4f7;
+  --brand-300: #bbb7ff;
+  --brand-400: #9c93da;
+  --brand-500: #7c65b4;
+  --brand-600: #544997;
+  --brand-700: #3b2a7e;
+  --brand-800: #38265f;
+  --brand-900: #2d1b6e;
+  --brand-950: #20124e;
+
+  --neutral-0: #ffffff;
+  --neutral-50: #fffdfa;
+  --neutral-100: #f7f5f1;
+  --neutral-200: #ebe7e2;
+  --neutral-300: #dbd4e2;
+  --neutral-400: #b7afc2;
+  --neutral-500: #8c829b;
+  --neutral-600: #6d6179;
+  --neutral-700: #58496b;
+  --neutral-800: #433b54;
+  --neutral-850: #332749;
+  --neutral-900: #2e293c;
+  --neutral-950: #241a38;
+
+  /* Experimental muted-purple scale, approximated from the supplied swatch. */
+  --purple-neutral-100: #e8d9f3;
+  --purple-neutral-200: #d0b5e8;
+  --purple-neutral-300: #9d83bd;
+  --purple-neutral-400: #635080;
+  --purple-neutral-500: #261b36;
+  --purple-neutral-600: #1b122d;
+  --purple-neutral-700: #140d24;
+  --purple-neutral-800: #0e081e;
+  --purple-neutral-900: #0b061a;
+
+  /* Feedback palettes from branding/design-system/tokens.css. */
+  --info-100: #e1edfa;
+  --info-300: #a6c8f0;
+  --info-500: #1351b5;
+  --info-900: #202d49;
+
+  --success-100: #e1f4d8;
+  --success-300: #a8d99a;
+  --success-500: #176c0d;
+  --success-900: #1d3526;
+
+  --warning-100: #fbf1ca;
+  --warning-300: #f0c24c;
+  --warning-500: #795900;
+  --warning-900: #3a2e20;
+
+  --error-100: #fae4db;
+  --error-300: #f2a392;
+  --error-500: #a01e18;
+  --error-700: #7d1714;
+  --error-800: #631012;
+  --error-900: #422429;
+
+  --aster-purple: var(--brand-700);
+  --aster-purple-border: var(--brand-600);
+  --aster-ink: var(--neutral-950);
+  --aster-gold: #f0c24c;
+  --aster-gold-border: #795900;
+  --aster-paper: var(--neutral-100);
+  --aster-lime: #bfdb38;
+  --aster-mint: #8be7d8;
+  --aster-teal: ##00c8b3;
+  --aster-coral:
+}
+
+/* Expose semantic roles as Tailwind utilities, e.g. bg-brand and text-brand. */
+@theme {
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-brand-950: var(--brand-950);
+
+  --color-purple-neutral-100: var(--purple-neutral-100);
+  --color-purple-neutral-200: var(--purple-neutral-200);
+  --color-purple-neutral-300: var(--purple-neutral-300);
+  --color-purple-neutral-400: var(--purple-neutral-400);
+  --color-purple-neutral-500: var(--purple-neutral-500);
+  --color-purple-neutral-600: var(--purple-neutral-600);
+  --color-purple-neutral-700: var(--purple-neutral-700);
+  --color-purple-neutral-800: var(--purple-neutral-800);
+  --color-purple-neutral-900: var(--purple-neutral-900);
+
+  --color-neutral-0: var(--neutral-0);
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-850: var(--neutral-850);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-950: var(--neutral-950);
+
+  --color-info-100: var(--info-100);
+  --color-info-300: var(--info-300);
+  --color-info-500: var(--info-500);
+  --color-info-900: var(--info-900);
+  --color-info-surface: var(--info-100);
+  --color-info-foreground: var(--info-500);
+  --color-info-border: var(--info-500);
+
+  --color-success-100: var(--success-100);
+  --color-success-300: var(--success-300);
+  --color-success-500: var(--success-500);
+  --color-success-900: var(--success-900);
+  --color-success-surface: var(--success-100);
+  --color-success-foreground: var(--success-500);
+  --color-success-border: var(--success-500);
+
+  --color-warning-100: var(--warning-100);
+  --color-warning-300: var(--warning-300);
+  --color-warning-500: var(--warning-500);
+  --color-warning-900: var(--warning-900);
+  --color-warning-surface: var(--warning-100);
+  --color-warning-foreground: var(--warning-500);
+  --color-warning-border: var(--warning-500);
+
+  --color-error-100: var(--error-100);
+  --color-error-300: var(--error-300);
+  --color-error-500: var(--error-500);
+  --color-error-700: var(--error-700);
+  --color-error-800: var(--error-800);
+  --color-error-900: var(--error-900);
+  --color-error-surface: var(--error-100);
+  --color-error-foreground: var(--error-500);
+  --color-error-border: var(--error-500);
+
+  --color-brand: var(--aster-purple);
+  --color-brand-border: var(--aster-purple-border);
+  --color-brand-foreground: var(--aster-paper);
+  --color-sidebar: var(--brand-700);
+  --color-dashboard-canvas: var(--purple-neutral-800);
+  --color-dashboard-chrome: var(--brand-700);
+  --color-dashboard-control: var(--purple-neutral-400);
+  --color-panel: var(--purple-neutral-600);
+  --color-clickable-panel: var(--purple-neutral-600);
+  --color-panel-hover: var(--purple-neutral-500);
+  --color-panel-border: color-mix(in srgb, var(--purple-neutral-400) 45%, var(--purple-neutral-600));
+  --color-panel-border-hover: var(--purple-neutral-400);
+  --color-hero: var(--brand-900);
+  --color-hero-foreground: var(--aster-paper);
+  --color-hero-highlight: var(--aster-gold);
+  --color-feedback: var(--aster-mint);
+  --color-feedback-foreground: var(--aster-ink);
+  --color-brand-cream: var(--aster-paper);
+  --color-surface-canvas: var(--neutral-0);
+  --color-surface-subtle: var(--aster-paper);
+  --color-surface-foreground: var(--neutral-950);
+  --color-surface-muted: var(--neutral-700);
+  --color-login-highlight: var(--brand-600);
+  --color-welcome: var(--aster-gold);
+  --color-migration-notice: var(--aster-gold);
+  --color-migration-notice-foreground: var(--neutral-950);
+  --color-migration-notice-muted: var(--neutral-800);
+}
+
+.dark {
+  --color-dashboard-canvas: var(--purple-neutral-900);
+  --color-dashboard-chrome: var(--brand-950);
+  --color-dashboard-control: var(--purple-neutral-500);
+  --color-panel: var(--purple-neutral-700);
+  --color-clickable-panel: var(--purple-neutral-700);
+  --color-panel-hover: var(--purple-neutral-600);
+  --color-panel-border: color-mix(in srgb, var(--purple-neutral-400) 45%, var(--purple-neutral-700));
+  --color-panel-border-hover: var(--purple-neutral-500);
+  --color-surface-foreground: var(--neutral-100);
+  --color-surface-muted: var(--neutral-300);
+  --color-login-highlight: var(--aster-gold);
+  --color-info-surface: var(--info-900);
+  --color-info-foreground: var(--info-300);
+  --color-info-border: var(--info-300);
+  --color-success-surface: var(--success-900);
+  --color-success-foreground: var(--success-300);
+  --color-success-border: var(--success-300);
+  --color-warning-surface: var(--warning-900);
+  --color-warning-foreground: var(--warning-300);
+  --color-warning-border: var(--warning-300);
+  --color-error-surface: var(--error-900);
+  --color-error-foreground: var(--error-300);
+  --color-error-border: var(--error-300);
+  --color-brand: var(--aster-gold);
+  --color-brand-border: var(--aster-gold-border);
+  --color-brand-foreground: var(--aster-ink);
+}
+
+.dark .login-submit,
+.dark .onboarding .policy-submit {
+  --color-brand: var(--brand-700);
+  --color-brand-border: var(--brand-600);
+  --color-brand-foreground: var(--neutral-100);
+}
+
+.dark .dashboard {
+  background: var(--color-dashboard-chrome);
+}
+
+/* Keep the mobile drawer consistent even when rendered through a dialog portal. */
+.dark .dashboard-sidebar {
+  --color-sidebar: var(--brand-950);
+}
+
+.dark .dashboard-navbar {
+  --color-dashboard-chrome: var(--brand-950);
+}
+
+/* The gold profile card uses dark text in either page theme. */
+.dashboard-welcome {
+  --color-surface-foreground: var(--neutral-950);
+  --color-surface-muted: var(--neutral-800);
+  --color-error-foreground: var(--error-500);
+}
+
+/* Header chrome is a dark surface in both modes. */
+.dashboard-navbar {
+  --color-surface-foreground: var(--neutral-100);
+  --color-surface-muted: var(--neutral-300);
+  --color-error-foreground: var(--error-300);
+  --color-brand: var(--aster-gold);
+}
+
+.dashboard-navbar a,
+.dashboard-navbar button {
+  color: var(--color-surface-foreground) !important;
+}
+
+.dashboard-navbar [data-slot=icon] {
+  color: var(--color-surface-muted) !important;
+  fill: var(--color-surface-muted) !important;
+}
+
+.dashboard-navbar #logo {
+  background-image: url('../images/logo-white.png');
+}
+
+/* Sidebar chrome uses light text regardless of the page theme. */
+.dashboard-sidebar {
+  --color-surface-foreground: var(--neutral-100);
+  --color-surface-muted: var(--neutral-300);
+  --color-brand: var(--aster-gold);
+}
+
+/* Match hero actions to its highlight while keeping dark ink on vivid fills. */
+.hero {
+  --color-brand: var(--color-hero-highlight);
+  --color-brand-border: var(--color-hero-highlight);
+  --color-brand-foreground: var(--aster-ink);
+}

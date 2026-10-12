@@ -34,7 +34,7 @@ export function ThemeToggle({ className }: React.ComponentPropsWithoutRef<'div'>
       onClick={toggleTheme}
     >
       {theme === 'dark' ? (
-        <LightBulbIcon title={tPlain('theme.setLight')} className="dark:text-slate-500!" />
+        <LightBulbIcon title={tPlain('theme.setLight')} className="dark:text-surface-muted!" />
       ) : (
         <MoonIcon title={tPlain('theme.setDark')} className="text-neutral-400!" />
       )}

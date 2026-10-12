@@ -55,15 +55,15 @@ export default function Dashboard({
   return (
     <div className="flex flex-col gap-y-8">
       {isHandleInvalid && (
-        <Card className="p-4 bg-amber-500! dark:bg-amber-600/80! flex flex-row gap-2">
+        <Card className="p-4 bg-error-surface! flex flex-row gap-2">
           <div className="h-12 w-12">
-            <ExclamationTriangleIcon color="white" className="drop-shadow-sm" />
+            <ExclamationTriangleIcon className="text-error-foreground" />
           </div>
           <div>
-            <Text className="font-semibold text-white! text-shadow-sm text-shadow-amber-600/80">
+            <Text className="font-semibold text-error-foreground!">
               {t('dashboard.invalidHandle.title')}
             </Text>
-            <Text className="text-white! text-shadow-sm text-shadow-amber-600/80">
+            <Text className="text-error-foreground!">
               {t('dashboard.invalidHandle.text')}{' '}
               <a
                 href="https://aster.place/help/#handle-invalid"
@@ -79,14 +79,14 @@ export default function Dashboard({
       {showWelcomeMessage && (
         <Card className="py-3 px-4 flex flex-col grow md:flex-row items-center justify-between gap-x-6 gap-y-4">
           <div className="flex-1">
-            <h2 className="type-heading-2 text-gray-900 dark:text-gray-200 mb-2">
+            <h2 className="type-heading-2 text-surface-foreground mb-2">
               {t('dashboard.welcome.heading')}
             </h2>
-            <p className="mt-0.5 type-body text-gray-500 dark:text-gray-300">
+            <p className="mt-0.5 type-body text-surface-muted">
               {t('dashboard.welcome.text')}
             </p>
             {!isHandleInvalid && (
-              <p className="mt-0.5 type-body text-gray-500 dark:text-gray-300">
+              <p className="mt-0.5 type-body text-surface-muted">
                 {t('dashboard.welcome.handle', {
                   handle: user.handle,
                   strong(chunks) {
@@ -103,32 +103,32 @@ export default function Dashboard({
           <Button
             onClick={dismissWelcome}
             outline
-            className="w-full md:w-auto dark:border-slate-600!"
+            className="w-full md:w-auto dark:border-neutral-600!"
           >
             {t('dashboard.welcome.dismiss')}
           </Button>
         </Card>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        <Card className="p-3 md:p-4 col-span-3 md:col-span-2">
+        <Card className="dashboard-welcome bg-welcome! p-3 md:p-4 col-span-3 md:col-span-2">
           <div className="flex flex-row justify-between">
             <div className="flex flex-row gap-6">
               <div className="size-14 md:size-20 md:self-center">
                 <UserAvatar avatar={profile?.avatar} />
               </div>
               <div className="flex flex-col">
-                <h2 className="type-heading-2 text-zinc-950 dark:text-white">
+                <h2 className="type-heading-2 text-surface-foreground">
                   {profile?.displayName
                     ? t('dashboard.greeting.withName', { name: profile.displayName })
                     : t('dashboard.greeting.plain')}
                 </h2>
                 {isHandleInvalid ? (
-                  <Text className="text-amber-500!">
-                    <ExclamationTriangleIcon color="amber" className="h-6 w-6 inline-block" />{' '}
+                  <Text className="text-error-foreground!">
+                    <ExclamationTriangleIcon className="h-6 w-6 inline-block" />{' '}
                     {user.handle}
                   </Text>
                 ) : (
-                  <Text className="text-slate-400!">@{user.handle}</Text>
+                  <Text className="text-surface-muted!">@{user.handle}</Text>
                 )}
                 {profile?.stats && (
                   <div className="hidden md:grid grid-cols-1 sm:grid-cols-3">
@@ -152,26 +152,26 @@ export default function Dashboard({
         </Card>
 
         <Card className="py-3 px-4 col-span-3 md:col-span-1">
-          <h2 className="type-heading-2 text-gray-900 dark:text-gray-200 mb-2">
+          <h2 className="type-heading-2 text-surface-foreground mb-2">
             {t('dashboard.explore.heading')}
           </h2>
-          <p className="type-body text-gray-500 dark:text-gray-300">
+          <p className="type-body text-surface-muted">
             {t('dashboard.explore.text')}
           </p>
           <Button
             route="explore.learn_more"
             color="zinc"
-            className="mt-3 w-full sm:w-auto dark:bg-slate-700!"
+            className="mt-3 w-full sm:w-auto dark:bg-dashboard-control!"
           >
             {t('common.learnMore')}
           </Button>
         </Card>
       </div>
       <div>
-        <h2 className="type-heading-3 text-neutral-500 dark:text-slate-200">
+        <h2 className="type-heading-3 text-surface-foreground">
           {t('dashboard.activity.heading')}
         </h2>
-        <p className="type-body text-neutral-400 dark:text-slate-400 mb-6">
+        <p className="type-body text-surface-muted mb-6">
           {t('dashboard.activity.subheading')}
         </p>
 
@@ -190,17 +190,17 @@ export default function Dashboard({
         )}
 
         <div className="mt-4 flex justify-center">
-          <Button route="activity.show" className="w-full sm:w-auto dark:bg-slate-700!">
+          <Button route="activity.show" className="w-full sm:w-auto dark:bg-dashboard-control!">
             {t('dashboard.activity.viewAll')}
           </Button>
         </div>
       </div>
 
       <div className="pt-4">
-        <h2 className="type-heading-3 text-neutral-500 dark:text-slate-200">
+        <h2 className="type-heading-3 text-surface-foreground">
           {t(appsKind === 'yours' ? 'sidebar.yourApps' : 'dashboard.featuredApps.heading')}
         </h2>
-        <p className="type-body text-neutral-400 dark:text-slate-400 mb-6">
+        <p className="type-body text-surface-muted mb-6">
           {t(appsKind === 'yours' ? 'dashboard.yourApps.text' : 'dashboard.featuredApps.text')}
         </p>
 
@@ -209,7 +209,7 @@ export default function Dashboard({
         <div className="mt-1 flex justify-center">
           <Button
             route={appsKind === 'yours' ? 'dashboard.apps' : 'discover.apps'}
-            className="w-full sm:w-auto dark:bg-slate-700!"
+            className="w-full sm:w-auto dark:bg-dashboard-control!"
           >
             {t(
               appsKind === 'yours'
@@ -225,13 +225,13 @@ export default function Dashboard({
 
 function StatHeading({ children }: React.ComponentPropsWithoutRef<'dt'>) {
   return (
-    <span className="type-label text-slate-500 dark:text-slate-400">{children}</span>
+    <span className="type-label text-surface-muted">{children}</span>
   )
 }
 
 function StatValue({ children }: React.ComponentPropsWithoutRef<'dd'>) {
   return (
-    <div className="mt-1 type-label sm:mt-2 text-gray-900 dark:text-white">
+    <div className="mt-1 type-label sm:mt-2 text-surface-foreground">
       {children}
     </div>
   )

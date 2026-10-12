@@ -23,7 +23,7 @@ export function a(properties: React.JSX.IntrinsicElements['a'] & ExtraProps) {
   return (
     <a
       {...rest}
-      className="text-blue-600 underline decoration-blue-600/30 underline-offset-2 hover:decoration-blue-600 dark:text-blue-400 dark:decoration-blue-400/30 dark:hover:decoration-blue-400"
+      className="text-brand underline decoration-brand/30 underline-offset-2 hover:decoration-brand"
       href={href}
       rel="noopener noreferrer"
       target="_blank"

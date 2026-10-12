@@ -20,14 +20,14 @@ export default function Onboarding(
   const { tPlain, t } = useT()
 
   return (
-    <div className="bg-neutral-50 dark:bg-slate-900 min-h-dvh-minus-35">
+    <div className="onboarding bg-surface-canvas dark:bg-dashboard-canvas min-h-dvh-minus-35">
       <Head title={tPlain('onboarding.pageTitle')} />
       <Container className="pt-10 md:pt-24">
         <Card className="w-full md:w-1/2 m-auto p-4 mb-6">
-          <h1 className="mx-auto max-w-4xl mb-2 text-center type-title text-slate-900 dark:text-slate-200">
+          <h1 className="mx-auto max-w-4xl mb-2 text-center type-title text-surface-foreground">
             {t('onboarding.title', {
               brand(chunks) {
-                return <span className="text-brand">{chunks}</span>
+                return <span className="text-login-highlight">{chunks}</span>
               },
             })}
           </h1>
@@ -80,5 +80,5 @@ function UpdateNotice({
     return
   }
 
-  return <Notice title={title} text={tPlain('onboarding.notice.text')} />
+  return <Notice tone="gold" title={title} text={tPlain('onboarding.notice.text')} />
 }

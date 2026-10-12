@@ -48,9 +48,9 @@ export default function AppDetailPage({
       <div className="mb-8 flex items-start justify-between gap-4">
         <nav
           aria-label={tPlain('common.breadcrumb')}
-          className="type-meta text-zinc-500 dark:text-zinc-400"
+          className="type-meta text-surface-muted"
         >
-          <BackLink className="hover:text-zinc-700 dark:hover:text-zinc-300" route="discover.apps">
+          <BackLink className="hover:text-surface-foreground" route="discover.apps">
             <ChevronLeftIcon aria-hidden="true" className="size-4 inline-block" />
             {t('sidebar.applications')}
           </BackLink>
@@ -68,7 +68,7 @@ export default function AppDetailPage({
         <div className="space-y-4">
           <div className="flex items-start gap-4">
             <Avatar
-              className="size-16 shrink-0 bg-gray-100 outline-none! dark:bg-gray-800"
+              className="size-16 shrink-0 bg-gray-100 outline-none! dark:bg-panel"
               square
               src={iconUrl}
             />
@@ -95,13 +95,13 @@ export default function AppDetailPage({
             <span className="flex items-center gap-2">
               <span className="flex items-center gap-0.5 type-meta text-amber-500">
                 <Rating value={parseFloat(rating)} />
-                <span className="ml-0.5 text-zinc-400 dark:text-zinc-500">
+                <span className="ml-0.5 text-surface-muted">
                   ({formatNumber(reviewCount, locale)})
                 </span>
               </span>
               {reviewsUrl ? (
                 <a
-                  className="type-meta text-zinc-500 underline hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
+                  className="type-meta text-surface-muted underline hover:text-surface-foreground"
                   href={reviewsUrl}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -112,14 +112,14 @@ export default function AppDetailPage({
             </span>
           ) : undefined}
 
-          <div className="article-body markdown-document type-body text-zinc-500 sm:text-sm/6 dark:text-zinc-400">
+          <div className="article-body markdown-document type-body text-surface-muted sm:text-sm/6">
             <MarkdownContent value={description} />
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             {externalUrl ? (
               <a
-                className="inline-flex items-center justify-center rounded-lg bg-zinc-900 px-3.5 py-2.5 text-base/6 font-semibold text-white sm:px-3 sm:py-1.5 sm:text-sm/6 dark:bg-zinc-600"
+                className="inline-flex items-center justify-center rounded-lg bg-zinc-900 px-3.5 py-2.5 text-base/6 font-semibold text-white sm:px-3 sm:py-1.5 sm:text-sm/6 dark:bg-dashboard-control"
                 href={externalUrl}
                 rel="noopener noreferrer"
                 target="_blank"

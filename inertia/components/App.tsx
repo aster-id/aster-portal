@@ -34,7 +34,7 @@ export function App({ app, favorite }: { app: Data.AppSummary; favorite?: boolea
               {app.listing.name}
             </Heading>
             <Text
-              className="overflow-hidden dark:text-slate-400!"
+              className="overflow-hidden"
               style={{ WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, display: '-webkit-box' }}
               lang="en"
             >
@@ -44,7 +44,7 @@ export function App({ app, favorite }: { app: Data.AppSummary; favorite?: boolea
           <Avatar
             square
             src={app.listing.iconUrl}
-            className="size-12 mb-2 bg-gray-100 ml-auto dark:bg-gray-800 outline-none!"
+            className="size-12 mb-2 bg-gray-100 ml-auto dark:bg-panel outline-none!"
           />
         </div>
         {typeof app.listing.rating === 'string' || app.madeInEurope || favoritable ? (
@@ -52,7 +52,7 @@ export function App({ app, favorite }: { app: Data.AppSummary; favorite?: boolea
             {typeof app.listing.rating === 'string' ? (
               <span className="type-meta flex items-center gap-0.5 text-amber-500">
                 <Rating value={parseFloat(app.listing.rating)} />
-                <span className="text-gray-400 dark:text-slate-500 ml-0.5">
+                <span className="text-surface-muted ml-0.5">
                   ({formatNumber(app.listing.reviewCount, locale)})
                 </span>
               </span>

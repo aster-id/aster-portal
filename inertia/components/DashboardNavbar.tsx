@@ -17,7 +17,7 @@ export default function DashboardNavbar({ className }: React.ComponentProps<'div
   const isHandleInvalid = user.handle === INVALID_HANDLE
 
   return (
-    <Navbar className={clsx(className, 'dark:bg-slate-800/70')}>
+    <Navbar className={clsx(className, 'dashboard-navbar bg-dashboard-chrome')}>
       <a href="https://aster.place/" aria-label={tPlain('nav.home')} className="rounded-sm md:ml-6 mt-1 mb-2">
         <Logo />
       </a>
@@ -26,19 +26,19 @@ export default function DashboardNavbar({ className }: React.ComponentProps<'div
         {/* Handle chips = type-meta, with leading pinned to the 24px icon. */}
         <NavbarItem route="dashboard.show" className="hidden md:flex">
           {isHandleInvalid ? (
-            <span className="type-meta leading-6! text-amber-500 dark:text-amber-400!">
-              <ExclamationTriangleIcon color="amber" className="h-6 w-6 inline-block" />{' '}
+            <span className="type-meta leading-6! text-error-foreground!">
+              <ExclamationTriangleIcon className="h-6 w-6 inline-block" />{' '}
               {user.handle}
             </span>
           ) : (
-            <span className="type-meta leading-6! text-zinc-500! dark:text-slate-400!">
+            <span className="type-meta leading-6! text-surface-muted!">
               @{user.handle}
             </span>
           )}
         </NavbarItem>
 
         <Form route="oauth.logout" className="justify-stretch hidden lg:flex">
-          <Button type="submit" outline className="dark:text-slate-300!">
+          <Button type="submit" outline className="text-surface-foreground! border-surface-foreground/30!">
             {t('nav.logout')}
           </Button>
         </Form>

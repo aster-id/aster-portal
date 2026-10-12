@@ -11,14 +11,14 @@ export const styles = {
     // Sizing
     'px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)] sm:text-sm/6',
     // Focus
-    'focus:not-data-focus:outline-hidden data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-blue-500',
+    'focus:not-data-focus:outline-hidden data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-brand',
     // Disabled
     'data-disabled:opacity-50',
     // Icon
     '*:data-[slot=icon]:-mx-0.5 *:data-[slot=icon]:my-0.5 *:data-[slot=icon]:size-5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center *:data-[slot=icon]:text-(--btn-icon) sm:*:data-[slot=icon]:my-1 sm:*:data-[slot=icon]:size-4 forced-colors:[--btn-icon:ButtonText] forced-colors:data-hover:[--btn-icon:ButtonText]',
   ],
   link: [
-    'p-0! bg-none border-none text-blue-500 font-normal! data-hover:underline data-active:underline',
+    'p-0! bg-none border-none text-brand font-normal! data-hover:underline data-active:underline',
   ],
   solid: [
     // Optical border, implemented as the button background to avoid corner artifacts
@@ -116,8 +116,8 @@ export const styles = {
       '[--btn-icon:var(--color-yellow-600)] data-active:[--btn-icon:var(--color-yellow-700)] data-hover:[--btn-icon:var(--color-yellow-700)]',
     ],
     'brand': [
-      'text-white dark:text-black/80 [--btn-hover-overlay:var(--color-black)]/10 [--btn-bg:var(--color-brand)] [--btn-border:var(--color-brand-border)]/60',
-      '[--btn-icon:var(--color-brand-600)] data-active:[--btn-icon:var(--color-brand-700)] data-hover:[--btn-icon:var(--color-brand-700)]',
+      'text-brand-foreground [--btn-hover-overlay:var(--color-black)]/10 [--btn-bg:var(--color-brand)] [--btn-border:var(--color-brand-border)]/60',
+      '[--btn-icon:var(--color-brand-foreground)]',
     ],
     'lime': [
       'text-lime-950 [--btn-hover-overlay:var(--color-white)]/25 [--btn-bg:var(--color-lime-300)] [--btn-border:var(--color-lime-400)]/80',

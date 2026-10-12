@@ -37,13 +37,13 @@ export default function YourApps({
         <h1 className="type-heading-1 text-gray-900 dark:text-white">
           {t('sidebar.yourApps')}
         </h1>
-        <p className="mt-1 text-gray-500 dark:text-gray-400">{t('yourApps.subheading')}</p>
+        <p className="mt-1 text-gray-500 dark:text-surface-muted">{t('yourApps.subheading')}</p>
       </div>
 
       {apps.length === 0 ? (
         <Card className="p-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Text>{t('yourApps.empty')}</Text>
-          <Button route="discover.apps" className="w-full sm:w-auto dark:bg-slate-700!">
+          <Button route="discover.apps" className="w-full sm:w-auto dark:bg-dashboard-control!">
             {t('yourApps.browse')}
           </Button>
         </Card>

@@ -66,7 +66,7 @@ export function PolicyForm({ route, terms, privacy }: PolicyFormProps<Routes>) {
                         <Link
                           route="legal.show"
                           routeParams={{ document: 'terms' }}
-                          className="text-blue-500 hover:underline"
+                          className="text-brand hover:underline"
                         >
                           {chunks}
                         </Link>
@@ -77,7 +77,7 @@ export function PolicyForm({ route, terms, privacy }: PolicyFormProps<Routes>) {
                         <Link
                           route="legal.show"
                           routeParams={{ document: 'privacy' }}
-                          className="text-blue-500 hover:underline"
+                          className="text-brand hover:underline"
                         >
                           {chunks}
                         </Link>
@@ -87,11 +87,11 @@ export function PolicyForm({ route, terms, privacy }: PolicyFormProps<Routes>) {
                 </Label>
               </CheckboxField>
             </div>
-            {errors.terms && <Text className="text-orange-500!">{errors.terms}</Text>}
+            {errors.terms && <Text className="text-error-foreground!">{errors.terms}</Text>}
             <Button
               type="submit"
               color={!form.data.terms || processing ? 'zinc' : 'brand'}
-              className="mt-2 py-3! disabled:cursor-default"
+              className="policy-submit mt-2 py-3! disabled:cursor-default"
               disabled={!form.data.terms || processing}
             >
               {t('login.continue')}
@@ -107,13 +107,13 @@ function PolicyDetails({ header, document }: { header: ReactNode; document: unkn
   return (
     <details
       name="policy"
-      className="legal-details overflow-auto rounded-lg shadow-xs dark:bg-gray-800/50 border border-slate-200 dark:border-slate-600"
+      className="legal-details overflow-auto rounded-lg shadow-xs dark:bg-panel border border-slate-200 dark:border-panel-border-hover"
     >
-      <summary className="p-4 text-slate-600 dark:text-slate-300 list-none flex flex-row justify-between bg-white dark:bg-gray-800">
+      <summary className="p-4 text-slate-600 dark:text-surface-muted list-none flex flex-row justify-between bg-white dark:bg-panel">
         <span className="flex flex-row gap-1">{header}</span>
         <ChevronDownIcon className="details-icon w-6 h-6 flex" />
       </summary>
-      <div className="markdown-document dark:text-slate-200 text-grey-800 p-4" lang="en">
+      <div className="markdown-document dark:text-surface-foreground text-grey-800 p-4" lang="en">
         {toJsxRuntime(document as Nodes, { Fragment, jsx, jsxs })}
       </div>
     </details>

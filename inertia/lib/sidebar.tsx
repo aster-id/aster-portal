@@ -75,10 +75,7 @@ export function SidebarHeading({ className, ...props }: React.ComponentPropsWith
   return (
     <h3
       {...props}
-      className={clsx(
-        className,
-        'mb-1 px-2 type-meta text-zinc-500 dark:text-zinc-400'
-      )}
+      className={clsx(className, 'mb-1 px-2 type-meta text-surface-muted')}
     />
   )
 }
@@ -97,26 +94,21 @@ export const SidebarItem = forwardRef(function SidebarItem(
 ) {
   let classes = clsx(
     // Base
-    'flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-base/6 font-medium text-zinc-950 sm:py-2 sm:text-sm/5',
+    'flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-base/6 font-medium text-surface-foreground sm:py-2 sm:text-sm/5',
     // Leading icon/icon-only
-    '*:data-[slot=icon]:size-6 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:fill-zinc-500 sm:*:data-[slot=icon]:size-5',
+    '*:data-[slot=icon]:size-6 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:fill-surface-muted sm:*:data-[slot=icon]:size-5',
     // Trailing icon (down chevron or similar)
     '*:last:data-[slot=icon]:ml-auto *:last:data-[slot=icon]:size-5 sm:*:last:data-[slot=icon]:size-4',
     // Avatar
     '*:data-[slot=avatar]:-m-0.5 *:data-[slot=avatar]:size-7 sm:*:data-[slot=avatar]:size-6',
     // Hover
-    'data-hover:bg-zinc-950/5 data-hover:*:data-[slot=icon]:fill-zinc-950',
+    'data-hover:bg-surface-foreground/5 data-hover:*:data-[slot=icon]:fill-surface-foreground',
     // Active
-    'data-active:bg-zinc-950/5 data-active:*:data-[slot=icon]:fill-zinc-950',
+    'data-active:bg-surface-foreground/5 data-active:*:data-[slot=icon]:fill-surface-foreground',
     // Current
-    'data-current:*:data-[slot=icon]:fill-zinc-950',
-    // Dark mode
-    'dark:text-white dark:*:data-[slot=icon]:fill-zinc-400',
-    'dark:data-hover:bg-white/5 dark:data-hover:*:data-[slot=icon]:fill-white',
-    'dark:data-active:bg-white/5 dark:data-active:*:data-[slot=icon]:fill-white',
-    'dark:data-current:*:data-[slot=icon]:fill-white',
+    'data-current:*:data-[slot=icon]:fill-surface-foreground',
     // Focus
-    'focus:outline-2 focus:outline-solid! focus:outline-offset-2 focus:outline-blue-600'
+    'focus:outline-2 focus:outline-solid! focus:outline-offset-2 focus:outline-brand'
   )
 
   return (
@@ -124,7 +116,7 @@ export const SidebarItem = forwardRef(function SidebarItem(
       {current && (
         <motion.span
           layoutId="current-indicator"
-          className="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-zinc-950 dark:bg-white"
+          className="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-surface-foreground"
         />
       )}
       {typeof props.href === 'string' || typeof props.route === 'string' ? (

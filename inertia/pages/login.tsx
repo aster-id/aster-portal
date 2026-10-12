@@ -15,14 +15,15 @@ export default function Login({ migrationUrl }: InertiaProps<{ migrationUrl?: st
   const { props: pageProps } = usePage()
   const { tPlain, t } = useT()
   return (
-    <div className="bg-neutral-50 dark:bg-slate-900 min-h-dvh-minus-35">
+    <div className="bg-surface-canvas dark:bg-dashboard-canvas min-h-dvh-minus-35">
       <Head title={tPlain('nav.signIn')} />
       <Container className="pt-6 md:pt-12">
         {migrationUrl && (
           <div className="w-full md:w-3/4 lg:w-1/2 m-auto">
             <Notice
+              tone="gold"
               action={
-                <a href={migrationUrl} className="text-brand hover:underline">
+                <a href={migrationUrl} className="text-migration-notice-foreground underline hover:text-migration-notice-muted">
                   {tPlain('migrationAlert.cta')}
                 </a>
               }
@@ -32,20 +33,20 @@ export default function Login({ migrationUrl }: InertiaProps<{ migrationUrl?: st
           </div>
         )}
         {pageProps.flash.error && (
-          <Card className="w-full md:w-3/4 lg:w-1/2 m-auto px-4 py-2 mb-8 bg-gray-500! dark:bg-slate-600! text-white!">
+          <Card className="w-full md:w-3/4 lg:w-1/2 m-auto px-4 py-2 mb-8 bg-error-surface! text-error-foreground!">
             <div className="flex flex-row gap-2 items-center-safe">
               <div className="h-8 w-8">
-                <ExclamationTriangleIcon color="white" />
+                <ExclamationTriangleIcon className="text-error-foreground" />
               </div>
               <span>{pageProps.flash.error}</span>
             </div>
           </Card>
         )}
         <Card className="w-full md:w-3/4 lg:w-1/2 m-auto p-4 mb-8">
-          <h1 className="mx-auto max-w-4xl mb-2 text-center type-title text-slate-900 dark:text-slate-200">
+          <h1 className="mx-auto max-w-4xl mb-2 text-center type-title text-slate-900 dark:text-surface-foreground">
             {t('login.title', {
               brand(chunks) {
-                return <span className="text-brand">{chunks}</span>
+                return <span className="text-login-highlight">{chunks}</span>
               },
             })}
           </h1>
@@ -68,20 +69,21 @@ export default function Login({ migrationUrl }: InertiaProps<{ migrationUrl?: st
                         errors.old_input) ||
                       ''
                     }
+                    invalid={Boolean(errors.input)}
                     required
                     autoCapitalize="none"
                     autoCorrect="off"
                     autoComplete="off"
                   />
                   {errors?.input && (
-                    <ErrorMessage className="text-orange-500!">{errors.input}</ErrorMessage>
+                    <ErrorMessage>{errors.input}</ErrorMessage>
                   )}
                 </Field>
                 <Field className="mt-2 flex justify-end justify-items-stretch">
                   <Button
                     type="submit"
                     color={!valid || !isDirty || processing ? 'zinc' : 'brand'}
-                    className="w-full py-3! disabled:cursor-default"
+                    className="login-submit w-full py-3! disabled:cursor-default"
                     disabled={!valid || !isDirty || processing}
                   >
                     {t('login.continue')}

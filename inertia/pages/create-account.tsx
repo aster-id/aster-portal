@@ -18,7 +18,7 @@ export default function CreateAccount(
   const { props: pageProps } = usePage()
   const { tPlain, t } = useT()
   return (
-    <div className="bg-neutral-50 dark:bg-slate-900 min-h-dvh-minus-35">
+    <div className="bg-surface-canvas dark:bg-dashboard-canvas min-h-dvh-minus-35">
       <Head title={tPlain('createAccount.pageTitle')} />
       <Container className="pt-6 md:pt-12">
         {props.migrationUrl && (
@@ -35,17 +35,17 @@ export default function CreateAccount(
           </div>
         )}
         {pageProps.flash.error && (
-          <Card className="w-full md:w-3/4 lg:w-1/2 m-auto px-4 py-2 mb-8 bg-gray-500! dark:bg-slate-600! text-white!">
+          <Card className="w-full md:w-3/4 lg:w-1/2 m-auto px-4 py-2 mb-8 bg-error-surface! text-error-foreground!">
             <div className="flex flex-row gap-2 items-center-safe">
               <div className="h-8 w-8">
-                <ExclamationTriangleIcon color="white" />
+                <ExclamationTriangleIcon className="text-error-foreground" />
               </div>
               <span>{pageProps.flash.error}</span>
             </div>
           </Card>
         )}
         <Card className="w-full md:w-3/4 lg:w-1/2 m-auto p-4 mb-8">
-          <h1 className="mx-auto max-w-4xl mb-2 text-center type-title text-slate-900 dark:text-slate-200">
+          <h1 className="mx-auto max-w-4xl mb-2 text-center type-title text-slate-900 dark:text-surface-foreground">
             {t('createAccount.title', {
               brand(chunks) {
                 return <span className="text-brand">{chunks}</span>

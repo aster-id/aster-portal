@@ -6,7 +6,7 @@ export default function BetaWarning() {
   const { t } = useT()
 
   return (
-    <div className="bg-brand py-2 px-3 text-center text-black/80 font-semibold">
+    <div className="bg-feedback py-2 px-3 text-center text-feedback-foreground font-semibold">
       {t('beta.warning', {
         feedback(chunks) {
           return (
@@ -14,7 +14,7 @@ export default function BetaWarning() {
               href={feedbackUrl}
               rel="noopener noreferrer"
               target="_blank"
-              className="underline hover:text-black/60"
+              className="underline hover:text-feedback-foreground/70"
             >
               {chunks}
             </a>

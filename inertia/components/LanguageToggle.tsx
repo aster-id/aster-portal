@@ -13,7 +13,7 @@ export function LanguageToggle({ className }: React.ComponentPropsWithoutRef<'di
       <DropdownButton className={clsx(className, 'relative inline-flex! w-10 h-10 p-0.5!')} plain>
         <LanguageIcon
           title={tPlain('nav.chooseLanguage')}
-          className="text-neutral-400! dark:text-slate-500!"
+          className="text-neutral-400! dark:text-surface-muted!"
         />
       </DropdownButton>
       <DropdownMenu anchor="bottom end">

@@ -38,9 +38,13 @@ function MobileSidebar({
         transition
         className="fixed inset-y-0 w-full max-w-80 p-2 transition duration-300 ease-in-out data-closed:-translate-x-full"
       >
-        <div className="flex h-full flex-col rounded-lg bg-white shadow-xs ring-1 ring-slate-950/5 dark:bg-slate-900 dark:ring-white/10">
+        <div className="dashboard-sidebar flex h-full flex-col rounded-lg bg-sidebar text-surface-foreground shadow-xs ring-1 ring-surface-foreground/10">
           <div className="-mb-3 px-4 pt-3 self-end">
-            <Headless.CloseButton as={NavbarItem} aria-label={tPlain('nav.closeNavigation')}>
+            <Headless.CloseButton
+                          as={NavbarItem}
+                          aria-label={tPlain('nav.closeNavigation')}
+                          className="text-surface-foreground! *:data-[slot=icon]:fill-surface-foreground!"
+                        >
               <CloseMenuIcon />
             </Headless.CloseButton>
           </div>
@@ -60,9 +64,9 @@ export function SidebarLayout({
   const { tPlain } = useT()
 
   return (
-    <div className="relative isolate flex min-h-dvh-minus-32 w-full bg-white max-lg:flex-col lg:bg-white dark:bg-slate-800/70 dark:lg:bg-slate-800/70">
+    <div className="relative isolate flex min-h-dvh-minus-32 w-full bg-dashboard-chrome max-lg:flex-col">
       {/* Sidebar on desktop */}
-      <div className="inset-y-0 left-0 w-64 max-lg:hidden">{sidebar}</div>
+      <div className="dashboard-sidebar inset-y-0 left-0 w-64 bg-sidebar text-surface-foreground max-lg:hidden">{sidebar}</div>
 
       {/* Sidebar on mobile */}
       <MobileSidebar open={showSidebar} close={() => setShowSidebar(false)}>
@@ -70,7 +74,7 @@ export function SidebarLayout({
       </MobileSidebar>
 
       {/* Navbar on mobile */}
-      <header className="relative z-10 flex items-center gap-3 px-4 lg:hidden">
+      <header className="dashboard-navbar relative z-10 flex items-center gap-3 px-4 lg:hidden">
         <div className="min-w-0 flex-1">{navbar}</div>
         <div className="md:py-2.5">
           <NavbarItem
@@ -84,7 +88,7 @@ export function SidebarLayout({
 
       {/* Content */}
       <main className="flex flex-1 flex-col lg:min-w-0 lg:pt-2">
-        <div className="grow p-6 lg:rounded-tl-lg bg-neutral-50 lg:p-10 lg:shadow-xs lg:ring-1 lg:ring-slate-900/5 dark:bg-slate-900 dark:lg:ring-white/10">
+        <div className="grow p-6 lg:rounded-tl-lg bg-surface-canvas lg:p-10 lg:shadow-xs lg:ring-1 lg:ring-neutral-950/5 dark:bg-dashboard-canvas dark:lg:ring-neutral-100/10">
           {children}
         </div>
       </main>

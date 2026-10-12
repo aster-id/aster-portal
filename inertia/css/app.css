@@ -1,20 +1,13 @@
 @import './typography.css';
 @import 'tailwindcss';
+@import './theme.css';
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --default-font-family: var(--font-family-sans);
   --default-mono-font-family: var(--font-family-mono);
   --text-tiny: 0.625rem;
-  /* --color-brand: oklch(0.723 0.178 158.4);
-  --color-brand-border: oklch(0.603 0.178 158.4); */
-  --color-neutral-50: oklch(0.974 0.005 91.6);
-  --color-neutral-100: oklch(0.947 0.007 83.2);
-  --color-neutral-200: oklch(0.897 0.009 75.4);
-  --color-neutral-300: oklch(0.762 0.012 71.8);
-  --color-neutral-500: oklch(0.46 0.006 68.3);
-  --color-brand: oklch(0.793 0.103 243.6);
-  --color-brand-border: oklch(0.703 0.123 243.6);
+
   --color-black: #1a1a1a;
   --color-stone: rgb(236 234 229);
   --color-stone-light: rgb(236 234 229);
@@ -56,7 +49,7 @@
 }
 
 *:focus-visible {
-  outline: 2px solid var(--color-blue-600);
+  outline: 2px solid var(--color-brand);
 }
 
 .white-space-collapse {
@@ -65,13 +58,10 @@
 }
 
 .dark {
-  color: var(--color-slate-100);
-  background: var(--color-slate-900);
+  color: var(--color-surface-foreground);
+  background: var(--color-dashboard-canvas);
 }
 
-.dark .dashboard {
-  background: var(--color-slate-800);
-}
 
 #logo {
   margin-top: 6px;
@@ -196,7 +186,7 @@ details:open summary > svg {
   border-top: 1px solid var(--color-gray-300);
 
   @variant dark {
-    border-top-color: var(--color-slate-700);
+    border-top-color: var(--color-panel-border);
   }
 }
 
@@ -208,7 +198,7 @@ details:open summary > svg {
   color: var(--color-zinc-600);
 
   @variant dark {
-    border-left-color: var(--color-slate-600);
+    border-left-color: var(--color-panel-border-hover);
     color: var(--color-zinc-400);
   }
 }
@@ -241,7 +231,7 @@ details:open summary > svg {
   margin: calc(var(--spacing) * 6) auto;
 
   @variant dark {
-    border: 1px solid var(--color-slate-700);
+    border: 1px solid var(--color-panel-border);
   }
 }
 
@@ -254,5 +244,5 @@ details:open summary > svg {
 }
 
 .faq details a {
-  @apply hover:text-ink dark:text-slate-400 dark:hover:text-slate-200 underline;
+  @apply hover:text-ink dark:text-surface-muted dark:hover:text-surface-foreground underline;
 }
