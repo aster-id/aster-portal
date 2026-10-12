@@ -116,18 +116,18 @@ export default function Dashboard({
               <UserAvatar avatar={profile?.avatar} />
             </div>
             <div className="min-w-0">
-              <h2 className="type-heading-2 text-surface-foreground">
+              <h2 className="type-heading-1 text-surface-foreground">
                 {profile?.displayName
                   ? t('dashboard.greeting.withName', { name: profile.displayName })
                   : t('dashboard.greeting.plain')}
               </h2>
               {isHandleInvalid ? (
-                <Text className="mt-1 break-words text-error-foreground!">
+                <Text className="mt-1 type-mono! break-words text-error-foreground!">
                   <ExclamationTriangleIcon className="h-6 w-6 inline-block" />{' '}
                   {user.handle}
                 </Text>
               ) : (
-                <Text className="mt-1 break-words text-surface-muted!">@{user.handle}</Text>
+                <Text className="mt-1 type-mono! break-words text-surface-muted!">@{user.handle}</Text>
               )}
             </div>
             {profile?.stats && (
@@ -224,13 +224,13 @@ export default function Dashboard({
 
 function StatHeading({ children }: React.ComponentPropsWithoutRef<'dt'>) {
   return (
-    <span className="type-label text-surface-muted">{children}</span>
+    <span className="type-eyebrow uppercase text-surface-muted">{children}</span>
   )
 }
 
 function StatValue({ children }: React.ComponentPropsWithoutRef<'dd'>) {
   return (
-    <div className="mt-1 type-label sm:mt-2 text-surface-foreground">
+    <div className="mt-1 type-title sm:mt-2 text-surface-foreground">
       {children}
     </div>
   )
