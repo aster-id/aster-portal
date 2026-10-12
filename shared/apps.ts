@@ -31,6 +31,9 @@ export interface CatalogApp {
    */
   atUri: AtUriString
 
+  /** Background for transparent app logos; omitted to preserve the default. */
+  iconBackground?: 'white'
+
   /**
    * Category message key (example: `apps.category.events`);
    * apps w/o category are hidden from lists,
@@ -93,6 +96,7 @@ export const apps: ReadonlyArray<CatalogApp> = [
   // lichen.wiki
   {
     atUri: 'at://did:plc:xfs42pjf3n7imvgrdrp7xvez/fyi.atstore.listing.detail/3mkihgsgwb27y',
+    iconBackground: 'white',
     category: 'apps.category.readWrite',
   },
   // Margin
@@ -211,6 +215,7 @@ export const apps: ReadonlyArray<CatalogApp> = [
   // lexicons.bio
   {
     atUri: 'at://did:plc:dvy6bdnofdfc4php4s5b457d/fyi.atstore.listing.detail/3mjdstabcw3fs',
+    iconBackground: 'white',
     category: 'apps.category.development',
   },
 

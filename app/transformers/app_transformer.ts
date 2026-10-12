@@ -6,7 +6,7 @@ export default class AppTransformer extends BaseTransformer<App> {
   toObject() {
     const rkey = new AtUri(this.resource.atUri).rkey
     return {
-      ...this.pick(this.resource, ['atUri', 'externalUrl', 'listing', 'madeInEurope']),
+      ...this.pick(this.resource, ['atUri', 'externalUrl', 'listing', 'madeInEurope', 'iconBackground']),
       rkey,
     }
   }

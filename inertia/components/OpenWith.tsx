@@ -66,6 +66,7 @@ export function OpenWith({ uri }: Properties) {
                       className="size-5 shrink-0 bg-gray-100 outline-none! dark:bg-gray-800"
                       square
                       src={app.iconUrl}
+                      imageBackground={app.iconBackground}
                     />
                   ) : undefined}
                   <span className="grow" lang="en">

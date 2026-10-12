@@ -44,6 +44,7 @@ export function App({ app, favorite }: { app: Data.AppSummary; favorite?: boolea
           <Avatar
             square
             src={app.listing.iconUrl}
+            imageBackground={app.iconBackground}
             className="size-12 mb-2 bg-gray-100 ml-auto dark:bg-gray-800 outline-none!"
           />
         </div>

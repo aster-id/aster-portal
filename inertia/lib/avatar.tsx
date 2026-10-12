@@ -4,6 +4,7 @@ import { useImageLoadState } from '~/utils/use_image_load_state'
 
 type AvatarProps = {
   src?: string | null
+  imageBackground?: 'white'
   square?: boolean
   initials?: string
   alt?: string
@@ -12,6 +13,7 @@ type AvatarProps = {
 
 export function Avatar({
   src = null,
+  imageBackground,
   square = false,
   initials,
   alt = '',
@@ -56,7 +58,7 @@ export function Avatar({
       </svg>
       {src && (
         <img
-          className="size-full"
+          className={clsx('size-full', imageBackground === 'white' && 'bg-white')}
           onError={onError}
           onLoad={onLoad}
           // Fall back to initials instead of broken image icon.
