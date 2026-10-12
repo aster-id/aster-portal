@@ -77,7 +77,7 @@ export function SidebarHeading({ className, ...props }: React.ComponentPropsWith
       {...props}
       className={clsx(
         className,
-        'mb-1 px-2 type-meta text-zinc-500 dark:text-zinc-400'
+        'mb-1 px-2 type-eyebrow uppercase text-zinc-500 dark:text-zinc-400'
       )}
     />
   )
