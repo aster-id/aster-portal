@@ -1,4 +1,4 @@
-FROM node:lts-trixie-slim AS base
+FROM node:26-trixie-slim AS base
 
 # Set default shell used for running commands
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
@@ -34,6 +34,9 @@ RUN \
   # Mount Apt cache and lib directories from Docker buildx caches
   --mount=type=cache,id=apt-cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,id=apt-lib,target=/var/lib/apt,sharing=locked \
+  # Refresh package lists, as the cache mounts may be empty when `base` is
+  # restored from the layer cache:
+  apt-get update; \
   # Install go & git:
   apt-get install -y --no-install-recommends git golang-go
 
@@ -43,9 +46,9 @@ FROM base AS base-deps
 WORKDIR /app
 COPY package.json pnpm-*.yaml ./
 
-# Configure Corepack
-RUN corepack enable
-RUN --mount=type=cache,target=/pnpm/store pnpm fetch
+# Install the pnpm version from `packageManager`
+RUN npm install --global "$(node --print "require('./package.json').packageManager.split('+')[0]")"
+RUN --mount=id=pnpm,target=/pnpm/store,type=cache pnpm fetch
 
 FROM base-deps AS production-deps
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --prod --offline

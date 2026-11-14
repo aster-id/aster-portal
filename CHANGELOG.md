@@ -1,4 +1,4 @@
-# eurosky-portal
+# aster-portal
 
 ## 1.8.1
 
@@ -12,28 +12,19 @@
 
 ### Minor Changes
 
-- [#266](https://github.com/eurosky-social/eurosky-portal/pull/266) [`64ef2da`](https://github.com/eurosky-social/eurosky-portal/commit/64ef2dafa2d5cf229fb8f43657f12b99c53253e2) Thanks [@gingkopr](https://github.com/gingkopr)! - Add support for multiple handle domains in `ATPROTO_HANDLE_DOMAIN`, as a
-  comma-separated list (such as `eurosky.social,example.social`).
-  The first domain completes bare usernames.
+- [#266](https://github.com/eurosky-social/eurosky-portal/pull/266) [`64ef2da`](https://github.com/eurosky-social/eurosky-portal/commit/64ef2dafa2d5cf229fb8f43657f12b99c53253e2) Thanks [@gingkopr](https://github.com/gingkopr)! - Add support for multiple handle domains in `ATPROTO_HANDLE_DOMAIN`, as a comma-separated list (such as `eurosky.social,example.social`). The first domain completes bare usernames.
 
 ### Patch Changes
 
-- [#244](https://github.com/eurosky-social/eurosky-portal/pull/244) [`ab24d20`](https://github.com/eurosky-social/eurosky-portal/commit/ab24d200ef2870eabe4de9bab53606168a6816ac) Thanks [@wooorm](https://github.com/wooorm)! - Add middleware in development to redirect between IPs (`127.0.0.1:4075`) and
-  hostnames (`localhost:4075`), based on what’s configured in `.env`.
-  Needs to be correct for OAuth flow.
+- [#244](https://github.com/eurosky-social/eurosky-portal/pull/244) [`ab24d20`](https://github.com/eurosky-social/eurosky-portal/commit/ab24d200ef2870eabe4de9bab53606168a6816ac) Thanks [@wooorm](https://github.com/wooorm)! - Add middleware in development to redirect between IPs (`127.0.0.1:4075`) and hostnames (`localhost:4075`), based on what’s configured in `.env`. Needs to be correct for OAuth flow.
 
-- [#265](https://github.com/eurosky-social/eurosky-portal/pull/265) [`92652bc`](https://github.com/eurosky-social/eurosky-portal/commit/92652bcc188f8278e0ec2c90344e1017a1fc6f4d) Thanks [@gingkopr](https://github.com/gingkopr)! - Fix missing `og-image.png` in the Vite manifest since Vite 8, which crashed
-  every page in production builds.
+- [#265](https://github.com/eurosky-social/eurosky-portal/pull/265) [`92652bc`](https://github.com/eurosky-social/eurosky-portal/commit/92652bcc188f8278e0ec2c90344e1017a1fc6f4d) Thanks [@gingkopr](https://github.com/gingkopr)! - Fix missing `og-image.png` in the Vite manifest since Vite 8, which crashed every page in production builds.
 
 - [#248](https://github.com/eurosky-social/eurosky-portal/pull/248) [`6d763eb`](https://github.com/eurosky-social/eurosky-portal/commit/6d763eb3a70fe81f1b7bc405ef047c44ec8b44c5) Thanks [@wooorm](https://github.com/wooorm)! - Fix out of sync privacy policy, terms
 
-  Previously there was a copy here and there were copies in other places.
-  That makes it easy for things to get out of sync.
-  Now the privacy policy and terms _there_ are linked to.
-  For the places that display them inline, we can display the data from there.
+Previously there was a copy here and there were copies in other places. That makes it easy for things to get out of sync. Now the privacy policy and terms _there_ are linked to. For the places that display them inline, we can display the data from there.
 
-- [#243](https://github.com/eurosky-social/eurosky-portal/pull/243) [`63a986f`](https://github.com/eurosky-social/eurosky-portal/commit/63a986f86cda503b6fd849263321e5e4cb30e1a2) Thanks [@wooorm](https://github.com/wooorm)! - Fix crash in exception handler w/o `auth` context.
-  Can happen if errors occur before auth middleware runs.
+- [#243](https://github.com/eurosky-social/eurosky-portal/pull/243) [`63a986f`](https://github.com/eurosky-social/eurosky-portal/commit/63a986f86cda503b6fd849263321e5e4cb30e1a2) Thanks [@wooorm](https://github.com/wooorm)! - Fix crash in exception handler w/o `auth` context. Can happen if errors occur before auth middleware runs.
 
 - [#259](https://github.com/eurosky-social/eurosky-portal/pull/259) [`a71f421`](https://github.com/eurosky-social/eurosky-portal/commit/a71f421fb0a3c71f76a2bf1c91e7674eb2555f95) Thanks [@wooorm](https://github.com/wooorm)! - Fix grouping of activity query
 
@@ -43,9 +34,7 @@
 
 - [#253](https://github.com/eurosky-social/eurosky-portal/pull/253) [`bb16c24`](https://github.com/eurosky-social/eurosky-portal/commit/bb16c2427d1018d5bc3fc4d55fa79f2ecc5a7c21) Thanks [@wooorm](https://github.com/wooorm)! - Fix faq, explore responding to locale change
 
-- [#266](https://github.com/eurosky-social/eurosky-portal/pull/266) [`341a223`](https://github.com/eurosky-social/eurosky-portal/commit/341a22392f4e2ddb8f5f93a739aca12d7276adef) Thanks [@gingkopr](https://github.com/gingkopr)! - Fix logins with custom handles timing out, by allowing 5 seconds instead of 1
-  to resolve an identity. Configurable with `ATPROTO_RESOLVE_TIMEOUT`
-  (milliseconds).
+- [#266](https://github.com/eurosky-social/eurosky-portal/pull/266) [`341a223`](https://github.com/eurosky-social/eurosky-portal/commit/341a22392f4e2ddb8f5f93a739aca12d7276adef) Thanks [@gingkopr](https://github.com/gingkopr)! - Fix logins with custom handles timing out, by allowing 5 seconds instead of 1 to resolve an identity. Configurable with `ATPROTO_RESOLVE_TIMEOUT` (milliseconds).
 
 - [#246](https://github.com/eurosky-social/eurosky-portal/pull/246) [`d43abc2`](https://github.com/eurosky-social/eurosky-portal/commit/d43abc24e07d75639f3e790ad827d0ed6db3a86b) Thanks [@wooorm](https://github.com/wooorm)! - Add better OAuth input resolution
 
@@ -57,25 +46,19 @@
 
 - [#250](https://github.com/eurosky-social/eurosky-portal/pull/250) [`26f4d33`](https://github.com/eurosky-social/eurosky-portal/commit/26f4d336f380e8634f6e01308c4b6dcaac207cf8) Thanks [@wooorm](https://github.com/wooorm)! - Add i18n for data
 
-  This adds translations for large content, notably the FAQ and Explore pages.
-  Also translates app categories and activity categories.
-  Finally, also translates OAuth error messages, and some last UI strings.
+This adds translations for large content, notably the FAQ and Explore pages. Also translates app categories and activity categories. Finally, also translates OAuth error messages, and some last UI strings.
 
 - [#249](https://github.com/eurosky-social/eurosky-portal/pull/249) [`f8c5881`](https://github.com/eurosky-social/eurosky-portal/commit/f8c58811bff65d6f33386ea97deb72d805130406) Thanks [@wooorm](https://github.com/wooorm)! - Add i18n for all ui strings
 
-  This uses the chosen locale to display numbers, dates, lists, and messages.
-  Also includes support for tags _in_ messages.
+This uses the chosen locale to display numbers, dates, lists, and messages. Also includes support for tags _in_ messages.
 
-  Next: translate large content (md files, some json).
+Next: translate large content (md files, some json).
 
 - [#257](https://github.com/eurosky-social/eurosky-portal/pull/257) [`9f0dac5`](https://github.com/eurosky-social/eurosky-portal/commit/9f0dac592ce863223f432f5a964500f5c21db7a8) Thanks [@wooorm](https://github.com/wooorm)! - Add alert for existing account holders
 
 - [#264](https://github.com/eurosky-social/eurosky-portal/pull/264) [`e05f697`](https://github.com/eurosky-social/eurosky-portal/commit/e05f697a3ba76bdf5c111dc374f6c01dca6335b1) Thanks [@wooorm](https://github.com/wooorm)! - Use `@adonisjs/otel`
 
-  This makes things vendor-neutral with OpenTelemetry, off by default.
-  Set `OTEL_ENABLED=true` and `OTEL_EXPORTER_OTLP_*` environment variables to
-  send telemetry.
-  Removes `MONOCLE_API_KEY`.
+This makes things vendor-neutral with OpenTelemetry, off by default. Set `OTEL_ENABLED=true` and `OTEL_EXPORTER_OTLP_*` environment variables to send telemetry. Removes `MONOCLE_API_KEY`.
 
 - [#256](https://github.com/eurosky-social/eurosky-portal/pull/256) [`083792a`](https://github.com/eurosky-social/eurosky-portal/commit/083792aebaa62bf3b24c1d6c7575493c6fc75e45) Thanks [@wooorm](https://github.com/wooorm)! - Add script to check i18n keys, messages
 
@@ -85,10 +68,7 @@
 
 - [#247](https://github.com/eurosky-social/eurosky-portal/pull/247) [`72a40ea`](https://github.com/eurosky-social/eurosky-portal/commit/72a40ea29aed8326dcc2855ba4d828a3948fa694) Thanks [@wooorm](https://github.com/wooorm)! - Add foundation of internationalization
 
-  This adds Dutch next to English, a language picker, and the server side
-  and client side infrastructure to render translations.
-  The only translations are error messages for forms now.
-  Next: a) extract and translate strings from JSX, b) translate large content (md files, some json).
+This adds Dutch next to English, a language picker, and the server side and client side infrastructure to render translations. The only translations are error messages for forms now. Next: a) extract and translate strings from JSX, b) translate large content (md files, some json).
 
 - [#263](https://github.com/eurosky-social/eurosky-portal/pull/263) [`0422036`](https://github.com/eurosky-social/eurosky-portal/commit/04220361fef3a22373d4a0db347379826be78108) Thanks [@wooorm](https://github.com/wooorm)! - Add “your apps” page
 
@@ -123,11 +103,12 @@
 
 - [#209](https://github.com/eurosky-social/eurosky-portal/pull/209) [`969b982`](https://github.com/eurosky-social/eurosky-portal/commit/969b9829d319f9fdd9e9014df61d539e6a01fe7a) Thanks [@wooorm](https://github.com/wooorm)! - Fix activity syncing
 
-  Some improvements to activity syncing:
-  - lower concurrency (number of users at the same time)
-  - longer SQLite busy_timeout (5s -> 30s)
-  - don’t swallow problems when syncing collections
-  - honor `Retry-After` headers up to a point (1m)
+Some improvements to activity syncing:
+
+- lower concurrency (number of users at the same time)
+- longer SQLite busy_timeout (5s -> 30s)
+- don’t swallow problems when syncing collections
+- honor `Retry-After` headers up to a point (1m)
 
 ## 1.7.0
 
@@ -221,7 +202,7 @@
 
 - [#148](https://github.com/eurosky-social/eurosky-portal/pull/148) [`642d715`](https://github.com/eurosky-social/eurosky-portal/commit/642d715d5d5206e7139e6c61ae0f9a8c6eba6947) Thanks [@ThisIsMissEm](https://github.com/ThisIsMissEm)! - Fix docker image UID/GID
 
-  Just by chance UID/GID of 991 conflicts on debian with systemd-timesync
+Just by chance UID/GID of 991 conflicts on debian with systemd-timesync
 
 ## 1.4.18
 
@@ -254,7 +235,7 @@
 
 - [#134](https://github.com/eurosky-social/eurosky-portal/pull/134) [`46f4b47`](https://github.com/eurosky-social/eurosky-portal/commit/46f4b4724dbb5a7bcfd33525238456edeb370729) Thanks [@ThisIsMissEm](https://github.com/ThisIsMissEm)! - Improve OAuth error handling
 
-  We now display a flash message above the form an OAuth error occurs after redirecting to the OAuth provider (assuming they redirect back to us). The other error messages have also been improved.
+We now display a flash message above the form an OAuth error occurs after redirecting to the OAuth provider (assuming they redirect back to us). The other error messages have also been improved.
 
 ## 1.4.16
 
@@ -262,13 +243,13 @@
 
 - [#132](https://github.com/eurosky-social/eurosky-portal/pull/132) [`c9ed441`](https://github.com/eurosky-social/eurosky-portal/commit/c9ed44195f7b34468eeab58beceefb5941376124) Thanks [@ThisIsMissEm](https://github.com/ThisIsMissEm)! - Remove bluesky avatar from navbars
 
-  We can't reliably fetch this without going through bluesky's infrastructure.
+We can't reliably fetch this without going through bluesky's infrastructure.
 
 - [#132](https://github.com/eurosky-social/eurosky-portal/pull/132) [`1d621c3`](https://github.com/eurosky-social/eurosky-portal/commit/1d621c3d393b0d7e2f7b9ff16ef0efab71711ec7) Thanks [@ThisIsMissEm](https://github.com/ThisIsMissEm)! - Improve caching of data for better resiliency
 
-  During the Bluesky outage on 16th April 2026, we faced significant increases in P95 response times, up to 10 seconds, due to our reliance on fetching the profile data from Bluesky's API on every request.
+During the Bluesky outage on 16th April 2026, we faced significant increases in P95 response times, up to 10 seconds, due to our reliance on fetching the profile data from Bluesky's API on every request.
 
-  This change makes the handle cached on the Account record, and it is refreshed each time the user logs in. We also separate the loading of the Bluesky profile and the fetching the handle, using the adonis.js cache to cache the profile response for 10 minutes, with a fetch timeout of 1 second. If the data fails to load, then we don't show their actual avatar and we omit the stats section.
+This change makes the handle cached on the Account record, and it is refreshed each time the user logs in. We also separate the loading of the Bluesky profile and the fetching the handle, using the adonis.js cache to cache the profile response for 10 minutes, with a fetch timeout of 1 second. If the data fails to load, then we don't show their actual avatar and we omit the stats section.
 
 ## 1.4.15
 
@@ -340,11 +321,11 @@
 
 - [#103](https://github.com/eurosky-social/eurosky-portal/pull/103) [`c077ff8`](https://github.com/eurosky-social/eurosky-portal/commit/c077ff85f43310197898688f0386222a4203cab6) Thanks [@ThisIsMissEm](https://github.com/ThisIsMissEm)! - Add automated release management
 
-  We're now automating our releases with [Changesets](https://github.com/changesets/changesets/blob/main/README.md). The docker image will automatically be built as `dev` for the `main` branch, and changesets will trigger the creating of the git tag for publishing the released versions as the `latest` docker image.
+We're now automating our releases with [Changesets](https://github.com/changesets/changesets/blob/main/README.md). The docker image will automatically be built as `dev` for the `main` branch, and changesets will trigger the creating of the git tag for publishing the released versions as the `latest` docker image.
 
 - [#106](https://github.com/eurosky-social/eurosky-portal/pull/106) [`53ec383`](https://github.com/eurosky-social/eurosky-portal/commit/53ec383e15951caa7fb90ae513b5bf3a97bc2e65) Thanks [@ThisIsMissEm](https://github.com/ThisIsMissEm)! - Add monocle.sh for observerability
 
-  [Monocle](https://monocle.sh) is a adonis.js native observerability service built on Open Telemetry.
+[Monocle](https://monocle.sh) is a adonis.js native observerability service built on Open Telemetry.
 
 - [#108](https://github.com/eurosky-social/eurosky-portal/pull/108) [`b496d6e`](https://github.com/eurosky-social/eurosky-portal/commit/b496d6e864f5eb7ad252b7633f537d4fee8a99c0) Thanks [@ThisIsMissEm](https://github.com/ThisIsMissEm)! - Add health checks
 

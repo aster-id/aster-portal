@@ -55,7 +55,7 @@ export default function Login({ migrationUrl }: InertiaProps<{ migrationUrl?: st
           </h1>
           <Text className="text-center">{t('login.subtitle')}</Text>
           <Form className="my-6" route="oauth.login">
-            {({ errors, valid, isDirty, processing }) => (
+            {({ errors, isDirty, processing }) => (
               <FieldGroup>
                 <Field>
                   <Label htmlFor="input">{t('login.handleLabel')}</Label>
@@ -63,7 +63,7 @@ export default function Login({ migrationUrl }: InertiaProps<{ migrationUrl?: st
                     id="input"
                     name="input"
                     type="input"
-                    placeholder="sebastian.eurosky.social"
+                    placeholder="username.aster.id"
                     // Input fields turn into `old_$field` on output.
                     // See `createFieldError` in `app/utils/errors.ts`.
                     defaultValue={
@@ -78,14 +78,14 @@ export default function Login({ migrationUrl }: InertiaProps<{ migrationUrl?: st
                     autoCorrect="off"
                     autoComplete="off"
                   />
-                  {errors?.input && <ErrorMessage>{errors.input}</ErrorMessage>}
+                  {errors.input && <ErrorMessage>{errors.input}</ErrorMessage>}
                 </Field>
                 <Field className="mt-2 flex justify-end justify-items-stretch">
                   <Button
                     type="submit"
-                    color={!valid || !isDirty || processing ? 'zinc' : 'brand'}
+                    color={!isDirty || processing ? 'zinc' : 'brand'}
                     className="login-submit w-full py-3! disabled:cursor-default"
-                    disabled={!valid || !isDirty || processing}
+                    disabled={!isDirty || processing}
                   >
                     {t('login.continue')}
                   </Button>
